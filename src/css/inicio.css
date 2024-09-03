@@ -1,0 +1,53 @@
+.inicio{
+    
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+.contenido{
+    margin-top: 5px;
+    background: chocolate;
+    margin-bottom: 0;
+
+
+}
+.logo{
+    height: auto;
+    width: 100%;
+}
+.overlay {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+    padding: 10px;
+    border-radius: 10px;
+    height: 300px;
+    width: 400px;
+    justify-content: flex-start;
+}
+.texto-overlay{
+    color: azure;
+    margin: 10 10 40 10 ;
+    text-align: center;
+    padding-left: 40px;
+}
+
+.button {
+    color: white;
+    background-color: rgb(28, 28, 48);
+    border: none;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 20px;
+    width: 200px;
+}
+  .container{
+      position: relative;
+      display: inline-block;
+  }
