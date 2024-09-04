@@ -1,0 +1,108 @@
+
+
+.product-gallery {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas de igual tamaño */
+    gap: 16px; /* Espacio entre los elementos */
+  }
+  @media (max-width: 1024px) {
+    .product-gallery {
+      grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-gallery {
+      grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas pequeñas */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-gallery {
+      grid-template-columns: 1fr; /* Una columna en pantallas extra pequeñas */
+    }
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .cardio {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 18%; /* Esto permite que 4 tarjetas quepan en una fila */
+    margin-bottom: 16px; /* Espacio entre filas */
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .card-color-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .color-box {
+    width: 23%;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .color-box-black {
+    background-color: #000;
+  }
+  
+  .color-box-gray {
+    background-color: #808080;
+  }
+  
+  .color-box-green-camo {
+    background-color: #556b2f;
+  }
+  
+  .color-box-camel-camo {
+    background-color: #be7821;
+  }
+  
+  .card-content {
+    margin-top: 16px;
+
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .card-button {
+    display: inline-block; /* Mostrar como un bloque en línea */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 4px; /* Bordes redondeados */
+    text-decoration: none; /* Eliminar subrayado */
+    font-weight: 600; /* Fuente negrita */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  
+  }

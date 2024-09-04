@@ -24,7 +24,7 @@ const Navbar = () => {
         {isMenuOpen ? <FaTimes /> : <FaBars />}
       </button>
       <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
-        <Link to="/home" className="menu-button">Pantalones</Link>
+        <Link to="/pantalones" className="menu-button">Pantalones</Link>
         <Link to="/about" className="menu-button">Chaquetas</Link>
         <Link to="/services" className="menu-button">Camisas</Link>
         <Link to="/contact" className="menu-button">Gorras</Link>
