@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Asegúrate de importar Link
 import "../../estilos/Pantalones.css";
+import ImgPro from '../../img/Stri.jpeg'
 
+let pro = {ImgPro}
+console.log(pro)
 const products = [
-    { id: 1, name: 'Product 1', price: 29.99, image: 'https://via.placeholder.com/200' },
+    { id: 1, name: 'Product 1', price: 29.99, image: ImgPro},
     { id: 2, name: 'Product 2', price: 49.99, image: 'https://via.placeholder.com/200' },
     { id: 3, name: 'Product 3', price: 19.99, image: 'https://via.placeholder.com/200' },
     { id: 4, name: 'Product 4', price: 99.99, image: 'https://via.placeholder.com/200' },

@@ -2,7 +2,7 @@ import React from 'react';
 //import { getProductosRequest } from "../api/productosCar"
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom'; // Asegúrate de importar Link
-
+import ImgPro from '../img/Stri.jpeg'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../estilos/Productos2.css"
@@ -10,6 +10,7 @@ import "../estilos/Productos2.css"
 
 
   const productos =[
+    require('../img/Stri.jpeg'),
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
@@ -75,11 +76,11 @@ import "../estilos/Productos2.css"
               alt={`producto-${index}`}
             />
           </div>
-          <div className="card-color-boxes">
-              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-box color-box-black"></Link>
-              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-box color-box-gray"></Link>
-              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-box color-box-green-camo"></Link>
-              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-box color-box-camel-camo"></Link>
+          <div className="card-color-boxe">
+              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-black"></Link>
+              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-gray"></Link>
+              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-green-camo"></Link>
+              <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-camel-camo"></Link>
             </div>
           <div className="card-content">
             <h3 className="card-title">Primer Parrafo</h3>

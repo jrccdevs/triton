@@ -78,19 +78,19 @@
 
 
   /* Contenedor de los cuadros de colores */
-.card-color-boxes {
+.card-color-boxe {
     display: flex; /* Muestra los cuadros en línea */
     justify-content: center; /* Centra los cuadros horizontalmente */
-    gap: 10px; /* Espacio entre los cuadros */
+    gap: 20px; /* Espacio entre los cuadros */
     margin-bottom: auto; /* Espacio debajo de los cuadros */
-    margin-top: auto;
+    margin-top: 10px;
   }
   
   /* Estilo base para los cuadros de colores */
-  .color-box {
-    width: 40px; /* Ancho del cuadro */
+  .color-boxe {
+    width: 50px; /* Ancho del cuadro */
     height: 40px; /* Alto del cuadro */
-    border-radius: 0; /* Bordes redondeados */
+    border-radius: 3px; /* Bordes redondeados */
   }
   
   /* Colores específicos para los cuadros */

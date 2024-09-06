@@ -2,6 +2,7 @@ import React from 'react';
 import Empresa from "../../img/homepage.webp";
 import NavBar from '../NavBar'
 import ProductCard from './ProductCard'
+import GaleriaPants from './GaleriaPants'
 //import '../estilos/Seccion1.css'; // Archivo CSS para estilos personalizados
 
 export default function Pantalones() {
@@ -11,7 +12,7 @@ export default function Pantalones() {
             <NavBar />
          </div>
       
-     <div className="image-container">
+     <div className="image-container principal">
         
       <img 
         src={Empresa}
@@ -28,6 +29,9 @@ export default function Pantalones() {
      </div>
      <div>
          <ProductCard />
+     </div>
+     <div>
+         <GaleriaPants />
      </div>
     </div>
   );
