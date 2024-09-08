@@ -1,0 +1,126 @@
+.grid-large-pants {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Carrusel oculto en pantallas grandes */
+  .carousel-responsive-pants {
+    display: none;
+  }
+  
+  .image-container-pants {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  
+  .image-pants {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .overlay-right-pants {
+    position: absolute;
+    top: 60%; /* Centrado verticalmente */
+    right: 50px; /* Alineado a la derecha */
+    transform: translateY(-50%); /* Ajuste para centrar completamente */
+    width: 250px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    border-radius: 5px; /* Opcional: redondea las esquinas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido */
+    padding: 10px;
+   }
+  
+  .overlay-content-pants {
+    text-align: center;
+    color: white;
+  }
+  
+  .overlay-button-pants {
+    align-self: flex-start;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Modo responsivo */
+  @media (max-width: 768px) {
+    /* Mostrar carrusel en pantallas pequeñas */
+    .carousel-responsive-pants {
+      display: block;
+    }
+  
+    /* Ocultar cuadrícula en pantallas pequeñas */
+    .grid-large-pants {
+      display: none;
+    }
+  
+    .overlay-right-pants {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-top: 10px; /* Añade un margen superior */
+        width: auto; /* Ocupa todo el ancho de la pantalla */
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo del texto */
+        padding: 20px;
+        border-radius: 0; /* Elimina el borde redondeado para ocupar todo el ancho */
+     }
+  
+    /* Ajusta el contenido para que se muestre debajo de la imagen */
+    .image-container-pants {
+      margin-bottom: 20px;
+    }
+
+    /* Estilo básico para las flechas de navegación de Slick */
+.slick-prev, .slick-next {
+    width: 60px; /* Ajusta el ancho del contenedor de la flecha */
+    height: 60px; /* Ajusta la altura del contenedor de la flecha */
+    text-align: center; /* Centra el contenido horizontalmente */
+    line-height: 60px; /* Centra el ícono verticalmente */
+    background: rgba(255, 255, 255, 0.8); /* Fondo con opacidad */
+    border-radius: 50%; /* Bordes redondeados para el contenedor de la flecha */
+    display: flex; /* Usa flexbox para centrar el ícono */
+    align-items: center; /* Centra el ícono verticalmente */
+    justify-content: center; /* Centra el ícono horizontalmente */
+    color: #d3d3d3; /* Color del ícono de la flecha */
+    z-index: 1; /* Asegura que las flechas estén sobre otros elementos */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la flecha */
+    opacity: 0.3;
+  }
+  
+  /* Flecha anterior */
+  .slick-prev {
+    left: 10px; /* Espacio desde el borde izquierdo */
+    top: 50%; /* Posiciona verticalmente en el centro */
+    transform: translateY(-50%); /* Ajusta el centro verticalmente */
+  }
+  
+  /* Flecha siguiente */
+  .slick-next {
+    right: 10px; /* Espacio desde el borde derecho */
+    top: 50%; /* Posiciona verticalmente en el centro */
+    transform: translateY(-50%); /* Ajusta el centro verticalmente */
+  }
+  
+  /* Asegura que las flechas sean visibles */
+  .slick-prev:before, .slick-next:before {
+    font-family: 'slick'; /* Usa la fuente de íconos predeterminada de Slick */
+    font-size: 25px; /* Tamaño del ícono */
+    color: black; /* Color del ícono */
+  }
+  }
+  

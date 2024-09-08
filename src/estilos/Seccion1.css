@@ -79,17 +79,23 @@
 
   /* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
+  .principal{
+    width: 100%;
+    max-width: auto;
+  }
     .image-container {
+     
       height: auto; /* Permite que la altura de la imagen se ajuste al contenido */
     }
   
     .overlay-right {
+      border-radius: 0;
       position: relative; /* Cambia a relativo para que se mueva debajo de la imagen */
       top: 0;
       right: 0;
       transform: none; /* Elimina cualquier transformación */
       margin-top: 10px; /* Añade un margen superior para separarlo de la imagen */
-      width: 100%; /* Ajusta el ancho al 100% para que ocupe todo el contenedor */
+      width: auto; /* Ajusta el ancho al 100% para que ocupe todo el contenedor */
       height: auto; /* Ajusta la altura automáticamente según el contenido */
     }
   

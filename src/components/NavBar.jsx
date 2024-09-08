@@ -24,11 +24,11 @@ const Navbar = () => {
         {isMenuOpen ? <FaTimes /> : <FaBars />}
       </button>
       <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
-        <Link to="/pantalones" className="menu-button">Pantalones</Link>
-        <Link to="/about" className="menu-button">Chaquetas</Link>
-        <Link to="/services" className="menu-button">Camisas</Link>
-        <Link to="/contact" className="menu-button">Gorras</Link>
-        <Link to="/contact" className="menu-button">Accesorios</Link>
+        <Link to="/pantalones" onClick={() => window.scrollTo(0, 0)} className="menu-button">Pantalones</Link>
+        <Link to="/about" onClick={() => window.scrollTo(0, 0)} className="menu-button">Chaquetas</Link>
+        <Link to="/services" onClick={() => window.scrollTo(0, 0)}className="menu-button">Camisas</Link>
+        <Link to="/contact" onClick={() => window.scrollTo(0, 0)}className="menu-button">Gorras</Link>
+        <Link to="/contact" onClick={() => window.scrollTo(0, 0)} className="menu-button">Accesorios</Link>
       </div>
     </div>
     <div className="search-container">

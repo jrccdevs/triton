@@ -26,23 +26,18 @@ export default function Inicio() {
   }, []);
 
   return (
-    <div>
-    <div>
-      <NavBar />
+    <div style={{ width: '100%', margin: 0, padding: 0 }}>
+    <NavBar />
+    <div style={{ width: '100%' }}>
+      <SeccionPrincipal />
     </div>
-    
-      <div style={{bottom:0}}>
-        <SeccionPrincipal />
-      </div>
-      <div>
-         <Productos2 />
-      </div>
-      <div>
-         <Seccion1 />
-      </div>
-    <div>
-      <Footer />
+    <div style={{ width: '100%' }}>
+      <Productos2 />
     </div>
+    <div style={{ width: '100%' }}>
+      <Seccion1 />
+    </div>
+    <Footer />
   </div>
     
   )

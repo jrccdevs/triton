@@ -6,7 +6,6 @@
     padding: 15px 0 30px 0; /* Aumenta el padding para mayor altura del navbar */
     background-color: #333;
     color: #fff;
-   
     position: fixed; /* Fija el navbar en la parte superior de la ventana */
     top: 0; /* Alinea el navbar en la parte superior */
     left: 0; /* Alinea el navbar en el borde izquierdo */
@@ -92,6 +91,10 @@
   
   /* Estilos para pantallas pequeñas */
   @media (max-width: 768px) {
+    .navbar-container{
+      width: 100%;
+      max-width: auto;
+    }
     .menu {
         display: flex; /* Oculta el menú en pantallas pequeñas */
         flex-direction: column;

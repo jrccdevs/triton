@@ -3,6 +3,7 @@ import Empresa from "../../img/homepage.webp";
 import NavBar from '../NavBar'
 import ProductCard from './ProductCard'
 import GaleriaPants from './GaleriaPants'
+import Footer from '../Footer';
 //import '../estilos/Seccion1.css'; // Archivo CSS para estilos personalizados
 
 export default function Pantalones() {
@@ -33,6 +34,7 @@ export default function Pantalones() {
      <div>
          <GaleriaPants />
      </div>
+     <Footer />
     </div>
   );
 };
