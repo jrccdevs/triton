@@ -25,10 +25,10 @@ const Navbar = () => {
       </button>
       <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
         <Link to="/pantalones" onClick={() => window.scrollTo(0, 0)} className="menu-button">Pantalones</Link>
-        <Link to="/about" onClick={() => window.scrollTo(0, 0)} className="menu-button">Chaquetas</Link>
-        <Link to="/services" onClick={() => window.scrollTo(0, 0)}className="menu-button">Camisas</Link>
-        <Link to="/contact" onClick={() => window.scrollTo(0, 0)}className="menu-button">Gorras</Link>
-        <Link to="/contact" onClick={() => window.scrollTo(0, 0)} className="menu-button">Accesorios</Link>
+        <Link to="/chaquetas" onClick={() => window.scrollTo(0, 0)} className="menu-button">Chaquetas</Link>
+        <Link to="/camisas" onClick={() => window.scrollTo(0, 0)}className="menu-button">Camisas</Link>
+        <Link to="/gorros" onClick={() => window.scrollTo(0, 0)}className="menu-button">Gorras</Link>
+        <Link to="/accesorios" onClick={() => window.scrollTo(0, 0)} className="menu-button">Accesorios</Link>
       </div>
     </div>
     <div className="search-container">
@@ -36,7 +36,9 @@ const Navbar = () => {
       <FaSearch className="search-icon" />
     </div>
     <div className="cart-icon">
-      <HiOutlineShoppingCart />
+    <Link to="/cart" onClick={() => window.scrollTo(0, 0)} className="menu-button"><HiOutlineShoppingCart /></Link>
+      
+      
     </div>
   </nav>
   );

@@ -1,13 +1,13 @@
 import React from 'react';
 import Empresa from "../../img/homepage.webp";
 import NavBar from '../NavBar';
-import ProductCard from './ProductCard';
-import GaleriaPants from './GaleriaPants';
+import ProductCard from '../Pantalones/ProductCard';
+import GaleriaPants from '../Pantalones/GaleriaPants';
 import Footer from '../Footer';
 
-export default function Pantalones() {
+export default function Camisas() {
   // Definimos la categoría que queremos pasar
-  const category = "pantalones";
+  const category = "camisas";
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function Pantalones() {
         />
         <div className="overlay-right">
           <div className="overlay-content">
-            <h2>SECCION DE PANTALONES</h2>
+            <h2>SECCION DE CAMISAS.....</h2>
             <p>Este es un texto superpuesto sobre la imagen.</p>
           </div>
           <button className="overlay-button">Botón de Acción</button>
