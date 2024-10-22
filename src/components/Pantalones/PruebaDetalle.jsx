@@ -17,7 +17,7 @@ const PruebaDetalle = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://tritonback.vercel.app/api/products/${id}`);
+        const response = await fetch(`https://api-triton.vercel.app/api/products/${id}`);
         const data = await response.json();
         console.log(data); // Para verificar la respuesta
 

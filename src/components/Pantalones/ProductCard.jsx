@@ -16,7 +16,8 @@ const ProductCard = ({ category }) => {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`https://tritonback.vercel.app/api/products/category/${category}`);
+        const response = await axios.get(`https://api-triton.vercel.app/api/products/category/${category}`);
+     
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
