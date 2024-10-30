@@ -13,7 +13,7 @@ export default function Inicio() {
   const [data, setData] = useState("");
   const getData = async () => {
     try {
-      const resp = await fetch('http://localhost:4001/api/product');
+      const resp = await fetch('https://server-triton.vercel.app/productos');
       const json = await resp.json();
       setData(json);
     } catch (err) {

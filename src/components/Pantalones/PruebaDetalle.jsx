@@ -6,7 +6,7 @@ import NavBar from '../NavBar';
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
-  const [product, setProduct] = useState(null); // Estado para almacenar el producto
+  const [product, setProduct] = useState([]); // Estado para almacenar el producto
   const [selectedImage, setSelectedImage] = useState(''); // Imagen inicial
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState(''); // Color inicial
@@ -17,52 +17,57 @@ const PruebaDetalle = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://api-triton.vercel.app/api/products/${id}`);
+        const response = await fetch(`https://server-triton.vercel.app/productos/${id}`);
         const data = await response.json();
-        console.log(data); // Para verificar la respuesta
-
+        console.log("Datos del producto:", JSON.stringify(data, null, 2)); // Verifica la respuesta aquí
+  
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
-
-        // Verifica si hay un producto en los datos
-        if (!data) {
+  
+        // Verifica que `data` tenga al menos un producto
+        if (!data || !Array.isArray(data) || data.length === 0) {
           throw new Error("No se encontraron productos.");
         }
-
-        // Extrae las imágenes del campo product_images
-       const images = parseImages(data.product_images); // Ver función parseImages abajo
-        const img_principal = parseImages(data.main_image) 
-        const color_principal = parseImages(data.color_thumbnails)  
-        // Asignar los datos del producto directamente
-        setProduct(data);
-      //  setSelectedImage(images.length > 0 ? images[0].url : data.main_image); // Imagen inicial
-        setSelectedImage(img_principal.length > 0 ? img_principal[0].color : data.main_image); // Imagen inicial se modifico la instruccion 
-        setSelectedColor(images.length > 0 ? images[0].color : ''); // Color inicial
-        //setSelectedColor(color_principal.length > 0 ? color_principal[0].color : ''); // Color inicial
-        console.log(images)
-console.log(color_principal)
-
+  
+        // Establece el primer producto en el estado
+        const productData = data[0];
+        setProduct({
+          ...productData,
+          price: parseFloat(productData.price), // Asegúrate de que `price` sea un número
+        });
+  
+        // Asignar las imágenes y otros estados según sea necesario
+        const images = parseImages(productData.product_images);
+        setSelectedImage(images.length > 0 ? images[0].url : productData.main_image);
+        setSelectedColor(images.length > 0 ? images[0].color : '');
+  
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
-
-    fetchProduct();
-  }, [id]); // Ahora solo dependemos de 'id'
-
   
+    fetchProduct();
+  }, [id]);
+  useEffect(() => {
+    console.log("Producto actualizado:", product);
+  }, [product]);
   // Función para parsear las imágenes desde el string product_images
-  const parseImages = (productImages) => {
-    const imagesArray = productImages.split('; ').map(imageString => {
-      const [color, url] = imageString.split(', URL: ');
-      return { color: color.replace('Color: ', ''), url }; // Limpia el color
+  const parseImages = (imagesString) => {
+    // Verifica si el parámetro es válido antes de aplicar split
+    if (!imagesString || typeof imagesString !== 'string') {
+      return []; // Devuelve un array vacío si no hay imágenes
+    }
+  
+    return imagesString.split(';').map((img) => {
+      const [colorPart, urlPart] = img.split(', URL:');
+      const color = colorPart.replace("Color: ", "").trim();
+      const url = urlPart ? urlPart.trim() : '';
+      return { url, color };
     });
-    return imagesArray;
   };
-
   // Cambiar talla seleccionada
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -85,16 +90,20 @@ console.log(color_principal)
   if (!product) return <p>No se encontró el producto</p>;
 
   return (
+    <>
     <div>
-      <div>
-        <NavBar />
-      </div>
-    <div className="product-detail-container" style={{marginTop:'120px'}}>
+      <NavBar />
+    </div>
+    <div className="product-detail-container" style={{ marginTop: '120px' }}>
       {/* Imagen principal del producto */}
       <div className="product-images">
-        <img src={selectedImage} alt={product.product_name} className="main-product-image" />
+        <img
+          src={selectedImage}
+          alt={product?.product_name || 'Producto'}
+          className="main-product-image"
+        />
         <div className="product-thumbnails">
-          {parseImages(product.product_images).map((image, index) => (
+          {parseImages(product?.product_images || []).map((image, index) => (
             <img
               key={index}
               src={image.url}
@@ -108,15 +117,17 @@ console.log(color_principal)
 
       {/* Detalle del producto */}
       <div className="product-info">
-        <h1 className="product-name">{product.product_name}</h1>
-        <p className="product-price">${product.price.toFixed(2)}</p>
-        <p className="product-description">{product.description}</p>
+        <h1 className="product-name">{product?.product_name || 'Cargando...'}</h1>
+        <p className="product-price">
+          ${product?.price ? product.price.toFixed(2) : '0.00'}
+        </p>
+        <p className="product-description">{product?.description || 'Descripción no disponible.'}</p>
 
         {/* Colores disponibles */}
         <div className="product-colors">
           <h3>Colores:</h3>
           <div className="colors-container">
-            {parseImages(product.product_images).map((image, index) => (
+            {parseImages(product?.product_images || []).map((image, index) => (
               <div
                 key={index}
                 className={`color-option ${selectedColor === image.color ? 'selected' : ''}`}
@@ -131,7 +142,7 @@ console.log(color_principal)
         <div className="product-sizes">
           <h3>Tallas:</h3>
           <div className="sizes">
-            {product.sizes.split(', ').map((size, index) => (
+            {product?.sizes ? product.sizes.split(', ').map((size, index) => (
               <button
                 key={index}
                 className={`size-option ${selectedSize === size ? 'selected' : ''}`}
@@ -139,7 +150,7 @@ console.log(color_principal)
               >
                 {size}
               </button>
-            ))}
+            )) : 'No hay tallas disponibles.'}
           </div>
         </div>
 
@@ -149,7 +160,7 @@ console.log(color_principal)
         </button>
       </div>
     </div>
-    </div>
+  </>
   );
 };
 

@@ -7,7 +7,7 @@ import Footer from '../Footer';
 
 export default function Accesorios() {
   // Definimos la categoría que queremos pasar
-  const category = "accesorios";
+  const categorias = "accesorios";
 
   return (
     <div>
@@ -30,7 +30,7 @@ export default function Accesorios() {
       </div>
       <div>
         {/* Pasar la categoría a ProductCard */}
-        <ProductCard category={category} />
+        <ProductCard categorias={categorias} />
       </div>
       <div>
         <GaleriaPants />
