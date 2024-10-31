@@ -1,35 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 //import { getProductosRequest } from "../api/productosCar"
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom'; // Asegúrate de importar Link
-import ImgPro from '../img/Stri.jpeg'
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+//import ImgPro from '../img/Stri.jpeg'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../estilos/Productos2.css"
  export default function Productos2 () {
 
+  const [products, setProducts] = useState([ { product_id: 1, main_image: "ruta_a_imagen", product_name: "Producto de Prueba", price: 100 }]);
 
-  const productos =[
+ /* const productos =[
     require('../img/Stri.jpeg'),
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
     'https://res.cloudinary.com/dsfscypwv/image/upload/v1698807683/controlAlfaSA/zajg0tnrbnomhph0vlbo.png',
    
-  ]
+  ]*/
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`https://server-triton.vercel.app/productos`);
+      console.log("Datos completos de la API:", response.data);
 
-
- // const [productos, setProductos] = useState([]);
-
- /* useEffect(() => {
-    async function loadProductos() {
-      const response = await getProductosRequest();
-      console.log(response.data);
-      setProductos(response.data);
+      // Verifica que la respuesta contenga productos antes de actualizar el estado
+      const productos = response.data.products || response.data;
+      setProducts(Array.isArray(productos) ? productos : []);
+    } catch (error) {
+      console.error('Error fetching products:', error.response ? error.response.data : error.message);
+      setProducts([]); // Asegura que productos sea vacío en caso de error
     }
-    loadProductos();
-  }, []);*/
+  };
 
+
+  fetchProducts();
+
+ 
+
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -68,13 +78,13 @@ import "../estilos/Productos2.css"
     <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px' }}>Nuestros Productos</h2>
     
     <Slider {...settings}>
-      {productos.map((image, index) => (
-        <div key={index} className="card-container">
+    {products.length > 0 ? (
+  products.map(product => (
+        <div key={product.product_id} className="card-container">
           <div className="card-image">
-            <img
-              src={image}
-              alt={`producto-${index}`}
-            />
+          <Link  to={`/productos/${product.id}`}>
+           <img src={product.main_image} alt={product.product_name}/>
+          </Link>
           </div>
           <div className="card-color-boxe">
               <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-black"></Link>
@@ -83,13 +93,15 @@ import "../estilos/Productos2.css"
               <Link to="/" onClick={() => window.scrollTo(0, 0)} className="color-boxe color-box-camel-camo"></Link>
             </div>
           <div className="card-content">
-            <h3 className="card-title">Primer Parrafo</h3>
-            <p className="card-description">Descripción breve del contenido de la tarjeta.</p>
-            <a href="#" className="card-button">Leer Más</a>
+            <h3 className="card-title">{product.name}</h3>
+            <p className="card-description">Desde: {product.price}$</p></div>
           </div>
-        </div>
-      ))}
+        ))
+        ) : (
+          <p>No hay productos disponibles.</p>
+        )}
     </Slider>
   </div>
   );
 };
+

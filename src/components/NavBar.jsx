@@ -17,8 +17,12 @@ const Navbar = () => {
   return (
     <nav className="navbar-container">
     <div className="logo">
-      <img src={Empresa} alt="Logo" /> {/* Reemplaza con la ruta a tu imagen */}
-    </div>
+    <Link to="/" onClick={() => window.scrollTo(0, 0)} className="">
+    <img src={Empresa} alt="Logo" /> {/* Reemplaza con la ruta a tu imagen */}
+  
+    </Link>
+            
+      </div>
     <div className="menu-container">
       <button className="menu-toggle" onClick={toggleMenu}>
         {isMenuOpen ? <FaTimes /> : <FaBars />}
