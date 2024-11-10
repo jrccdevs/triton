@@ -200,3 +200,30 @@
       font-size: 0.9em;
     }
   }
+
+
+
+  .product-similar {
+    margin-top: 20px;
+    border-color: darkolivegreen;
+  }
+  
+  .similar-products-container {
+    display: flex;
+    gap: 10px;
+    border-color: darkolivegreen;
+  }
+  
+  .similar-product {
+    cursor: pointer;
+    text-align: center;
+    border-color: darkolivegreen;
+  }
+  
+  .similar-product-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border-color: darkolivegreen;
+  }
