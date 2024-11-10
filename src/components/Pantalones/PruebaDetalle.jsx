@@ -4,6 +4,8 @@ import { FaShoppingCart } from 'react-icons/fa';
 import '../../estilos/Product/ProductDetail.css'; 
 import NavBar from '../NavBar';
 import { Link } from 'react-router-dom';
+import Productos2 from '../Productos2';
+import Footer from '../Footer';
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
@@ -186,6 +188,12 @@ const PruebaDetalle = () => {
           </button>
         </div>
       </div>
+      <div style={{ width: '100%' }}>
+      <Productos2 />
+    </div>
+    <div>
+    <Footer />
+    </div>
     </>
   );
 };

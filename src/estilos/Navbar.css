@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 0 30px 0; /* Aumenta el padding para mayor altura del navbar */
-    background-color: #333;
+    background-color: #335f;
     color: #fff;
     position: fixed; /* Fija el navbar en la parte superior de la ventana */
     top: 0; /* Alinea el navbar en la parte superior */

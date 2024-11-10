@@ -206,18 +206,21 @@
   .product-similar {
     margin-top: 20px;
     border-color: darkolivegreen;
+    
   }
   
   .similar-products-container {
     display: flex;
     gap: 10px;
     border-color: darkolivegreen;
+    
   }
   
   .similar-product {
     cursor: pointer;
     text-align: center;
     border-color: darkolivegreen;
+   
   }
   
   .similar-product-thumbnail {
@@ -226,4 +229,7 @@
     object-fit: cover;
     border-radius: 4px;
     border-color: darkolivegreen;
+    border-width: 3px;
+    transition: border 0.3s;
+    border: 2px solid transparent;
   }
