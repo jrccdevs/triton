@@ -1,132 +1,147 @@
 /* Navbar.css */
 .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 0 30px 0; /* Aumenta el padding para mayor altura del navbar */
-    background-color: #335f;
-    color: #fff;
-    position: fixed; /* Fija el navbar en la parte superior de la ventana */
-    top: 0; /* Alinea el navbar en la parte superior */
-    left: 0; /* Alinea el navbar en el borde izquierdo */
-    width: 100%; /* Asegura que el navbar ocupe el ancho completo */
-    z-index: 900; /* Asegura que el navbar esté encima de otros contenidos */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Añade una sombra para un mejor contraste */
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Esto asegura que los elementos se distribuyan correctamente */
+  padding: 15px 20px;
+  background-color: #335f;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+  height: 80px;
+  margin-left: 15px;
   
-  .logo img {
-    height: 80px; /* Ajusta el tamaño del logo según sea necesario */
-    margin-left: 35px;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-button {
+  margin: 0 10px;
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.menu-button:hover {
+  color: #ddd;
+  transform: scale(1.1);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+  position: relative;
+  width: 100%;
+  flex: 1; /* Permite que el buscador tome espacio proporcional dentro del contenedor */
+  min-width: 200px; /* Define un ancho mínimo para evitar que se colapse */
+  max-width: 600px; /* Controla el ancho máximo para pantallas grandes */
+}
+
+.search-bar {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  width: 100%; /* El campo se ajusta al ancho disponible del contenedor */
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  font-size: 16px; /* Tamaño de texto legible */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 15px;
   }
-  
-  .menu-container {
-    display: flex;
-    align-items: center;
+
+  .logo {
+      margin-bottom: 10px;
   }
-  
+
   .menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu-button {
-    margin: 0 2px; /* Añade más espacio horizontal entre los botones */
-    padding: 10px 15px; /* Ajusta el padding para el botón */
-    border: none; /* Elimina el borde del botón */
-    background: none; /* Sin fondo */
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px; /* Aumenta el tamaño del texto */
-    text-decoration: none; /* Elimina el subrayado en los enlaces */
-    transition: color 0.3s, transform 0.3s;
-    text-align: left; /* Alinea el texto a la izquierda */
-  }
-  
-  .menu-button:hover {
-    color: #ddd; /* Cambia el color del texto en hover */
-    transform: scale(1.35); /* Añade un efecto de escala en el hover */
-  }
-  
-  .search-container {
-    
-    position: relative; /* Posiciona el contenedor relativo para el icono */
-    margin-right: 50px; /* Espacio entre el campo de búsqueda y el icono del carrito */
-  }
-  
-  .search-bar {
-    padding: 10px 40px; /* Ajusta el padding interno y añade espacio a la derecha para el icono */
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 300px; /* Aumenta el ancho del campo de búsqueda */
-  }
-  
-  .search-icon {
-    position: absolute; /* Posiciona el icono de manera absoluta dentro del contenedor */
-    right: 10px; /* Ajusta el espacio desde el borde derecho del campo de búsqueda */
-    top: 50%; /* Centra verticalmente */
-    transform: translateY(-50%); /* Ajusta el icono verticalmente al centro */
-    color: #aaa; /* Color del icono */
-    font-size: 20px; /* Ajusta el tamaño del icono */
-    cursor: pointer; /* Cambia el cursor a puntero */
-  }
-  
-  .cart-icon {
-    font-size: 38px; /* Aumenta el tamaño del icono */
-    cursor: pointer;
-    margin-right: 45px; /* Añade espacio entre el carrito y otros elementos */
-    padding-left: 0px;
-  }
-  
-  .menu-toggle {
-    display: none; /* Oculta el botón de menú en pantallas grandes */
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  /* Estilos para pantallas pequeñas */
-  @media (max-width: 768px) {
-    .navbar-container{
+      display: none;
+      flex-direction: column;
       width: 100%;
-      max-width: auto;
-    }
-    .menu {
-        display: flex; /* Oculta el menú en pantallas pequeñas */
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-        position: absolute;
-        top: 130px; /* Ajusta según la altura del navbar */
-        left: 0;
-        border-top: 1px solid #444;
-        overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
-        max-height: 0;
-    }
-  
-    .menu.active {
-        display: flex; /* Muestra el menú cuando está activo */
-        max-height: 500px; /* Asegura que el menú puede expandirse completamente */
-    }
-  
-    .menu-button {
-      margin: 10px 0; /* Ajusta el margen para el menú en pantallas pequeñas */
-    }
-  
-    .search-container {
-      display: none; /* Oculta el campo de búsqueda en pantallas pequeñas */
-    }
-  
-    .cart-icon {
-      font-size: 24px; /* Ajusta el tamaño del icono en pantallas pequeñas */
-    }
-  
-    .menu-toggle {
-      display: block; /* Muestra el botón de menú en pantallas pequeñas */
-    }
+      background-color: #333;
+      position: relative;
+      border-top: 1px solid #444;
   }
+
+  .menu.active {
+      display: flex;
+  }
+
+  .menu-button {
+      margin: 5px 0;
+      padding: 10px 20px;
+      text-align: left;
+  }
+
+  .search-container {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .search-bar {
+      width: 100%;
+      max-width: none;
+  }
+
+  .cart-icon {
+      font-size: 24px;
+      margin-top: 10px;
+  }
+
+  .menu-toggle {
+      display: block;
+  }
+}

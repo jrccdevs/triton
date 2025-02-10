@@ -1,0 +1,91 @@
+/* src/estilos/Carrito/PopularProducts.css */
+
+.popular-products-container {
+    width: 250px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .popular-products-container h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  
+  .popular-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .popular-product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    transition: box-shadow 0.3s;
+  }
+  
+  .popular-product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popular-product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .popular-product-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .product-name {
+    font-size: 0.9rem;
+    color: #007185;
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .product-price {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #B12704;
+    margin-bottom: 8px;
+  }
+  
+  .add-to-cart-button {
+    background-color: #ffa41c;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #ff8f00;
+  }
+  

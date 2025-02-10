@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsCart4 } from "react-icons/bs";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-
+import Buscador from "./Buscador"
 import { FaShoppingCart, FaSearch, FaBars, FaTimes  } from 'react-icons/fa';
 
 const Navbar = () => {
@@ -17,32 +17,32 @@ const Navbar = () => {
   return (
     <nav className="navbar-container">
     <div className="logo">
-    <Link to="/" onClick={() => window.scrollTo(0, 0)} className="">
-    <img src={Empresa} alt="Logo" /> {/* Reemplaza con la ruta a tu imagen */}
+      <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+        <img src={Empresa} alt="Logo" />
+      </Link>
+    </div>
   
-    </Link>
-            
-      </div>
     <div className="menu-container">
       <button className="menu-toggle" onClick={toggleMenu}>
         {isMenuOpen ? <FaTimes /> : <FaBars />}
       </button>
-      <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
+      <div className={`menu ${isMenuOpen ? "active" : ""}`}>
         <Link to="/pantalones" onClick={() => window.scrollTo(0, 0)} className="menu-button">Pantalones</Link>
         <Link to="/chaquetas" onClick={() => window.scrollTo(0, 0)} className="menu-button">Chaquetas</Link>
-        <Link to="/camisas" onClick={() => window.scrollTo(0, 0)}className="menu-button">Camisas</Link>
-        <Link to="/gorros" onClick={() => window.scrollTo(0, 0)}className="menu-button">Gorras</Link>
+        <Link to="/camisas" onClick={() => window.scrollTo(0, 0)} className="menu-button">Camisas</Link>
+        <Link to="/gorros" onClick={() => window.scrollTo(0, 0)} className="menu-button">Gorras</Link>
         <Link to="/accesorios" onClick={() => window.scrollTo(0, 0)} className="menu-button">Accesorios</Link>
       </div>
     </div>
+  
     <div className="search-container">
-      <input className="search-bar" type="text" placeholder="Search..." />
-      <FaSearch className="search-icon" />
+      <Buscador />
     </div>
+  
     <div className="cart-icon">
-    <Link to="/cart" onClick={() => window.scrollTo(0, 0)} className="menu-button"><HiOutlineShoppingCart /></Link>
-      
-      
+      <Link to="/cart" onClick={() => window.scrollTo(0, 0)} className="menu-button">
+        <HiOutlineShoppingCart />
+      </Link>
     </div>
   </nav>
   );

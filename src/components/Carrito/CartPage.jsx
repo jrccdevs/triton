@@ -1,46 +1,57 @@
-// src/pages/CartPage.js
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../redux/cartActions';
-import CheckoutButton from './CheckoutButton';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import '../../estilos/Carrito/Carrito.css'; // Asegúrate de que el archivo CSS esté importado
 
-const CartPage = () => {
-  const cartItems = useSelector((state) => state.cart.items);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const dispatch = useDispatch();
 
-  const handleRemoveFromCart = (id) => {
-    dispatch(removeFromCart(id));
+const CartView = () => {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // Cargar los productos del carrito desde el localStorage
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+  }, []);
+
+  // Función para eliminar un producto del carrito
+  const removeItemFromCart = (index) => {
+    const updatedCart = cart.filter((item, i) => i !== index);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el carrito en localStorage
   };
 
   return (
-    <div className="cart-page">
-      <h2>Tu Carrito</h2>
-      {cartItems.length === 0 ? (
-        <p>El carrito está vacío</p>
+    <div className="cart-view-container">
+      <h2><FaShoppingCart /> Productos en el carrito</h2>
+      {cart.length === 0 ? (
+        <p>No hay productos en el carrito.</p>
       ) : (
-        <>
-          <div className="cart-items">
-            {cartItems.map((item) => (
-              <div key={item.product.id} className="cart-item">
-                <img src={item.product.image} alt={item.product.name} />
-                <h3>{item.name}hola</h3>
-                <p>Cantidad: {item.quantity}</p>
-                <p>Precio: {item.product.price * item.quantity} €</p>
-                <button onClick={() => handleRemoveFromCart(item.product.id)}>
-                  Eliminar
-                </button>
+        <div className="cart-items">
+          {cart.map((item, index) => (
+            <div key={index} className="cart-item">
+              <img src={item.image} alt={item.name} className="cart-item-image" />
+              <div className="cart-item-info">
+                <p>{item.name}</p>
+                <p>Talla: {item.size}</p>
+                <p>Color: {item.color}</p>
+                <p>Precio: ${item.price.toFixed(2)}</p>
               </div>
-            ))}
-          </div>
-          <div className="cart-summary">
-            <h3>Total: {totalAmount} €</h3>
-            <CheckoutButton price={totalAmount} />
-          </div>
-        </>
+              <button
+                onClick={() => removeItemFromCart(index)}
+                className="remove-item-button"
+              >
+                Eliminar
+              </button>
+            </div>
+          ))}
+        </div>
       )}
+      <div className="cart-summary">
+        <p>Total: ${cart.reduce((total, item) => total + item.price, 0).toFixed(2)}</p>
+        <Link to="/checkout" className="checkout-button">Proceder al pago</Link>
+      </div>
     </div>
   );
 };
 
-export default CartPage;
+export default CartView;

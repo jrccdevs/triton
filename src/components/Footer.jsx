@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from './NavBar'
+import { Link } from 'react-router-dom';
 import '../css/footer.css';
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { SiPaypal, SiVisa, SiMastercard } from 'react-icons/si';
@@ -37,8 +38,9 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Suscríbete</h3>
           <form className="newsletter-form">
-            <input type="email" placeholder="Tu email" required />
-            <button type="submit">Suscribirse</button>
+            <Link to="/user">
+            <button type="submit" style={{width:'250px'}}>Suscribirse</button>
+            </Link>
           </form>
         </div>
       </div>
@@ -69,6 +71,7 @@ const Footer = () => {
         </div>
         <p>&copy; 2024 Triton. Todos los derechos reservados.</p>
       </div>
+     
     </footer>
   );
 }

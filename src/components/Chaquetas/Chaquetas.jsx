@@ -1,5 +1,5 @@
 import React from 'react';
-import Empresa from "../../img/homepage.webp";
+import Empresa from "../../img/chamarras.webp";
 import NavBar from '../NavBar';
 import ProductCard from '../Pantalones/ProductCard';
 import GaleriaPants from '../Pantalones/GaleriaPants';

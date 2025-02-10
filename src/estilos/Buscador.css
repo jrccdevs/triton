@@ -1,0 +1,174 @@
+/* Contenedor del buscador */
+
+.search-container {
+    position: relative; /* Necesario para que las sugerencias se posicionen con respecto al contenedor */
+    margin-right: 25px;
+    flex: 1; /* Permite que el buscador se ajuste dentro del espacio disponible */
+    min-width: 200px; /* Ancho mínimo para el buscador */
+    max-width: 300px; /* Ancho máximo del buscador */
+}
+.search-results{
+    background-color: #666;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+/* Barra de búsqueda */
+.search-bar {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño */
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search-suggestions {
+    position: absolute; /* Hace que las sugerencias se posicionen relativas al contenedor del buscador */
+    top: 100%; /* Asegura que las sugerencias aparezcan justo debajo del buscador */
+    left: 0;
+    width: 225px; /* Coincide con el ancho del buscador */
+    background-color: rgb(126, 121, 121); /* Fondo blanco para contraste */
+    border: 1px solid #ccc; /* Borde para diferenciar del resto del contenido */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para una mejor apariencia */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    max-height: 150px; /* Altura máxima para las sugerencias */
+    overflow-y: auto; /* Permite el scroll si hay muchas sugerencias */
+    animation: fadeIn 0.3s ease-in-out;
+    
+    
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-suggestion-item {
+    display: flex; /* Usa flexbox para alinear la imagen y el texto */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s;
+    gap: 30px; /* Espacio entre la imagen y el texto */
+    text-align: center;
+}
+
+.search-suggestion-item:hover {
+    background-color: #f5f5f5; /* Fondo más claro al pasar el cursor */
+}
+
+.search-suggestion-item img {
+    width: 40px; /* Ancho fijo para las imágenes */
+    height: 40px; /* Alto fijo para mantener proporciones */
+    object-fit: cover; /* Ajusta la imagen para que siempre se vea completa */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+.search-suggestion-item span {
+    flex: 1; /* El texto ocupa el espacio restante */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que no cabe */
+    text-overflow: ellipsis; /* Agrega "..." si el texto es demasiado largo */
+}
+/* Resultados del buscador */
+.position-absolute {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada producto */
+.producto-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.producto-item:last-child {
+  border-bottom: none;
+}
+
+.producto-item:hover {
+  background-color: #f8f8f8;
+}
+
+/* Imagen del producto */
+.producto-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Texto del producto */
+.textobuscador {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  color: #333;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+  }
+
+  .producto-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .producto-item img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .textobuscador {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-bar {
+    font-size: 14px;
+  }
+
+  .search-icon {
+    font-size: 18px;
+  }
+}

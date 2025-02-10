@@ -23,7 +23,7 @@ import "../estilos/Productos2.css"
   const fetchProducts = async () => {
     try {
       const response = await axios.get(`https://server-triton.vercel.app/productos`);
-      console.log("Datos completos de la API:", response.data);
+     // console.log("Datos completos de la API:", response.data);
 
       // Verifica que la respuesta contenga productos antes de actualizar el estado
       const productos = response.data.products || response.data;
@@ -82,7 +82,7 @@ import "../estilos/Productos2.css"
   products.map(product => (
         <div key={product.product_id} className="card-container">
           <div className="card-image">
-          <Link  to={`/productos/${product.id}`}>
+          <Link  to={`/productos/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
            <img src={product.main_image} alt={product.product_name}/>
           </Link>
           </div>

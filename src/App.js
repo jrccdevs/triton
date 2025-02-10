@@ -13,10 +13,14 @@ import ProductCard from './components/Pantalones/ProductCard'
 
 //import ProductDetail from './components/Pantalones/ProductDetail'
 import PruebaDetalle from './components/Pantalones/PruebaDetalle.jsx'
-import CartPage from './components/Carrito/CartPage'
-
+import CartPage from './components/Carrito/Carrito'
+import Payment from './components/Carrito/Payment'
+import Checkout from './components/Carrito/CheckoutButton'
 import Navbar from './components/NavBar'
 //import {PostProvider} from './context/postContext'
+import Paypal from './components/Carrito/Paypal'
+import UserRegis from './components/Usuarios/UserRegis'
+import Buscador  from './components/Buscador'
 
 function App() {
   return (
@@ -25,6 +29,7 @@ function App() {
     
         <Routes>
           <Route path="/" element={<Inicio />} />
+          <Route path="/buscador" element={<Buscador />} />
           <Route path="/productos" element={<Productos2 />} />
           <Route path="/sugerencias" element={<Productos3 />} />
           <Route path="/nosotros" element={<Nosotros />} />
@@ -33,10 +38,18 @@ function App() {
           <Route path="/accesorios" element={<Accesorios />} />
           <Route path="/gorros" element={<Gorros />} />
           <Route path="/camisas" element={<Camisas />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/productos/:id" element={<PruebaDetalle />} /> {/* Página de detalles */}
+          <Route path="/carrito" element={<CartPage />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
           
           <Route path="/:categorias" element={<ProductCard />} />
+
+
+          <Route path="/user" element={<UserRegis />} />
+          <Route path="/create-orders" element={<Paypal />} />
+
+          <Route path="/productos/:id" element={<PruebaDetalle />} />
+          
         </Routes>
      
       </Router>

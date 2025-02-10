@@ -49,3 +49,235 @@
   .submit-btn:hover {
     background-color: #333;
   }
+
+  /*-----------------------------------------*/
+/* Estilos generales para la vista del carrito */
+/* src/estilos/Carrito/CartView.css */
+
+.cart-view-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+.cart-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  transition: transform 0.3s ease;
+}
+
+.cart-left {
+  flex: 1;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #fff;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.empty-cart:hover {
+  transform: scale(1.05);
+  background-color: #fafafa;
+}
+
+.empty-cart-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.empty-cart-image:hover {
+  transform: scale(1.1);
+}
+
+h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.empty-cart p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.shop-now-button {
+  background-color: #ffa41c;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.shop-now-button:hover {
+  background-color: #ff8f00;
+  transform: translateY(-3px);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.cart-item-image:hover {
+  transform: scale(1.1);
+}
+
+.cart-item-info {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #333;
+}
+
+.remove-item-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.remove-item-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.checkout-button {
+  background-color: #ffa41c;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #ff8f00;
+  transform: translateY(-3px);
+}
+
+/* Animaciones al agregar elementos al carrito */
+.cart-item {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Estilos de los productos populares */
+.cart-right {
+  width: 300px;
+}
+
+.popular-products {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.popular-products:hover {
+  transform: scale(1.03);
+}
+
+.popular-product {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.popular-product:hover {
+  transform: scale(1.02);
+}
+
+.popular-product img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.popular-product img:hover {
+  transform: scale(1.1);
+}
+
+.popular-product-info {
+  flex-grow: 1;
+}
+
+.popular-product-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.popular-product-price {
+  font-size: 1rem;
+  color: #555;
+}

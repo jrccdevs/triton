@@ -1,5 +1,5 @@
 import React from 'react';
-import Empresa from "../img/homepage.webp";
+import Empresa from "../img/banner_p.webp";
 import '../estilos/Seccion1.css'; // Archivo CSS para estilos personalizados
 
 export default function Seccion1() {

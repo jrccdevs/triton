@@ -1,27 +1,22 @@
-// src/components/CheckoutButton.js
+// CheckoutButton.jsx
 import React from 'react';
-import StripeCheckout from 'react-stripe-checkout';
+import { useNavigate } from 'react-router-dom';
+import { FaCreditCard } from 'react-icons/fa';
+//import './CheckoutButton.css'; // Puedes personalizar los estilos en este archivo
 
-const CheckoutButton = ({ price }) => {
-  const priceForStripe = price * 100;
-  const publishableKey = 'tu_clave_publica_de_stripe';
+const CheckoutButton = () => {
+  const navigate = useNavigate();
 
-  const onToken = (token) => {
-    alert('Pago exitoso');
+  const handleCheckout = () => {
+    // Puedes agregar lógica adicional aquí si es necesario
+    navigate('/checkout');
   };
 
   return (
-    <StripeCheckout
-      label="Pagar Ahora"
-      name="Tienda Militar"
-      billingAddress
-      shippingAddress
-      description={`Total: ${price} €`}
-      amount={priceForStripe}
-      panelLabel="Pagar Ahora"
-      token={onToken}
-      stripeKey={publishableKey}
-    />
+    <button className="checkout-button" onClick={handleCheckout}>
+      <FaCreditCard style={{ marginRight: '8px' }} />
+      Proceder al pago
+    </button>
   );
 };
 

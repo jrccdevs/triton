@@ -1,0 +1,36 @@
+.paypal-button {
+    background-color: #ffcc00; /* Fondo amarillo */
+    font-size: 16px;
+    font: oblique bold 120% cursive;
+    border: none;
+    border-radius: 1px;
+    padding: 3px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    color: #003087; /* Color por defecto del texto */
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+  }
+  
+  .paypal-button span {
+    background: linear-gradient(to right, #003087, #00a8e1); /* Azul oscuro a celeste */
+    -webkit-background-clip: text; /* Recortar el fondo al texto */
+    -webkit-text-fill-color: transparent; /* Hacer transparente el color de relleno */
+    background-clip: text; /* Recortar el fondo al texto */
+    text-fill-color: transparent; /* Hacer transparente el color de relleno */
+  }
+  
+  .paypal-button:hover {
+    background-color: #ffd633; /* Fondo amarillo más claro al pasar el mouse */
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+  
+  .paypal-button:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+  }

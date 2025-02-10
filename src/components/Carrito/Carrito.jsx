@@ -1,88 +1,87 @@
-import React, { useState } from 'react';
-import '../../estilos/Carrito/Carrito.css';
+// src/components/CartView.jsx
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import PopularProducts from './PopularProducts'; // Asegúrate de tener este componente
+import '../../estilos/Carrito/Carrito.css'; // Asegúrate de que el archivo CSS esté importado
+import NavBar from '../../components/NavBar';
+import PayPalButton from '../Carrito/Payment'; 
+import Paypal from "../Carrito/Paypal";
 
-const Carrito = () => {
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState('');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
+const CartView = () => {
+  const [cart, setCart] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes manejar el envío de los datos del formulario
-    console.log({ name, address, email, quantity, size });
+  useEffect(() => {
+    // Cargar los productos del carrito desde el localStorage
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+  }, []);
+
+  // Función para eliminar un producto del carrito
+  const removeItemFromCart = (index) => {
+    const updatedCart = cart.filter((item, i) => i !== index);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el carrito en localStorage
   };
+  const total = cart.reduce((total, item) => total + item.price, 0);
 
   return (
-    <div className="cart-form-container">
-      <h2>Formulario de Compra</h2>
-      <form onSubmit={handleSubmit} className="cart-form">
-        <div className="form-group">
-          <label htmlFor="product">Producto:</label>
-          <input type="text" id="product" value="Camiseta Militar" readOnly />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="size">Talla:</label>
-          <select id="size" value={size} onChange={(e) => setSize(e.target.value)} required>
-            <option value="">Selecciona una talla</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="quantity">Cantidad:</label>
-          <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            min="1"
-            onChange={(e) => setQuantity(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="name">Nombre:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="address">Dirección de envío:</label>
-          <input
-            type="text"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit" className="submit-btn">Realizar Compra</button>
-      </form>
+    <>
+    <div>
+      <NavBar />
     </div>
+    <div className="cart-view-container" style={{marginTop:"100px"}}>
+      <div className="cart-main">
+        <div className="cart-left">
+          <h2><FaShoppingCart /> Productos en el carrito</h2>
+          {cart.length === 0 ? (
+            <div className="empty-cart">
+              <img src="empty-cart-image.jpg" alt="Carrito vacío" className="empty-cart-image" />
+              <h3>¡Tu carrito está vacío!</h3>
+              <p>No tienes productos en el carrito. ¡Agrega algunos para proceder al pago!</p>
+              <Link to="/" className="shop-now-button">Seguir comprando</Link>
+            </div>
+          ) : (
+            <div className="cart-items">
+              {cart.map((item, index) => (
+                <div key={index} className="cart-item">
+                  <img src={item.image} alt={item.name} className="cart-item-image" />
+                  <div className="cart-item-info">
+                    <p>{item.name}</p>
+                    <p>Talla: {item.size}</p>
+                    <p>Color: {item.color}</p>
+                    <p>Precio: ${item.price.toFixed(2)}</p>
+                  </div>
+                  <button
+                    onClick={() => removeItemFromCart(index)}
+                    className="remove-item-button"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="cart-summary">
+            <p>Total: ${total.toFixed(2)}</p>
+            <PayPalButton amount={total} />
+            <Link to="/user" className="checkout-button">Proceder al pago</Link>
+            <br></br>
+            <br></br>
+           
+            <Paypal />
+          </div>
+         
+        </div>
+
+        {/* Sección de Productos Populares al costado derecho */}
+        <div className="cart-right">
+          <PopularProducts />
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 
-export default Carrito;
+export default CartView;
