@@ -214,7 +214,7 @@ const PruebaDetalle = () => {
               Ver carrito {getCartCount()}
            </Link>
            <div>
-              <h1>Paga con PayPal </h1>
+              <h1>Paga Ahora </h1>
               <PaypalButton />
           </div>
         </div>
