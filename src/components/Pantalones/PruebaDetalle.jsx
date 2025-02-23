@@ -8,8 +8,6 @@ import Productos2 from '../Productos2';
 import ImageMagnifier from './Lupa';
 import Footer from '../Footer';
 import PaypalButton from "../Carrito/Paypal";
-
-
 import ReactImageMagnify from 'react-image-magnify';
 
 const PruebaDetalle = () => {
