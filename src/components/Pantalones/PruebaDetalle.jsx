@@ -10,14 +10,7 @@ import Footer from '../Footer';
 import PaypalButton from "../Carrito/Paypal";
 
 
-import {
-  Magnifier,
-  GlassMagnifier,
-  SideBySideMagnifier,
-  PictureInPictureMagnifier,
-  MOUSE_ACTIVATION,
-  TOUCH_ACTIVATION
-} from "react-image-magnifiers";
+import ReactImageMagnify from 'react-image-magnify';
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
@@ -145,16 +138,20 @@ const PruebaDetalle = () => {
       <div className="product-detail-container" style={{ marginTop: '120px' }}>
         <div className="product-images">
           <div style={{ width: '600px', height: 'auto' }}>
-            <SideBySideMagnifier 
-              className="main-product-image"
-              imageSrc={selectedImage}
-              imageAlt={product?.product_name || 'Producto'}
-              alwaysInPlace={false}
-              fillAvailableSpace={false}
-              zoomPosition="right"
-              zoomContainerBorder="1px solid #ccc"
-              zoomContainerBoxShadow="0 4px 8px rgba(0, 0, 0, 0.2)"
-            />
+          <ReactImageMagnify {...{
+           smallImage: {
+                
+                alt: 'Wristwatch by Ted Baker London',
+                isFluidWidth: true,
+                src: selectedImage
+            },
+              largeImage: {
+                src: selectedImage,
+                width: 1200,
+                 height: 1800
+               }
+             }} />
+           
           </div>
           <div className="product-thumbnails">
             {parseImages(product?.product_images || []).map((image, index) => (
