@@ -8,8 +8,8 @@ import Productos2 from '../Productos2';
 //import ImageMagnifier from './Lupa';
 import Footer from '../Footer';
 import PaypalButton from "../Carrito/Paypal";
-import ReactImageMagnify from 'react-image-magnify';
-
+//import ReactImageMagnify from 'react-image-magnify';
+import ReactImageZoom from 'react-image-zoom';
 
 
 const PruebaDetalle = () => {
@@ -21,6 +21,8 @@ const PruebaDetalle = () => {
   const [loading, setLoading] = useState(true); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
 
+
+  
   // Función para obtener los detalles del producto desde la API
   useEffect(() => {
     const fetchProduct = async () => {
@@ -138,19 +140,14 @@ const PruebaDetalle = () => {
       <div className="product-detail-container" style={{ marginTop: '120px' }}>
         <div className="product-images">
           <div style={{ width: '600px', height: 'auto' }}>
-          <ReactImageMagnify {...{
-           smallImage: {
-                
-                alt: 'Wristwatch by Ted Baker London',
-                isFluidWidth: true,
-                src: selectedImage
-            },
-              largeImage: {
-                src: selectedImage,
-                width: 1200,
-                 height: 1800
-               }
-             }} />
+          <ReactImageZoom 
+               width={550}
+               height={550}
+               zoomWidth={550}
+               img={selectedImage}
+
+          />
+          
            
           </div>
           <div className="product-thumbnails">
