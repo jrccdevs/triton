@@ -12,7 +12,7 @@ export default function SeccionPrincipal() {
       />
        <div className="overlay-right">
         <div className="overlay-content">
-          <h2>Texto Superpuesto</h2>
+          <h2>IMAGEN SUPRIOR PRINCIPAL</h2>
           <p>Este es un texto superpuesto sobre la imagen.</p>
         </div>
         <button className="overlay-button">Botón de Acción</button>

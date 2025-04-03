@@ -1,167 +1,251 @@
+/* Estilos base para el footer (manteniendo los estilos anteriores) */
 .footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  background-color: rgb(6, 33, 68);
+  color: #fff;
+  padding: 40px 20px;
+  font-size: 0.9em;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  margin-bottom: 30px;
+  padding: 0 15px;
+  min-width: 200px;
+  text-align: center; /* Centrar el texto dentro de cada sección */
+}
+
+.footer-section h2,
+.footer-section h3 {
+  color: #eee;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+.footer-section p {
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+}
+
+.newsletter-form {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center; /* Centrar el formulario */
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px 0 0 5px;
+  color: #fff;
+  background-color: transparent;
+  flex-grow: 1;
+  outline: none;
+}
+
+.newsletter-form button {
+  padding: 10px 15px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #777;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #555;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.social-links {
+  margin-bottom: 20px;
+  text-align: center; /* Centrar los iconos de redes sociales */
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #eee;
+}
+
+.payment-methods {
+  margin-top: 20px;
+  text-align: center; /* Centrar el título de métodos de pago */
+}
+
+.payment-methods h3 {
+  margin-bottom: 10px;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.8em;
+}
+
+.payment-icons svg {
+  color: #ccc;
+}
+
+/* Estilos específicos para centrar la sección de Suscríbete */
+.footer-container > div:last-child {
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Colores para los iconos de redes sociales */
+.social-links a.facebook {
+  color: #1877F2; /* Color de Facebook */
+}
+
+.social-links a.twitter {
+  color: #1DA1F2; /* Color de Twitter */
+}
+
+.social-links a.instagram {
+  color: #C13584; /* Color de Instagram (puede ser un degradado) */
+}
+
+/* Colores para los iconos de pago (manteniendo los anteriores) */
+.social-links a.whatsapp {
+  color: #25D366; /* Color de WhatsApp */
+}
+
+.payment-icons svg.paypal {
+  color: #00457C;
+}
+
+.payment-icons svg.visa {
+  color: #1A1F71;
+}
+
+.payment-icons svg.mastercard {
+  color: #EB001B;
+}
+
+.payment-icons svg.americanexpress {
+  color: #00AEEF;
+}
+
+/* Media query para pantallas más pequeñas (móviles) */
+@media (max-width: 767px) {
+  .footer {
+    padding: 30px 15px;
   }
-  
+
   .footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
   }
-  .footer-section a {
-    color: #25D366; /* Color verde de WhatsApp */
-    text-decoration: none;
-  }
-  
-  .footer-section a:hover {
-    text-decoration: underline;
-  }
+
   .footer-section {
-    flex: 1;
-    margin: 10px;
-    min-width: 200px;
-  }
-  
-  .footer-section h3 {
-    margin-top: 0;
-  }
-  
-  .footer-section ul {
-    list-style: none;
+    margin-bottom: 40px;
+    text-align: center;
+    min-width: auto;
     padding: 0;
   }
-  
-  .footer-section ul li {
-    margin: 5px 0;
+
+  .footer-container > div:last-child {
+    margin-top: 30px;
   }
-  
-  .footer-section ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-  }
-  
-  .footer-section ul li a:hover {
-    text-decoration: underline;
-  }
-  
+
   .newsletter-form {
-    display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
-  
-  .newsletter-form input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
+
+  .newsletter-form input[type="email"] {
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 5px;
   }
-  
+
   .newsletter-form button {
-    padding: 10px;
-    background-color: #3498db;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .newsletter-form button:hover {
-    background-color: #2980b9;
-  }
-  
-  .footer-bottom {
-    margin-top: 20px;
-    border-top: 1px solid #34495e;
-    padding-top: 10px;
-  }
-  .social-links {
-    margin: 10px 0;
-  }
-  .social-links a {
-    color: #ecf0f1;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
-  .social-links a:hover {
-    color: inherit; /* Mantén el color del icono en hover */
-  }
-  
-  /* Colores específicos para cada red social */
-  .social-links a.facebook:hover {
-    color: #1877F2; /* Azul de Facebook */
-  }
-  
-  .social-links a.twitter:hover {
-    color: #1DA1F2; /* Azul claro de Twitter */
-  }
-  
-  .social-links a.instagram:hover {
-    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
-  
-  }
-  
-  .social-links a.whatsapp:hover {
-    color: #25D366; /* Verde de WhatsApp */
+    border-radius: 0 0 5px 5px;
   }
 
-
- /* Estilos para los métodos de pago */
-.payment-methods {
+  .payment-methods {
     margin-top: 20px;
   }
-  
-  .payment-methods h3 {
-    margin-bottom: 10px;
-  }
-  
+
   .payment-icons {
-    display: flex;
     justify-content: center;
-    gap: 40px;
   }
-  
-  .payment-icons svg {
-    font-size: 60px; /* Tamaño más grande para los iconos */
-    color: white;
-  }
-  
-  .payment-icons .paypal {
-    color: #003087; /* Azul de PayPal */
-    
-  }
-  
-  .payment-icons .visa {
-    color: #1A1F71; /* Azul oscuro de Visa */
-  }
-  
-  .payment-icons .mastercard {
-    color: #FF5F00; /* Naranja de MasterCard */
-  }
-  
-  .payment-icons .americanexpress {
-    color: #0D5EAF; /* Azul de American Express */
-    background: white;
-  }
-  
-  
+}
 
-  .payment-icons .mastercard:hover{
-    transform: scale(1.15);
+/* Media query para tablets (aproximadamente 768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-container {
+    justify-content: space-around;
   }
-  .payment-icons .americanexpress:hover{
-    transform: scale(1.15);
+
+  .footer-section {
+    margin-bottom: 40px;
+    text-align: center;
   }
-  .payment-icons .paypal:hover{
-    transform: scale(1.15);
+
+  .footer-container > div:last-child {
+    flex-basis: 50%;
+    text-align: center;
+    margin-top: 30px;
   }
-  .payment-icons .visa:hover{
-    transform: scale(1.15);
-    
-    
+}
+
+/* Media query para pantallas más grandes (desktops) */
+@media (min-width: 1024px) {
+  .footer-container {
+    justify-content: space-between;
   }
+
+  .footer-section {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .footer-container > div:last-child {
+    flex-basis: auto;
+    text-align: center;
+    margin-top: 0;
+  }
+}

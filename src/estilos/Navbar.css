@@ -1,147 +1,174 @@
-/* Navbar.css */
+/* Estilos base para el Navbar */
 .navbar-container {
+  background-color: #053566; /* Un color de fondo claro */
+  padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Esto asegura que los elementos se distribuyan correctamente */
-  padding: 15px 20px;
-  background-color: #335f;
-  color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
+  justify-content: space-between;
   width: 100%;
-  z-index: 900;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  align-items: center;
+  border-bottom: 1px solid #eee; /* Una línea sutil en la parte inferior */
+
+  position: fixed; /* Fija el elemento a la ventana del navegador */
+  top: 0; /* Lo coloca en la parte superior de la ventana */
+  left: 0;
+  top: 0;
+  right: 0; /* Lo coloca en el lado izquierdo de la ventana */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
 .logo img {
-  height: 80px;
-  margin-left: 15px;
-  
+  width: auto;
+  height: auto; /* Ajusta la altura del logo según sea necesario */
+  margin-left: auto;
 }
+
 
 .menu-container {
   display: flex;
   align-items: center;
+ 
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
+  max-width: 100%; /* Asegura que no sea más ancho que su contenedor */
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: rgb(20, 19, 19);
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 2px;
+  
+  display: none; /* Oculto por defecto en pantallas grandes */
 }
 
 .menu {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 20px;
+   max-width: 100%;
+  
 }
 
 .menu-button {
-  margin: 0 10px;
-  padding: 10px 15px;
-  border: none;
-  background: none;
-  color: #fff;
-  font-size: 18px;
+  color: rgb(14, 13, 13);
   text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s, transform 0.3s;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  
+  
 }
 
 .menu-button:hover {
-  color: #ddd;
-  transform: scale(1.1);
+  background-color: rgb(189, 186, 186);
 }
 
 .search-container {
-  display: flex;
-  align-items: center;
-  margin-right: 25px;
-  position: relative;
-  width: 100%;
-  flex: 1; /* Permite que el buscador tome espacio proporcional dentro del contenedor */
-  min-width: 200px; /* Define un ancho mínimo para evitar que se colapse */
-  max-width: 600px; /* Controla el ancho máximo para pantallas grandes */
+  /* Estilos para el buscador, si los tiene */
 }
 
-.search-bar {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  width: 100%; /* El campo se ajusta al ancho disponible del contenedor */
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
-  font-size: 16px; /* Tamaño de texto legible */
+.cart-icon .menu-button {
+  font-size: auto;
+  padding: 10px;
 }
 
-.search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.cart-icon {
-  font-size: 30px;
-  cursor: pointer;
-  margin-right: 15px;
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-  .navbar-container {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 10px 15px;
-  }
-
-  .logo {
-      margin-bottom: 10px;
-  }
-
-  .menu {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      background-color: #333;
-      position: relative;
-      border-top: 1px solid #444;
-  }
-
-  .menu.active {
-      display: flex;
-  }
-
-  .menu-button {
-      margin: 5px 0;
-      padding: 10px 20px;
-      text-align: left;
-  }
-
-  .search-container {
-      width: 100%;
-      margin: 10px 0;
-  }
-
-  .search-bar {
-      width: 100%;
-      max-width: none;
-  }
-
-  .cart-icon {
-      font-size: 24px;
-      margin-top: 10px;
+/* Media query para pantallas más pequeñas (móviles) */
+@media (max-width: 767px) {
+  .menu-container {
+    flex-direction: column;
+    align-items: flex-end; /* Alinea el botón del menú a la derecha */
   }
 
   .menu-toggle {
-      display: block;
+    display: block; /* Muestra el botón del menú en pantallas pequeñas */
+  }
+
+  .menu {
+    display: none; /* Oculta el menú por defecto en pantallas pequeñas */
+    flex-direction: column;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 70px; /* Ajusta según la altura del navbar */
+    right: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+  }
+
+  .menu.active {
+    display: flex; /* Muestra el menú cuando está activo */
+  }
+
+  .menu-button {
+    padding: 10px;
+    display: block;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee; /* Separador entre los elementos del menú */
+    width: 100%;
+    text-align: left;
+  }
+
+  .menu-button:last-child {
+    border-bottom: none;
+  }
+
+  .search-container {
+    margin-top: 10px; /* Añade margen al buscador si está presente */
+  }
+}
+
+/* Media query para tablets (aproximadamente 768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .menu-container {
+    /* Mantener el menú visible en tablets, pero aún ofrecer el toggle */
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block; /* Mostrar el botón en tablets también puede ser útil */
+  }
+
+  .menu {
+    display: none; /* Ocultar el menú por defecto en tablets */
+    flex-direction: column;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 70px; /* Ajustar según la altura del navbar */
+    right: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10;
+  }
+
+  .menu.active {
+    display: flex; /* Mostrar el menú cuando está activo */
+  }
+
+  .menu-button {
+    padding: 10px;
+    display: block;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    text-align: left;
+  }
+
+  .menu-button:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Media query para pantallas más grandes (desktops) */
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none; /* Ocultar el botón del menú en pantallas grandes */
+  }
+
+  .menu {
+    display: flex; /* Mostrar el menú completo en pantallas grandes */
   }
 }

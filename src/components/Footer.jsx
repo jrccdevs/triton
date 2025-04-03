@@ -39,7 +39,7 @@ const Footer = () => {
           <h3>Suscríbete</h3>
           <form className="newsletter-form">
             <Link to="/user">
-            <button type="submit" style={{width:'250px'}}>Suscribirse</button>
+            <button type="submit" style={{width:'auto'}}>Suscribirse</button>
             </Link>
           </form>
         </div>

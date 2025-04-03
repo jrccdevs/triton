@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import "../estilos/Buscador.css";
 
 function useKey(key, cb) {
@@ -27,7 +27,15 @@ export default function Busqueda() {
   const [productos, setProductos] = useState([]);
   const [productosMatch, setProductosMatch] = useState([]);
   const [searchText, setSearchText] = useState("");
+ 
+  // ... otras funciones como buscarProductos y handleRedirect
 
+  const handleClearSearch = () => {
+    setSearchText('');
+    setProductosMatch([])
+    // Opcional: Enfocar el input después de limpiar
+     document.querySelector('.search-bar').focus();
+  };
   useEffect(() => {
     const getProductos = async () => {
       const response = await fetch(
@@ -75,6 +83,9 @@ export default function Busqueda() {
           value={searchText}
         />
         <FaSearch className="search-icon" onClick={handleRedirect} />
+        {searchText && (
+          <FaTimes className="clear-button show" onClick={handleClearSearch} />
+        )}
       </div>
 
       {productosMatch.length > 0 && (

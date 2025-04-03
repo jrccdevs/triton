@@ -137,7 +137,7 @@ const PruebaDetalle = () => {
       <div>
         <NavBar />
       </div>
-      <div className="product-detail-container" style={{ marginTop: '120px' }}>
+      <div className="product-detail-container" style={{ marginTop: '90px' }}>
         <div className="product-images">
           <div style={{ width: '600px', height: 'auto' }}>
           <ReactImageZoom 

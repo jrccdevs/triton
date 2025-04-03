@@ -7,6 +7,7 @@ import '../../estilos/Carrito/Carrito.css'; // Asegúrate de que el archivo CSS 
 import NavBar from '../../components/NavBar';
 import PayPalButton from '../Carrito/Payment'; 
 import Paypal from "../Carrito/Paypal";
+import Footer from '../Footer'
 
 const CartView = () => {
   const [cart, setCart] = useState([]);
@@ -27,10 +28,8 @@ const CartView = () => {
 
   return (
     <>
-    <div>
-      <NavBar />
-    </div>
-    <div className="cart-view-container" style={{marginTop:"100px"}}>
+    <NavBar />
+    <div className="cart-view-container" style={{marginTop:"90px"}}>
       <div className="cart-main">
         <div className="cart-left">
           <h2><FaShoppingCart /> Productos en el carrito</h2>
@@ -78,8 +77,12 @@ const CartView = () => {
         <div className="cart-right">
           <PopularProducts />
         </div>
+        
       </div>
     </div>
+     <div className="">
+      <Footer />
+     </div>
     </>
   );
 };
