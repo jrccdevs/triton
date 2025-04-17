@@ -1,37 +1,109 @@
+.image-text-columns {
+  display: flex; /* Use flexbox to arrange items in a row */
+  flex-direction: column; /* Stack image and text vertically by default */
+  
+  width: 100%;
+  
+}
+.imgen-text{
+  
+  align-items: center;
+  justify-content: center;
+}
+.image-text-columns > div {
+  display: flex; /* Use flexbox for each image-text pair */
+  flex-direction: row; /* Arrange image and text in a row */
+  margin-bottom: 20px; /* Add some spacing between each image-text pair */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.image-column {
+  width: 20%;
+  height: auto;
+  padding: 30px;
+  flex: 0 0 auto; /* Don't grow, don't shrink, take up auto width */
+  margin-right: 20px; /* Add spacing between the image and text */
+  max-width: 50%; /* Limit the image width */
+}
+
+.column-image {
+  display: block; /* Remove any extra spacing below the image */
+  width: 100%; /* Make the image fill its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.text-column {
+  
+  margin-top: 30px;
+  padding: 30px;
+  
+  flex: 1 1 auto; /* Allow text to grow and take remaining space */
+  max-width: 50%; /* Limit the text width */
+}
+
+.column-text {
+  padding: 30px;
+ /* Remove default top margin for the paragraph */
+}
+
+/* Responsive adjustments for smaller screens (optional) */
+@media (max-width: 768px) {
+  .image-text-columns > div {
+    flex-direction: column; /* Stack image and text vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+  }
+
+  .image-column {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+    max-width: 80%; /* Allow image to take more width */
+  }
+
+  .text-column {
+    max-width: 80%; /* Allow text to take more width */
+  }
+}
+
 /* Estilos generales para asegurar la responsividad */
+
 .product-detail-container {
+  width: auto;
   margin-top: 120px;
   padding: 20px; /* Añade padding para evitar que el contenido toque los bordes en pantallas pequeñas */
 }
 
 .product-images {
-  display: flex;
-  flex-direction: column; /* Apila las imágenes y miniaturas en pantallas pequeñas */
+  width: 100%;
+  display: inline-block; /* Apila las imágenes y miniaturas en pantallas pequeñas */
   align-items: center; /* Centra los elementos en pantallas pequeñas */
   gap: 20px; /* Espacio entre la imagen principal y las miniaturas */
 }
 
 .product-images > div:first-child {
   width: 100%;
-  max-width: 600px;
+ 
   height: auto;
   margin: 0 auto;
 }
-
+.producto-p{
+  width: auto;
+}
 .product-thumbnails {
-  display: flex;
-  
-  
-  gap: 10px;
+  flex-direction: row;
+  margin-top: 30px;
+  gap: 30px;
   padding-top: 10px;
+  width: auto;
+  
 }
 
 .product-thumbnails img {
-  margin: 5px;
+  margin-left: 10px;
   cursor: pointer;
   border: 1px solid #ccc;
   padding: 5px;
-  display: inline-block;
+  
   max-width: 70px; /* Ajusta el tamaño de las miniaturas */
   height: auto;
 }
@@ -44,15 +116,20 @@
   padding: 20px;
 }
 
-.product-name {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+.producto-name {
+  font-size: 1.5rem;
+    color: #007185;
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.product-price {
-  font-size: 1.2em;
-  color: green;
-  margin-bottom: 15px;
+.producto-price {
+  font-size: 1.2rem;
+    font-weight: bold;
+    color: #B12704;
+    margin-bottom: 2px;
 }
 
 .product-description {
@@ -144,11 +221,13 @@
     display: flex;
     align-items: flex-start; /* Alinea los elementos en la parte superior en pantallas más grandes */
     gap: 30px;
+    
   }
 
   .product-images {
+    width: auto;
     flex-direction: row; /* Coloca las imágenes y miniaturas en fila en pantallas medianas y grandes */
-    align-items: flex-start;
+    align-items: center;
   }
 
   .product-images > div:first-child {
@@ -156,13 +235,15 @@
   }
 
   .product-thumbnails {
-    flex-direction: column; /* Coloca las miniaturas en columna a la derecha de la imagen principal */
+    flex-direction: row; /* Coloca las miniaturas en columna a la derecha de la imagen principal */
     padding-top: 0;
+    width: auto;
   }
 
   .product-thumbnails img {
     max-width: 60px;
     margin: 5px 0;
+    width: auto;
   }
 }
 
@@ -203,6 +284,7 @@
     padding-top: 0;
     overflow-x: auto;
     white-space: nowrap;
+    width: auto;
   }
 
   .product-thumbnails img {

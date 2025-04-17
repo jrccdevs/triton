@@ -139,7 +139,7 @@ const PruebaDetalle = () => {
       </div>
       <div className="product-detail-container" style={{ marginTop: '90px' }}>
         <div className="product-images">
-          <div style={{ width: '600px', height: 'auto' }}>
+          <div className="producto-p" >
           <ReactImageZoom 
                width={550}
                height={550}
@@ -164,8 +164,8 @@ const PruebaDetalle = () => {
         </div>
 
         <div className="product-info">
-          <h1 className="product-name">{product?.product_name || 'Cargando...'}</h1>
-          <p className="product-price">${product?.price ? product.price.toFixed(2) : '0.00'}</p>
+          <h1 className="producto-name">{product?.product_name || 'Cargando...'}</h1>
+          <p className="producto-price">${product?.price ? product.price.toFixed(2) : '0.00'}</p>
           <p className="product-description">{product?.description || 'Descripción no disponible.'}</p>
 
           <div className="product-similar">
@@ -212,6 +212,19 @@ const PruebaDetalle = () => {
               <PaypalButton />
           </div>
         </div>
+      </div>
+
+      <div className="image-text-columns">
+      {parseImages(product?.product_images || []).map((image, index) => (
+      <div className="imgen-text">
+        <div className="image-column">
+           <img src={image.url} alt={`Thumbnail ${index}`} className="column-image" />
+        </div>
+        <div className="text-column">
+         <p className="column-text">lorem ipsun</p>
+        </div>
+      </div>
+        ))}
       </div>
 
       <div style={{ width: '100%' }}>

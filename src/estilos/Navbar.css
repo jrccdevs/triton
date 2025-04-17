@@ -1,6 +1,6 @@
 /* Estilos base para el Navbar */
 .navbar-container {
-  background-color: #053566; /* Un color de fondo claro */
+  background-color: #222844; /* Un color de fondo claro */
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@
 .menu-toggle {
   background: none;
   border: none;
-  color: rgb(20, 19, 19);
+  color: whitesmoke;
   font-size: 1.5em;
   cursor: pointer;
   padding: 2px;
@@ -52,7 +52,7 @@
 }
 
 .menu-button {
-  color: rgb(14, 13, 13);
+  color: whitesmoke;
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -62,7 +62,9 @@
 }
 
 .menu-button:hover {
-  background-color: rgb(189, 186, 186);
+  transform: translateY(-3px); /* Levanta el botón un poco */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+  opacity: 1;
 }
 
 .search-container {
@@ -170,5 +172,81 @@
 
   .menu {
     display: flex; /* Mostrar el menú completo en pantallas grandes */
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-container {
+    padding: 10px; /* Añade un poco de padding para que no esté pegado a los bordes */
+  }
+
+  .logo img {
+    height: 30px; /* Ajusta el tamaño del logo para móviles */
+    margin-left: 10px; /* Ajusta el margen del logo para móviles */
+  }
+
+  .menu-container {
+    padding-right: 10px; /* Añade padding al contenedor del menú */
+  }
+
+  .menu-toggle {
+    color: #fff; /* Cambia el color del botón del menú para que sea visible en el fondo oscuro */
+    font-size: 1.8em; /* Aumenta el tamaño del botón del menú */
+  }
+
+  .cart-icon .menu-button {
+    font-size: 1.8em; /* Aumenta el tamaño del icono del carrito */
+    padding: 10px;
+    color: #fff; /* Cambia el color del icono del carrito */
+  }
+
+  .menu {
+    top: 60px; /* Ajusta la posición del menú desplegable */
+    right: 10px; /* Ajusta la posición del menú desplegable */
+  }
+
+  .menu-button {
+    padding: 12px 15px; /* Aumenta el padding de los botones del menú */
+    color: #333; /* Cambia el color del texto del menú desplegable */
+  }
+
+  .menu-button:hover {
+    background-color: #eee; /* Cambia el color de fondo al pasar el ratón */
+  }
+}
+
+/* Media query para pantallas muy pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 5px; /* Reduce aún más el padding */
+  }
+
+  .logo img {
+    height: 25px; /* Reduce el tamaño del logo */
+    margin-left: 5px; /* Reduce el margen del logo */
+  }
+
+  .menu-container {
+    padding-right: 5px; /* Reduce el padding del contenedor del menú */
+  }
+
+  .menu-toggle {
+    font-size: 1.3em; /* Reduce el tamaño del botón del menú */
+  }
+
+  .cart-icon .menu-button {
+    font-size: 1.3em; /* Reduce el tamaño del icono del carrito */
+    padding: 5px; /* Reduce el padding del icono del carrito */
+  }
+
+  .menu {
+    top: 50px; /* Ajusta la posición del menú desplegable */
+    right: 5px; /* Ajusta la posición del menú desplegable */
+    gap: 10px; /* Reduce el espacio entre los elementos del menú */
+  }
+
+  .menu-button {
+    padding: 8px 10px; /* Reduce el padding de los botones del menú */
+    font-size: 0.9em; /* Reduce el tamaño de la fuente de los botones del menú */
   }
 }

@@ -8,6 +8,48 @@ import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../estilos/Productos2.css"
+
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style,
+        background: "rgba(0, 0, 0, 0)", // Transparencia
+        // borderRadius: "50%",  // Eliminado: Quita el círculo
+        padding: "5px",
+        boxShadow: "0 2px 10px rgba(0, 0, 0, 0)",
+        display: "flex",       // Para centrar el icono
+        alignItems: "center",  // Centra verticalmente
+        justifyContent: "center", // Centra horizontalmente
+        fontSize: "14px",
+        cursor: "pointer",}}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style,
+        background: "rgba(0, 0, 0, 0)", // Transparencia
+        // borderRadius: "50%",  // Eliminado: Quita el círculo
+        padding: "5px",
+        boxShadow: "0 2px 10px rgba(0, 0, 0, 0)",
+        display: "flex",       // Para centrar el icono
+        alignItems: "center",  // Centra verticalmente
+        justifyContent: "center", // Centra horizontalmente
+        fontSize: "4px",
+        cursor: "pointer",}}
+      onClick={onClick}
+    />
+  );
+}
+
  export default function Productos2 () {
 
   const [products, setProducts] = useState([ { product_id: 1, main_image: "ruta_a_imagen", product_name: "Producto de Prueba", price: 100 }]);
@@ -48,6 +90,8 @@ import "../estilos/Productos2.css"
     slidesToScroll: 1, // Desplazar un slide a la vez
     autoplay: true,
     autoplaySpeed: 2000,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
