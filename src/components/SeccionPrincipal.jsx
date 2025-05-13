@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Empresa from "../img/banner_tact.webp";
+import Empresa from "../img/tanque.png";
 import Imagen from "../img/Gen1.png";
 import Imagen2 from "../img/triton3.png";
 import '../estilos/SeccionPrincipal.css';

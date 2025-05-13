@@ -28,7 +28,7 @@ export default function Inicio() {
   return (
     <div style={{ width: '100%', margin: 0, padding: 0 }}>
     <NavBar />
-    <div style={{ marginTop: 'auto' }}>
+    <div style={{ marginTop: '20px' }}>
       <SeccionPrincipal />
     </div>
     <div style={{ width: '100%' }}>

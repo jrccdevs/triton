@@ -27,33 +27,118 @@
   
   .overlay-right-pants {
     position: absolute;
-    top: 60%; /* Centrado verticalmente */
-    right: 50px; /* Alineado a la derecha */
+    top: 40%; /* Centrado verticalmente */
+    left: 10px; /* Alineado a la derecha */
     transform: translateY(-50%); /* Ajuste para centrar completamente */
-    width: 250px;
+    width: 350px;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    background-color: rgba(0, 0, 0, 0.0); /* Fondo negro semitransparente */
     border-radius: 5px; /* Opcional: redondea las esquinas */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Distribuye el contenido */
     padding: 10px;
    }
-  
+  .pants-p{
+    text-align: left;
+    color: rgb(137, 155, 168);
+  }
+  .pants-t{
+    text-transform: uppercase;
+    text-align: left;
+    color: rgb(87, 98, 112)
+  }
+  .overlay-right-pants2 {
+    position: absolute;
+    top: 65%; /* Centrado verticalmente */
+    right: 10px; /* Alineado a la derecha */
+    transform: translateY(-50%); /* Ajuste para centrar completamente */
+    width: 450px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.0); /* Fondo negro semitransparente */
+    border-radius: 5px; /* Opcional: redondea las esquinas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido */
+    padding: 10px;
+   }
+  .pants-p2{
+    text-align: left;
+    color: rgb(168, 192, 182);
+    font-size: 18px;
+  }
+  .pants-t2{
+    text-transform: uppercase;
+    text-align: left;
+    color: rgb(78, 83, 81)
+  }
+  /*AQUI VA LA TERCERA SECCION DE LA PARTE DE LOS 4 CUADROS CON TEXTO*/
+  .overlay-right-pants3 {
+    position: absolute;
+    top: 35%; /* Centrado verticalmente */
+    left: 10px; /* Alineado a la derecha */
+    transform: translateY(-50%); /* Ajuste para centrar completamente */
+    width: 550px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.0); /* Fondo negro semitransparente */
+    border-radius: 5px; /* Opcional: redondea las esquinas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido */
+    padding: 10px;
+   }
+  .pants-p3{
+    text-align: left;
+    color: rgb(25, 62, 80);
+    font-size: 18px;
+  }
+  .pants-t3{
+    text-transform: uppercase;
+    text-align: left;
+    color: rgb(5, 39, 71)
+  }
+
+  /*AQUI VA LA TERCERA SECCION DE LA PARTE DE LOS 4 CUADROS CON TEXTO*/
+  .overlay-right-pants4 {
+    position: absolute;
+    top: 35%; /* Centrado verticalmente */
+    right: 10px; /* Alineado a la derecha */
+    transform: translateY(-50%); /* Ajuste para centrar completamente */
+    width: 450px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.0); /* Fondo negro semitransparente */
+    border-radius: 5px; /* Opcional: redondea las esquinas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido */
+    padding: 10px;
+   }
+  .pants-p4{
+    text-align: right;
+    color: rgb(216, 207, 195);
+    font-size: 18px;
+  }
+  .pants-t4{
+    text-transform: uppercase;
+    text-align: right;
+    color: rgb(23, 77, 87)
+  }
   .overlay-content-pants {
     text-align: center;
     color: white;
   }
   
   .overlay-button-pants {
-    align-self: flex-start;
-    padding: 8px 16px;
-    font-size: 14px;
+    text-align: left;
+    padding: 15px 12px;
+    font-size: 20px;
     color: white;
-    background-color: blue;
+    background-color: rgb(33, 82, 146);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 250px;
+    text-transform: uppercase;
   }
   
   /* Modo responsivo */
@@ -75,10 +160,43 @@
         transform: none;
         margin-top: 10px; /* Añade un margen superior */
         width: auto; /* Ocupa todo el ancho de la pantalla */
-        background-color: rgba(0, 0, 0, 0.5); /* Fondo del texto */
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo del texto */
         padding: 20px;
         border-radius: 0; /* Elimina el borde redondeado para ocupar todo el ancho */
      }
+     .overlay-right-pants2 {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+      margin-top: 10px; /* Añade un margen superior */
+      width: auto; /* Ocupa todo el ancho de la pantalla */
+      background-color: rgba(0, 0, 0, 0.7); /* Fondo del texto */
+      padding: 20px;
+      border-radius: 0; /* Elimina el borde redondeado para ocupar todo el ancho */
+   }
+   .overlay-right-pants3 {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin-top: 10px; /* Añade un margen superior */
+    width: auto; /* Ocupa todo el ancho de la pantalla */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo del texto */
+    padding: 20px;
+    border-radius: 0; /* Elimina el borde redondeado para ocupar todo el ancho */
+ }
+ .overlay-right-pants4 {
+  position: relative;
+  top: 0;
+  right: 0;
+  transform: none;
+  margin-top: 10px; /* Añade un margen superior */
+  width: auto; /* Ocupa todo el ancho de la pantalla */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo del texto */
+  padding: 20px;
+  border-radius: 0; /* Elimina el borde redondeado para ocupar todo el ancho */
+}
   
     /* Ajusta el contenido para que se muestre debajo de la imagen */
     .image-container-pants {

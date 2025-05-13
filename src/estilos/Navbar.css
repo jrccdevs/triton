@@ -1,6 +1,6 @@
 /* Estilos base para el Navbar */
 .navbar-container {
-  background-color: #d0d3df; /* #222844 Un color de fondo claro */
+  background-color: #163846; /* #222844 Un color de fondo claro */
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -53,12 +53,13 @@
 }
 
 .menu-button {
-  color: rgb(30, 31, 32); /*whitesmoke*/
+  color: rgb(188, 193, 199); /*whitesmoke*/
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  font-size: 20px;
   
   
 }
