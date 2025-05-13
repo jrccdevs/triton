@@ -119,7 +119,7 @@ function SamplePrevArrow(props) {
 
   return (
     <div style={{ margin: '20px auto', padding: '16px', overflow: 'hidden' }}>
-    <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px' }}>Nuestros Productos</h2>
+    <h2 style={{color:'#222844', fontSize: '38px', fontFamily: 'Cambria', marginBottom: '26px' }}>Nuestros Productos</h2>
     
     <Slider {...settings}>
     {products.length > 0 ? (
@@ -127,7 +127,7 @@ function SamplePrevArrow(props) {
         <div key={product.product_id} className="card-container">
           <div className="card-image">
           <Link  to={`/productos/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
-           <img src={product.main_image} alt={product.product_name}/>
+           <img  src={product.main_image} alt={product.product_name}/>
           </Link>
           </div>
           <div className="card-color-boxe">

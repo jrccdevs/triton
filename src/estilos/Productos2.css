@@ -16,8 +16,10 @@
   
   /* Contenedor de la tarjeta */
   .card-container {
+    height: auto;
+    background-color: #007bff;
     border-left: 1px solid #7d7d7d; /* Línea negra que separa cada tarjeta */
-    background: #fff; /* Fondo blanco */
+    background: rgb(233, 230, 230); /* Fondo blanco */
     border-radius: 0; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     overflow: hidden; /* Ocultar cualquier desbordamiento */
@@ -28,14 +30,17 @@
   
   /* Imagen de la tarjeta */
   .card-image img {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-    height: auto; /* Mantener la relación de aspecto */
+    width: auto; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    height: 100%; /* Mantener la relación de aspecto */
     display: block; /* Eliminar el espacio inferior */
     border-radius: 8px; /* Bordes redondeados en la imagen */
+    background-color: #0056b3;
   }
   
   /* Contenido de la tarjeta */
   .card-content {
+    width: 100%;
+    height: 100%;
     padding: 16px; /* Espaciado interno */
   }
   

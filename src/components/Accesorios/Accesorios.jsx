@@ -1,5 +1,5 @@
 import React from 'react';
-import Empresa from "../../img/homepage.webp";
+import Empresa from "../../img/mochilas.png";
 import NavBar from '../NavBar';
 import ProductCard from '../Pantalones/ProductCard';
 import GaleriaPants from '../Pantalones/GaleriaPants';
@@ -22,10 +22,10 @@ export default function Accesorios() {
         />
         <div className="overlay-right">
           <div className="overlay-content">
-            <h2>SECCION DE ACCESORIOS.....</h2>
-            <p>Este es un texto superpuesto sobre la imagen.</p>
+            <h2 style={{color: '#222844',fontSize: '30px'}}>Camuflaje que se adapta. Resistencia que perdura.</h2>
+            <p style={{fontSize: '20px'}} >Diseñada para operaciones exigentes y entornos hostiles, la mochila táctica Multicam combina capacidad, resistencia y camuflaje avanzado. Su diseño ergonómico y modular permite distribuir el peso eficientemente, mientras que su patrón Multicam garantiza un camuflaje superior en distintos terrenos.</p>
           </div>
-          <button className="overlay-button">Botón de Acción</button>
+          <button style={{backgroundColor: '#222844'}} className="overlay-button">COMPRA AHORA</button>
         </div>
       </div>
       <div>

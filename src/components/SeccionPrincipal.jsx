@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Empresa from "../img/banner_tact.webp";
-import Imagen from "../img/chamarras.webp";
-import Imagen2 from "../img/banner_p.webp";
+import Imagen from "../img/Gen1.png";
+import Imagen2 from "../img/triton3.png";
 import '../estilos/SeccionPrincipal.css';
 import { Link } from "react-router-dom";
 import Slider from 'react-slick';

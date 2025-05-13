@@ -35,14 +35,14 @@ const Footer = () => {
           <p>WhatsApp: <a href="https://wa.me/123456789" target="_blank" rel="noopener noreferrer">Enviar mensaje</a></p>
         </div>
         
-        <div className="footer-section">
+        {/*<div className="footer-section">
           <h3>Suscríbete</h3>
           <form className="newsletter-form">
             <Link to="/user">
             <button type="submit" style={{width:'auto'}}>Suscribirse</button>
             </Link>
           </form>
-        </div>
+         </div>*/}
       </div>
       
       <div className="footer-bottom">

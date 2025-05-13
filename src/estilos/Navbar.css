@@ -1,6 +1,6 @@
 /* Estilos base para el Navbar */
 .navbar-container {
-  background-color: #222844; /* Un color de fondo claro */
+  background-color: #d0d3df; /* #222844 Un color de fondo claro */
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
   margin: 0;
   align-items: center;
   border-bottom: 1px solid #eee; /* Una línea sutil en la parte inferior */
-
+  height: 100px;
   position: fixed; /* Fija el elemento a la ventana del navegador */
   top: 0; /* Lo coloca en la parte superior de la ventana */
   left: 0;
@@ -16,6 +16,7 @@
   right: 0; /* Lo coloca en el lado izquierdo de la ventana */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .logo img {
@@ -52,11 +53,12 @@
 }
 
 .menu-button {
-  color: whitesmoke;
+  color: rgb(30, 31, 32); /*whitesmoke*/
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
   
   
 }
