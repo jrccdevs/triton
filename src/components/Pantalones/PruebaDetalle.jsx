@@ -76,16 +76,17 @@ const PruebaDetalle = () => {
   }, [product]);
 
   const parseImages = (imagesString) => {
-    if (!imagesString || typeof imagesString !== 'string') {
-      return [];
-    }
-    return imagesString.split(';').map((img) => {
-      const [colorPart, urlPart] = img.split(', URL:');
-      const color = colorPart.replace("Color: ", "").trim();
-      const url = urlPart ? urlPart.trim() : '';
-      return { url, color };
-    });
-  };
+  if (!imagesString || typeof imagesString !== 'string') return [];
+
+  return imagesString.split('~').map(item => {
+    const [color, url, caracteristicas] = item.split('|');
+    return {
+      color: color?.trim() || '',
+      url: url?.trim() || '',
+      caracteristicas: caracteristicas?.trim() || '',
+    };
+  }).filter(img => img.url);
+};
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -214,19 +215,20 @@ const PruebaDetalle = () => {
         </div>
       </div>
 
-      <div className="image-text-columns">
-      {parseImages(product?.product_images || []).map((image, index) => (
-      <div className="imgen-text">
+   {product?.product_images && (
+  <div className="image-text-columns">
+    {parseImages(product?.product_images || []).map((image, index) => (
+      <div className="imgen-text" key={index}>
         <div className="image-column">
-           <img src={image.url} alt={`Thumbnail ${index}`} className="column-image" />
+          <img src={image.url} alt={`Thumbnail ${index}`} className="column-image" />
         </div>
         <div className="text-column">
-         <p className="column-text">lorem ipsun</p>
+          <p className="column-text">{image.caracteristicas}</p>
         </div>
       </div>
-        ))}
-      </div>
-
+    ))}
+  </div>
+)}
       <div style={{ width: '100%' }}>
         <Productos2 />
       </div>

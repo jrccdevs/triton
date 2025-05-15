@@ -87,7 +87,9 @@
   margin: 0 auto;
 }
 .producto-p{
-  width: auto;
+  width: 50%;
+  height: 50%;
+ 
 }
 .product-thumbnails {
   flex-direction: row;
@@ -139,6 +141,9 @@
 
 .product-similar {
   margin-top: 20px;
+ 
+  width:250px;
+  height:auto;
 }
 
 .similar-products-container {
