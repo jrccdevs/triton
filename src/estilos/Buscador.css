@@ -3,7 +3,7 @@
   position: relative; /* Necesario para posicionar el icono dentro y el botón de borrar */
   display: flex;
   align-items: center;
- width: 100%;
+   width: auto;
 }
 
 .search-container {
@@ -26,7 +26,7 @@
   height: 30px;
   padding-top: 2px;
   padding-bottom: 2px;
-  width: 320px;
+  width: 100%;
 }
 
 .search-icon {

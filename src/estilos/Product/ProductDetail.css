@@ -122,6 +122,10 @@
 }
 /* Responsive adjustments for smaller screens (optional) */
 @media (max-width: 768px) {
+  .product-detail-container{
+    width: auto;
+    
+  }
   .image-text-columns > div {
     flex-direction: column; /* Stack image and text vertically on smaller screens */
     align-items: center; /* Center items horizontally */
@@ -142,7 +146,7 @@
 /* Estilos generales para asegurar la responsividad */
 
 .product-detail-container {
-  width: 100%;
+  width: auto;
   margin-top: 120px;
   padding: 20px; /* Añade padding para evitar que el contenido toque los bordes en pantallas pequeñas */
 }
@@ -300,7 +304,7 @@
     display: flex;
     align-items: flex-start; /* Alinea los elementos en la parte superior en pantallas más grandes */
     gap: 30px;
-    width: auto;
+    width: 100%;
     
   }
 

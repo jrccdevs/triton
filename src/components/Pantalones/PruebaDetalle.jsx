@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
-
 import '../../estilos/Product/ProductDetail.css'; 
 import NavBar from '../NavBar';
 import { Link } from 'react-router-dom';
 import Productos2 from '../Productos2';
-
 import Footer from '../Footer';
 import PaypalButton from "../Carrito/Paypal";
-
 import ReactImageZoom from 'react-image-zoom';
-
+import 'react-inner-image-zoom/lib/styles.min.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
@@ -141,17 +139,17 @@ const PruebaDetalle = () => {
       <div>
         <NavBar />
       </div>
-      <div className="product-detail-container" style={{ marginTop: '90px' }}>
+      <div className="product-detail-container" style={{ marginTop: '160px' }}>
         <div className="product-images">
           <div className="producto-p" >
+          <InnerImageZoom 
+          width= {550}
+          height= {550}
+          zoomScale = {0,2}
+          
          
-          <ReactImageZoom 
-               width={550}
-               height={550}
-               zoomWidth={550}
-               img={selectedImage}
-
-          />
+          src={selectedImage} zoomSrc={selectedImage} />
+          
           
            
           </div>
