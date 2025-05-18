@@ -3,15 +3,14 @@
   position: relative; /* Necesario para posicionar el icono dentro y el botón de borrar */
   display: flex;
   align-items: center;
+ width: 100%;
 }
 
 .search-container {
   display: flex;
   align-items: center;
   border-radius: 15px;
- 
-  width: 100%;
-  max-width: 400px;
+  width: auto;
   margin: 0;
 }
 
@@ -23,10 +22,11 @@
   font-size: 1.1em;
   outline: none;
   text-align: left;
-  background-color: white;
+  background-color: rgb(240, 236, 236);
   height: 30px;
   padding-top: 2px;
   padding-bottom: 2px;
+  width: 320px;
 }
 
 .search-icon {
@@ -104,8 +104,11 @@
 
 /* Media query para pantallas más pequeñas (móviles) */
 @media (max-width: 767px) {
+  .search-bar-container{
+    width: auto;
+  }
   .search-container {
-    max-width: none;
+    width: auto;
     padding: 10px;
   }
 
@@ -127,8 +130,11 @@
 
 /* Media query para tablets (aproximadamente 768px a 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .search-bar-container{
+    width: auto;
+  }
   .search-container {
-    max-width: 500px;
+    width: auto;
     padding: 10px;
   }
 
@@ -151,7 +157,7 @@
 /* Media query para pantallas más grandes (desktops) */
 @media (min-width: 1024px) {
   .search-container {
-    max-width: 400px;
+    width: auto;
     padding: 10px;
   }
 

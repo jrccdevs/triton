@@ -22,7 +22,7 @@ export default function Seccion1() {
              y resistencia al desgaste. Ya sea cruzando ríos o ascendiendo 
              alturas, este uniforme es tu escudo silencioso en cada misión.</p>
         </div>
-        <button className="overlay-button">compra  ahora</button>
+        <button className="overlay-button">compra &nbsp;&nbsp; ahora</button>
       </div>
     </div>
   );

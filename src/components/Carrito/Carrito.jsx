@@ -68,7 +68,7 @@ const CartView = () => {
             <br></br>
             <br></br>
            
-            <Paypal />
+           {/* <Paypal />*/}
           </div>
          
         </div>

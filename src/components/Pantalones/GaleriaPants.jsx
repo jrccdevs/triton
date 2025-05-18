@@ -33,7 +33,7 @@ const ProductGallery = () => {
                  extremos, esta indumentaria ofrece aislamiento térmico,
                   movilidad táctica y protección contra viento y nieve.</p>
             </div>
-            <button className="overlay-button-pants">compra   ahora</button>
+            <button className="overlay-button-pants">compra  &nbsp;&nbsp; ahora</button>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ const ProductGallery = () => {
                  ofrece abrigo, movilidad y camuflaje funcional en zonas 
                  mixtas de nieve, vegetación o sombra.</p>
             </div>
-            <button className="overlay-button-pants">compra ahora</button>
+            <button className="overlay-button-pants">compra &nbsp;&nbsp;ahora</button>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ const ProductGallery = () => {
                  extremos, esta indumentaria ofrece aislamiento térmico,
                   movilidad táctica y protección contra viento y nieve.</p>
             </div>
-            <button className="overlay-button-pants">compra   ahora</button>
+            <button className="overlay-button-pants">compra &nbsp;&nbsp;  ahora</button>
           </div>
         </div>
 
@@ -121,7 +121,7 @@ const ProductGallery = () => {
                  ofrece abrigo, movilidad y camuflaje funcional en zonas 
                  mixtas de nieve, vegetación o sombra.</p>
             </div>
-            <button className="overlay-button-pants">compra ahora</button>
+            <button className="overlay-button-pants">compra &nbsp;&nbsp;ahora</button>
           </div>
         </div>
 

@@ -1,9 +1,11 @@
 import React from 'react';
-import Empresa from "../../img/homepage.webp";
+import Empresa from "../../img/gorros.png";
 import NavBar from '../NavBar';
 import ProductCard from '../Pantalones/ProductCard';
 import GaleriaPants from '../Pantalones/GaleriaPants';
 import Footer from '../Footer';
+import '../../estilos/Seccion1.css'; // Archivo CSS para estilos personalizados
+
 
 export default function Gorros() {
   // Definimos la categoría que queremos pasar
@@ -22,10 +24,16 @@ export default function Gorros() {
         />
         <div className="overlay-right">
           <div className="overlay-content">
-            <h2>SECCION DE GORROS.....</h2>
-            <p>Este es un texto superpuesto sobre la imagen.</p>
+            <h2 className="titulo-p">Cubre tu mente. Oculta tu presencia.</h2>
+            <p className="des-d">El gorro táctico Multicam no es solo protección: es una 
+              extensión de tu camuflaje. Diseñado para resistir el clima, 
+              brindar comodidad y mantener un perfil bajo en cualquier 
+              terreno, se adapta a misiones en selva, montaña o desierto. 
+              Ligero, funcional y con diseño militar auténtico, completa 
+              tu equipo con discreción y estilo operativo. Porque en el 
+              campo, hasta el detalle más pequeño marca la diferencia.</p>
           </div>
-          <button className="overlay-button">Botón de Acción</button>
+          <button className="overlay-button">compra &nbsp;&nbsp;&nbsp;ahora</button>
         </div>
       </div>
       <div>

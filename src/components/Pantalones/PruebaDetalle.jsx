@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
+
 import '../../estilos/Product/ProductDetail.css'; 
 import NavBar from '../NavBar';
 import { Link } from 'react-router-dom';
@@ -133,6 +135,7 @@ const PruebaDetalle = () => {
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>No se encontró el producto</p>;
 
+  
   return (
     <>
       <div>
@@ -141,6 +144,7 @@ const PruebaDetalle = () => {
       <div className="product-detail-container" style={{ marginTop: '90px' }}>
         <div className="product-images">
           <div className="producto-p" >
+         
           <ReactImageZoom 
                width={550}
                height={550}
@@ -206,23 +210,23 @@ const PruebaDetalle = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2rim1.5.5 0 0 0 1.5.5V2H14v.5a.5.5 0 0 1 1 0v-1H15.5a.5.5 0 0 1 .5-.5v-1A.5.5 0 0 1 16 1H4.5a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 .5-.5H5zM5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
             </svg>
-              Ver carrito {getCartCount()}
+              <HiOutlineShoppingCart />Ver carrito {getCartCount()}
            </Link>
-           <div>
+           {/*<div>
               <h1>Paga Ahora con.... </h1>
               <PaypalButton />
-          </div>
+           </div>*/}
         </div>
       </div>
 
-   {product?.product_images && (
+      {product?.product_images && (
   <div className="image-text-columns">
     {parseImages(product?.product_images || []).map((image, index) => (
-      <div className="imgen-text" key={index}>
-        <div className="image-column">
+      <div className="imgen-text" key={index}style={{ '--delay': `${index * 0.3}s` }}>
+        <div className="image-column animate-image">
           <img src={image.url} alt={`Thumbnail ${index}`} className="column-image" />
         </div>
-        <div className="text-column">
+        <div className="text-column animate-text">
           <p className="column-text">{image.caracteristicas}</p>
         </div>
       </div>

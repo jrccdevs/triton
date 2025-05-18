@@ -4,6 +4,8 @@ import NavBar from '../NavBar';
 import ProductCard from './ProductCard';
 import GaleriaPants from './GaleriaPants';
 import Footer from '../Footer';
+import '../../estilos/Seccion1.css'; // Archivo CSS para estilos personalizados
+
 
 export default function Pantalones() {
   // Definimos la categoría que queremos pasar
@@ -22,10 +24,16 @@ export default function Pantalones() {
         />
         <div className="overlay-right">
           <div className="overlay-content">
-            <h2>SECCION DE PANTALONES</h2>
-            <p>Este es un texto superpuesto sobre la imagen.</p>
+            <h2 className="titulo-p">Paso firme. Camuflaje letal.</h2>
+            <p className="des-d">Los pantalones tácticos Multicam están hechos para la acción 
+              real. Diseñados con tejidos resistentes, bolsillos estratégicos 
+              y libertad total de movimiento, ofrecen durabilidad en cada paso 
+              y camuflaje efectivo en entornos cambiantes. Desde misiones en 
+              terreno hostil hasta entrenamiento intensivo, su rendimiento es 
+              tan sólido como tu determinación. Porque avanzar seguro no es una 
+              opción, es parte del uniforme.</p>
           </div>
-          <button className="overlay-button">Botón de Acción</button>
+          <button className="overlay-button">compra &nbsp;&nbsp;&nbsp;ahora</button>
         </div>
       </div>
       <div>

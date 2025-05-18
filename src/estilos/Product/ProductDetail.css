@@ -1,51 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+
 .image-text-columns {
-  display: flex; /* Use flexbox to arrange items in a row */
-  flex-direction: column; /* Stack image and text vertically by default */
-  
-  width: 100%;
-  
-}
-.imgen-text{
-  
-  align-items: center;
-  justify-content: center;
-}
-.image-text-columns > div {
-  display: flex; /* Use flexbox for each image-text pair */
-  flex-direction: row; /* Arrange image and text in a row */
-  margin-bottom: 20px; /* Add some spacing between each image-text pair */
-  align-items: flex-start; /* Align items to the top */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
 }
 
-.image-column {
-  width: 20%;
-  height: auto;
-  padding: 30px;
-  flex: 0 0 auto; /* Don't grow, don't shrink, take up auto width */
-  margin-right: 20px; /* Add spacing between the image and text */
-  max-width: 50%; /* Limit the image width */
+/* ANIMACIONES BASE */
+@keyframes fadeInSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.85) rotate(-3deg);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeInSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.85) rotate(3deg);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* CONTENEDOR DE CADA PAREJA IMAGEN + TEXTO */
+.imgen-text {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08),
+              0 0 15px rgba(200, 220, 255, 0.5);
+  border: 1px solid #dde6ff;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* IMAGEN */
+.animate-image {
+  animation: fadeInSlideRight 1.2s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
 }
 
 .column-image {
-  display: block; /* Remove any extra spacing below the image */
-  width: 100%; /* Make the image fill its container */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 14px;
+  border: 2px solid #c7d2fe;
+  box-shadow:
+    0 0 30px rgba(137, 192, 255, 0.3),
+    0 0 12px rgba(137, 192, 255, 0.5) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.column-image:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 40px rgba(137, 192, 255, 0.6),
+    0 0 15px rgba(137, 192, 255, 0.6) inset;
+}
+
+/* TEXTO */
+.animate-text {
+  animation: fadeInSlideLeft 1.2s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
 }
 
 .text-column {
-  
-  margin-top: 30px;
-  padding: 30px;
-  
-  flex: 1 1 auto; /* Allow text to grow and take remaining space */
-  max-width: 50%; /* Limit the text width */
+  flex: 2;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2d3748;
+  background: linear-gradient(145deg, #f6f8ff, #ffffff);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px dashed #bcd0ff;
+  box-shadow: inset 0 1px 4px rgba(120, 140, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.text-column:hover {
+  transform: translateY(-2px);
 }
 
 .column-text {
-  padding: 30px;
- /* Remove default top margin for the paragraph */
+  margin: 0;
+  font-weight: 500;
 }
-
 /* Responsive adjustments for smaller screens (optional) */
 @media (max-width: 768px) {
   .image-text-columns > div {
@@ -68,7 +142,7 @@
 /* Estilos generales para asegurar la responsividad */
 
 .product-detail-container {
-  width: auto;
+  width: 100%;
   margin-top: 120px;
   padding: 20px; /* Añade padding para evitar que el contenido toque los bordes en pantallas pequeñas */
 }
@@ -226,6 +300,7 @@
     display: flex;
     align-items: flex-start; /* Alinea los elementos en la parte superior en pantallas más grandes */
     gap: 30px;
+    width: auto;
     
   }
 
