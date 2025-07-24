@@ -32,6 +32,10 @@ const CartView = () => {
     <div className="cart-view-container" style={{marginTop:"90px"}}>
       <div className="cart-main">
         <div className="cart-left">
+        <Link to="/user" className="checkout-button">Registrate</Link>
+            <br></br>
+            <br></br>
+           
           <h2><FaShoppingCart /> Productos en el carrito</h2>
           {cart.length === 0 ? (
             <div className="empty-cart">
@@ -64,10 +68,7 @@ const CartView = () => {
           <div className="cart-summary">
             <p>Total: ${total.toFixed(2)}</p>
             <PayPalButton amount={total} />
-            <Link to="/user" className="checkout-button">Proceder al pago</Link>
-            <br></br>
-            <br></br>
-           
+            
            {/* <Paypal />*/}
           </div>
          

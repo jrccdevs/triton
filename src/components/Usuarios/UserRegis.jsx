@@ -142,7 +142,7 @@ const UserRegistrationForm = () => {
             </select>
             {errors.metodo_p && <p className="error">{errors.metodo_p}</p>}
           </div>
-          <Link to='/payment'>
+          <Link to='/carrito'>
           <button type="submit" className="submit-button">
             Registrar Contacto
           </button>
