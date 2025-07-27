@@ -1,91 +1,155 @@
 /* src/estilos/Carrito/PopularProducts.css */
 
+/* Definición de Variables CSS para Modos Claro y Oscuro (específicas para PopularProducts si no son globales) */
+:root {
+  /* Modo Claro */
+  --popular-bg-container: #ffffff;
+  --popular-border-color: #e7e7e7;
+  --popular-shadow-color: rgba(0, 0, 0, 0.1);
+  --popular-text-h3: #333333;
+  --popular-item-border: #e1e1e1;
+  --popular-product-name-color: #007185;
+  --popular-product-price-color: #B12704;
+  --popular-button-bg: #ffa41c;
+  --popular-button-hover-bg: #ff8f00;
+  --popular-image-border: #ddd;
+}
+
+/* Estilos para Modo Oscuro (cuando el body tiene la clase .dark-mode) */
+body.dark-mode .popular-products-container {
+  --popular-bg-container: rgb(24, 20, 34); /* Fondo oscuro para el contenedor */
+  --popular-border-color: #444; /* Borde oscuro */
+  --popular-shadow-color: #16102c; /* Sombra más oscura */
+  --popular-text-h3: #e0e0e0; /* Texto claro para el título */
+  --popular-item-border: #555; /* Borde de item oscuro */
+  --popular-product-name-color: #87ceeb; /* Azul claro para nombres de producto */
+  --popular-product-price-color: #ffb380; /* Naranja claro para precios */
+  --popular-button-bg: #e67e22; /* Botón más oscuro */
+  --popular-button-hover-bg: #d35400; /* Botón hover más oscuro */
+  --popular-image-border: #666; /* Borde de imagen oscuro */
+
+  /* Asegura que los elementos internos también usen las variables del modo oscuro */
+  color: var(--popular-text-h3); /* Establece el color de texto general para el modo oscuro */
+}
+
+
 .popular-products-container {
-    width: 250px;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e7e7e7;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-left: 20px;
-    font-family: Arial, sans-serif;
+  width: 250px;
+  padding: 20px;
+  background-color: var(--popular-bg-container); /* Usa variable */
+  border: 1px solid var(--popular-border-color); /* Usa variable */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--popular-shadow-color); /* Usa variable */
+  margin-left: 20px;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.popular-products-container h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--popular-text-h3); /* Usa variable */
+  transition: color 0.3s ease;
+}
+
+.popular-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popular-product-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--popular-item-border); /* Usa variable */
+  border-radius: 5px;
+  transition: box-shadow 0.3s, border-color 0.3s ease;
+  background-color: var(--popular-bg-container); /* Asegura que el item también cambie de fondo si es necesario */
+}
+
+.popular-product-item:hover {
+  box-shadow: 0 4px 8px var(--popular-shadow-color); /* Usa variable */
+}
+
+.popular-product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 10px;
+  border: 1px solid var(--popular-image-border); /* Usa variable */
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.popular-product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-name {
+  font-size: 0.9rem;
+  color: var(--popular-product-name-color); /* Usa variable */
+  margin: 5px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.product-price {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--popular-product-price-color); /* Usa variable */
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.add-to-cart-button {
+  background-color: var(--popular-button-bg); /* Usa variable */
+  color: white; /* El color del texto del botón puede ser fijo si siempre es legible */
+  border: none;
+  padding: 5px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.add-to-cart-button:hover {
+  background-color: var(--popular-button-hover-bg); /* Usa variable */
+}
+
+/* Media Queries (Mantener las que ya tenías) */
+
+/* Media query para pantallas más pequeñas (móviles) */
+@media (max-width: 767px) {
+  .popular-products-container {
+    width: 100%; /* O ajusta según sea necesario para móviles */
+    margin-left: 0;
+    margin-top: 20px; /* Espacio si se apila */
   }
-  
-  .popular-products-container h3 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333333;
+}
+
+/* Media query para tablets (aproximadamente 768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .popular-products-container {
+    width: 100%; /* O ajusta según sea necesario */
+    margin-left: 0;
+    margin-top: 20px;
   }
-  
-  .popular-products-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .popular-product-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    transition: box-shadow 0.3s;
-  }
-  
-  .popular-product-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .popular-product-image {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .popular-product-info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  
-  .product-name {
-    font-size: 0.9rem;
-    color: #007185;
-    margin: 5px 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  
-  .product-price {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #B12704;
-    margin-bottom: 8px;
-  }
-  
-  .add-to-cart-button {
-    background-color: #ffa41c;
-    color: white;
-    border: none;
-    padding: 5px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
-    margin-top: 5px;
-  }
-  
-  .add-to-cart-button:hover {
-    background-color: #ff8f00;
-  }
-  
+}
+
+/* Media query para pantallas medianas (aproximadamente 1024px a 1199px) */
+/* No hay cambios específicos a añadir para este componente aquí a menos que sea necesario */
+
+/* Media query para pantallas grandes (desktops) */
+/* No hay cambios específicos a añadir para este componente aquí a menos que sea necesario */

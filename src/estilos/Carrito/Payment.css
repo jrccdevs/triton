@@ -1,26 +1,59 @@
 /* src/components/PayPalPayment.css */
+
+/* Definición de Variables CSS para Modos Claro y Oscuro */
+:root {
+  /* Modo Claro */
+  --paypal-container-bg-start: #f9f9f9;
+  --paypal-container-bg-end: #ffffff; /* Ajuste para el gradiente */
+  --paypal-container-shadow: rgba(0, 255, 255, 0.3);
+  --paypal-text-color: #333; /* Color de texto principal en modo claro */
+  --paypal-title-shadow: 0 0 8px #00bcd4; /* Sombra del título para contraste */
+
+  --paypal-box-bg: rgba(255, 255, 255, 0.9); /* Fondo de la caja en modo claro */
+  --paypal-box-border: rgba(200, 200, 200, 0.5); /* Borde de la caja en modo claro */
+  --paypal-box-shadow: rgba(0, 255, 255, 0.1);
+}
+
+/* Estilos para Modo Oscuro (cuando el body tiene la clase .dark-mode) */
+body.dark-mode {
+  --paypal-container-bg-start: #1b1b35;
+  --paypal-container-bg-end: rgb(24, 20, 34);
+  --paypal-container-shadow: rgba(0, 255, 255, 0.1); /* Sombra más sutil en oscuro */
+  --paypal-text-color: #e0e0e0; /* Color de texto claro en modo oscuro */
+  --paypal-title-shadow: 0 0 10px #00e5ff; /* Sombra del título más brillante para contraste */
+
+  --paypal-box-bg: rgba(0, 0, 0, 0.3); /* Fondo de la caja más oscuro */
+  --paypal-box-border: rgba(255, 255, 255, 0.2); /* Borde de la caja para contraste */
+  --paypal-box-shadow: rgba(0, 255, 255, 0.05);
+}
+
+
 .paypal-container {
   max-width: 800px;
   margin: 40px auto;
   padding: 25px;
   border-radius: 20px;
-  background: linear-gradient(135deg,  #f9f9f9);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-  color: #fff;
+  /* Usa variables para el gradiente y el color de texto */
+  background: linear-gradient(135deg, var(--paypal-container-bg-start), var(--paypal-container-bg-end));
+  box-shadow: 0 0 25px var(--paypal-container-shadow);
+  color: var(--paypal-text-color); /* Usa variable para el color de texto general */
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* Añade transiciones */
 }
 
 .paypal-title {
   font-size: 24px;
   margin-bottom: 20px;
-  text-shadow: 0 0 8px cyan;
+  text-shadow: var(--paypal-title-shadow); /* Usa variable para la sombra del título */
+  transition: text-shadow 0.3s ease; /* Añade transiciones */
 }
 
 .paypal-box {
   padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--paypal-box-bg); /* Usa variable */
+  border: 1px solid var(--paypal-box-border); /* Usa variable */
   border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 12px var(--paypal-box-shadow); /* Usa variable */
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Añade transiciones */
 }

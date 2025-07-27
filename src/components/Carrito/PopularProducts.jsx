@@ -1,13 +1,14 @@
 // src/components/PopularProducts.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import '../../estilos/Carrito/PopularProducts.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { ThemeContext } from '../ThemeToggle'; // Importa useTheme
 
 const PopularProducts = () => {
   const [products, setProducts] = useState([ { product_id: 1, main_image: "ruta_a_imagen", product_name: "Producto de Prueba", price: 100 }]);
+  const { darkMode } = useContext(ThemeContext); // Usa el hook para obtener el estado del tema
 
   /* const productos =[
      require('../img/Stri.jpeg'),
@@ -38,7 +39,7 @@ const PopularProducts = () => {
  
 
   return (
-    <div className="popular-products-container">
+    <div className={`popular-products-container ${darkMode ? 'dark-mode' : ''}`}>
       <h3>Productos Más Comprados</h3>
       <div className="popular-products-list">
       {products.length > 0 ? (

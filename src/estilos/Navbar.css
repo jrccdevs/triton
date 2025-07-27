@@ -4,22 +4,34 @@ body, html {
   padding: 0;
   width: 100%;
 }
+
 .navbar-container {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0; /* <-- AÑADE esto */
-  width: 100%; /* Asegura el ancho total */
+  right: 0;
+  width: 100%;
   z-index: 1000;
-  background-color: #163846;
-  color: white;
+  /* Utiliza las variables CSS definidas en App.css para el fondo y el color de texto */
+  background-color: var(--header-bg); /* Fondo del Navbar */
+  color: var(--header-text); /* Color de texto del Navbar */
 
   display: flex;
   flex-direction: column;
   padding: 0.7rem 1rem;
   gap: 0.5rem;
-  box-sizing: border-box; /* <-- Importante para evitar desbordamientos */
+  box-sizing: border-box;
+  /* Añade una transición suave para los cambios de color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para modo claro */
+}
 
+/* Estilos específicos para el Navbar en modo oscuro */
+.navbar-container.dark-mode {
+  /* Las variables --header-bg y --header-text ya cambiarán automáticamente
+     cuando .dark-mode se aplica al body en App.css.
+     Puedes añadir sombras o bordes específicos aquí si lo deseas. */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada para modo oscuro */
 }
 
 /* FILA 1: LOGO + HAMBURGUESA */
@@ -34,34 +46,78 @@ body, html {
 .logo img {
   height: 50px;
   cursor: pointer;
+  /* Podrías aplicar un filtro para invertir colores en modo oscuro si el logo es oscuro */
+  /* filter: var(--logo-filter, none); */
+  transition: filter 0.3s ease;
 }
 
 /* BOTÓN HAMBURGUESA */
 .menu-toggle {
   background: none;
   border: none;
-  color: var(--color-accent);
+  color: var(--header-text); /* Color del icono de hamburguesa */
   cursor: pointer;
   font-size: 1.8rem;
-  display: block; /* visible en móviles */
+  display: block;
+  transition: color 0.3s ease;
 }
+
+.menu-toggle:hover {
+  color: var(--link-color); /* Color al pasar el ratón */
+}
+
+
+/* BOTONES DE CAMBIO DE TEMA */
+.theme-toggle-mobile,
+.theme-toggle-desktop {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--header-text); /* Color del icono de sol/luna */
+  font-size: 1.5rem; /* Ajusta el tamaño si es necesario */
+  padding: 5px;
+  display: flex; /* Para centrar el icono */
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+  border-radius: 50%; /* Para que sea circular si le pones un fondo */
+}
+
+.theme-toggle-mobile:hover,
+.theme-toggle-desktop:hover {
+  color: var(--link-color); /* Color al pasar el ratón */
+  transform: scale(1.1);
+}
+
+.theme-toggle-desktop {
+  display: none; /* Oculto por defecto en móvil */
+  margin-left: 20px; /* Espacio para el botón en desktop */
+}
+.theme-toggle-mobile {
+  display: block; /* Visible por defecto en móvil */
+  /* Ajusta el margen o posición si es necesario para tu layout móvil */
+  margin-right: 15px; /* Espacio entre el botón de tema y la hamburguesa */
+}
+
 
 /* BUSCADOR */
 .search-container {
   width: auto;
   margin-top: 0.5rem;
+  /* El componente Buscador deberá usar las variables de texto y fondo para su input */
 }
 
 /* MENÚ HORIZONTAL EN DESKTOP */
 .menu-container {
-  display: none; /* oculto por defecto (móvil) */
+  display: none;
   gap: 1rem;
+  align-items: center; /* Para alinear el botón de tema con los enlaces */
 }
 
 /* BOTONES MENÚ */
 .menu-button {
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--header-text); /* Usa la variable para el color del texto de los enlaces */
   font-size: 0.95rem;
   font-weight: 600;
   padding-left: 20px;
@@ -75,15 +131,15 @@ body, html {
   display: block;
   width: 0%;
   height: 2px;
-  background: white;
-  transition: width 1s.3s;
+  background: var(--link-color); /* Usa la variable para la línea inferior */
+  transition: width 0.3s ease; /* Corregido a 0.3s para la transición de la línea */
   position: relative;
   bottom: -4px;
   left: 0;
 }
 
 .menu-button:hover {
-  color:rgb(118, 169, 236);
+  color: var(--link-color); /* Usa la variable para el hover */
 }
 
 .menu-button:hover::after {
@@ -92,12 +148,16 @@ body, html {
 
 /* ÍCONO CARRITO */
 .cart-icon {
-
   font-size: 25px;
   cursor: pointer;
-  color: rgb(187, 190, 199);
+  color: var(--header-text); /* Usa la variable para el color del icono del carrito */
   margin-right: 3rem;
-  display: none; /* oculto en móvil por defecto */
+  display: none;
+  transition: color 0.3s ease;
+}
+
+.cart-icon:hover {
+  color: var(--link-color); /* Color al pasar el ratón */
 }
 
 /* MENÚ MÓVIL */
@@ -105,15 +165,21 @@ body, html {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: r;
+  background-color: var(--header-bg); /* Fondo del menú desplegable móvil */
+  color: var(--header-text); /* Color de texto del menú desplegable móvil */
   padding: 1rem;
   border-radius: 12px;
   margin-top: 0.5rem;
   gap: 0.6rem;
   animation: fadeInDown 0.3s ease-in-out forwards;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el menú móvil */
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
+
 .mobile-dropdown-menu .menu-button {
-  background: rgba(67, 80, 124, 0.603);
+  background: rgba(67, 80, 124, 0.603); /* Este color fijo debería ser una variable si quieres que cambie */
+  /* Si quieres que se adapte al tema, podrías definir una nueva variable CSS en App.css
+     como --mobile-menu-item-bg y usarla aquí. Por ahora lo dejaré fijo como lo tenías. */
   border-radius: 10px;
   text-align: center;
   box-shadow: none;
@@ -121,6 +187,7 @@ body, html {
   letter-spacing: 1px;
   padding: 0.6rem 0.8rem;
   width: auto;
+  color: var(--button-text); /* El color del texto del botón del menú móvil se adaptará */
 }
 
 /* RESPONSIVO */
@@ -131,7 +198,6 @@ body, html {
     align-items: center;
     flex-wrap: nowrap;
     width: auto;
-    
   }
 
   .navbar-header {
@@ -159,6 +225,13 @@ body, html {
 
   .cart-icon {
     display: block; /* mostramos carrito en desktop */
+  }
+
+  .theme-toggle-mobile {
+    display: none; /* Oculta el botón de tema móvil en desktop */
+  }
+  .theme-toggle-desktop {
+    display: block; /* Muestra el botón de tema de escritorio en desktop */
   }
 }
 

@@ -1,0 +1,100 @@
+/* src/App.css */
+
+/* Variables CSS para colores por defecto (modo claro) */
+:root {
+    --body-bg: #f5f7fa; /* Fondo general de la aplicación */
+    --body-text: #333; /* Color de texto general */
+    --header-bg: #ffffff; /* Fondo de encabezados y Navbar */
+    --header-text: #222; /* Color de texto de encabezados y Navbar */
+    --card-bg: #ffffff; /* Fondo de tarjetas/secciones */
+    --card-text: #333; /* Color de texto de tarjetas/secciones */
+    --link-color: #007bff; /* Color de enlaces */
+    --border-color: #e0e0e0; /* Color de bordes */
+    --button-bg: #007bff; /* Fondo de botones */
+    --button-text: #ffffff; /* Color de texto de botones */
+    /* Puedes añadir más variables según necesites */
+  }
+  
+  /* Estilos para el modo oscuro (sobrescriben las variables por defecto) */
+  .dark-mode {
+    --body-bg: #1a1a2e;
+    --body-text: #e0e0e0;
+    --header-bg: #16213e;
+    --header-text: #f0f0f0;
+    --card-bg: #1f4068;
+    --card-text: #f0f0f0;
+    --link-color: #92b4ec;
+    --border-color: #0f3460;
+    --button-bg: #92b4ec;
+    --button-text: #1a1a2e;
+  }
+  
+  /* Estilos generales de la aplicación */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--body-bg); /* Usa la variable */
+    color: var(--body-text); /* Usa la variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+  }
+  
+  .app-wrapper {
+    min-height: 100vh; /* Asegura que el wrapper ocupe toda la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    /* Las transiciones de fondo y color también se aplicarán aquí */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .app-main-content {
+    flex-grow: 1; /* Hace que el contenido principal ocupe el espacio restante */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%; /* Asegura que ocupe el ancho disponible */
+  }
+  
+  /* Ejemplo de cómo aplicar los colores a otros elementos */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--header-text); /* Color de texto para títulos */
+    transition: color 0.3s ease;
+  }
+  
+  p {
+    color: var(--body-text); /* Color de texto para párrafos */
+    transition: color 0.3s ease;
+  }
+  
+  a {
+    color: var(--link-color); /* Color de enlaces */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Si tienes "tarjetas" o secciones con fondo, aplícales las variables */
+  .card-section { /* Ejemplo de una clase para una sección o tarjeta */
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }

@@ -1,5 +1,5 @@
 // src/components/CartView.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import PopularProducts from './PopularProducts'; // Asegúrate de tener este componente
@@ -8,9 +8,10 @@ import NavBar from '../../components/NavBar';
 import PayPalButton from '../Carrito/Payment'; 
 import Paypal from "../Carrito/Paypal";
 import Footer from '../Footer'
-
+import { ThemeContext } from '../ThemeToggle'; // Importa useTheme
 const CartView = () => {
   const [cart, setCart] = useState([]);
+  const { darkMode } = useContext(ThemeContext); // Usa el hook para obtener el estado del tema
 
   useEffect(() => {
     // Cargar los productos del carrito desde el localStorage
@@ -29,7 +30,7 @@ const CartView = () => {
   return (
     <>
     <NavBar />
-    <div className="cart-view-container" style={{marginTop:"90px"}}>
+    <div className={`cart-view-container ${darkMode ? 'dark-mode' : ''}`} style={{marginTop:"90px"}}>
       <div className="cart-main">
         <div className="cart-left">
         <Link to="/user" className="checkout-button">Registrate</Link>

@@ -1,9 +1,43 @@
+/* estilos/Carrito/Carrito.css */
+
+/* Definición de Variables CSS para Modos Claro y Oscuro */
+:root {
+  /* Modo Claro */
+  --background-primary: #f9f9f9; /* Fondo principal de la vista del carrito */
+  --background-secondary: #ffffff; /* Fondo para tarjetas de productos, carrito vacío, productos populares */
+  --text-primary: #333; /* Color de texto principal (títulos, nombres) */
+  --text-secondary: red; /* Color de texto secundario (párrafos, precios) */
+  --border-color: #ddd; /* Color de bordes y separadores */
+  --button-primary-bg: #ffa41c; /* Fondo de botones de acción (ej. "Seguir comprando", "Registrate") */
+  --button-primary-hover-bg: #ff8f00; /* Fondo de botones de acción al pasar el ratón */
+  --button-danger-bg: #f44336; /* Fondo de botones de peligro (ej. "Eliminar") */
+  --button-danger-hover-bg: #d32f2f; /* Fondo de botones de peligro al pasar el ratón */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Color de sombra para modo claro */
+}
+
+/* Estilos para Modo Oscuro (cuando el body tiene la clase .dark-mode) */
+body.dark-mode {
+  --background-primary: rgb(30, 24, 44);
+  --background-secondary: #16102c;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #444;
+  --button-primary-bg: #e67e22;
+  --button-primary-hover-bg: #d35400;
+  --button-danger-bg: #c0392b;
+  --button-danger-hover-bg: #a52a22;
+  --shadow-color: rgba(0, 0, 0, 0.4); /* Sombra más oscura para modo oscuro */
+}
+
+
 /* Estilos generales para la vista del carrito */
 .cart-view-container {
   padding: 20px;
   max-width: 1200px;
   margin: 100px auto 0; /* Ajuste para el marginTop */
-  background-color: #f9f9f9;
+  background-color: var(--background-primary); /* Usa variable */
+  color: var(--text-primary); /* Establece color de texto para el contenedor */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
 }
 
 .cart-main {
@@ -20,7 +54,7 @@
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: var(--text-primary); /* Usa variable */
   margin-bottom: 20px;
   transition: color 0.3s ease;
 }
@@ -28,16 +62,16 @@ h2 {
 .empty-cart {
   text-align: center;
   padding: 50px 0;
-  background-color: #fff;
-  border: 2px dashed #ddd;
+  background-color: var(--background-secondary); /* Usa variable */
+  border: 2px dashed var(--border-color); /* Usa variable */
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px var(--shadow-color); /* Usa variable */
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .empty-cart:hover {
   transform: scale(1.05);
-  background-color: #fafafa;
+  background-color: var(--background-secondary); /* Mantener el mismo color de fondo o ligeramente diferente para hover */
 }
 
 .empty-cart-image {
@@ -54,21 +88,21 @@ h2 {
 
 h3 {
   font-size: 1.3rem;
-  color: #333;
+  color: var(--text-primary); /* Usa variable */
   margin-bottom: 15px;
   transition: color 0.3s ease;
 }
 
 .empty-cart p {
   font-size: 1rem;
-  color: #555;
+  color: var(--text-secondary); /* Usa variable */
   margin-bottom: 20px;
   transition: color 0.3s ease;
 }
 
 .shop-now-button {
-  background-color: #ffa41c;
-  color: white;
+  background-color: var(--button-primary-bg); /* Usa variable */
+  color: white; /* El color del texto del botón puede ser fijo si siempre es legible */
   padding: 12px 20px;
   font-size: 1.1rem;
   text-decoration: none;
@@ -77,7 +111,7 @@ h3 {
 }
 
 .shop-now-button:hover {
-  background-color: #ff8f00;
+  background-color: var(--button-primary-hover-bg); /* Usa variable */
   transform: translateY(-3px);
 }
 
@@ -91,16 +125,16 @@ h3 {
   display: flex;
   align-items: center;
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color); /* Usa variable */
   border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--background-secondary); /* Usa variable */
+  box-shadow: 0 2px 4px var(--shadow-color); /* Usa variable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .cart-item:hover {
   transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px var(--shadow-color); /* Usa variable */
 }
 
 .cart-item-image {
@@ -118,12 +152,12 @@ h3 {
 .cart-item-info {
   flex-grow: 1;
   font-size: 1rem;
-  color: #333;
+  color: var(--text-primary); /* Usa variable */
 }
 
 .remove-item-button {
-  background-color: #f44336;
-  color: white;
+  background-color: var(--button-danger-bg); /* Usa variable */
+  color: white; /* El color del texto del botón puede ser fijo si siempre es legible */
   border: none;
   padding: 8px 16px;
   font-size: 1rem;
@@ -133,7 +167,7 @@ h3 {
 }
 
 .remove-item-button:hover {
-  background-color: #d32f2f;
+  background-color: var(--button-danger-hover-bg); /* Usa variable */
   transform: scale(1.1);
 }
 
@@ -141,12 +175,12 @@ h3 {
   margin-top: 20px;
   text-align: right;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--text-primary); /* Usa variable */
 }
 
 .checkout-button {
-  background-color: #ffa41c;
-  color: white;
+  background-color: var(--button-primary-bg); /* Usa variable */
+  color: white; /* El color del texto del botón puede ser fijo si siempre es legible */
   padding: 12px 20px;
   font-size: 1.2rem;
   border-radius: 8px;
@@ -155,7 +189,7 @@ h3 {
 }
 
 .checkout-button:hover {
-  background-color: #ff8f00;
+  background-color: var(--button-primary-hover-bg); /* Usa variable */
   transform: translateY(-3px);
 }
 
@@ -180,10 +214,10 @@ h3 {
 
 .popular-products {
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--background-secondary); /* Usa variable */
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px var(--shadow-color); /* Usa variable */
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .popular-products:hover {
@@ -219,12 +253,12 @@ h3 {
 .popular-product-name {
   font-size: 1rem;
   font-weight: bold;
-  color: #333;
+  color: var(--text-primary); /* Usa variable */
 }
 
 .popular-product-price {
   font-size: 1rem;
-  color: #555;
+  color: var(--text-secondary); /* Usa variable */
 }
 
 /* Media query para pantallas más pequeñas (móviles) */

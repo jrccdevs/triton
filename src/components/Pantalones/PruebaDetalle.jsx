@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
@@ -11,6 +11,7 @@ import PaypalButton from "../Carrito/Paypal";
 import ReactImageZoom from 'react-image-zoom';
 import 'react-inner-image-zoom/lib/styles.min.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import { ThemeContext } from '../ThemeToggle'; // Importa tu contexto
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
@@ -20,6 +21,7 @@ const PruebaDetalle = () => {
   const [selectedColor, setSelectedColor] = useState(''); // Color inicial
   const [loading, setLoading] = useState(true); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
+  const { darkMode } = useContext(ThemeContext); // Usa useContext para obtener el estado del tema
 
 
   
@@ -208,7 +210,7 @@ const PruebaDetalle = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2rim1.5.5 0 0 0 1.5.5V2H14v.5a.5.5 0 0 1 1 0v-1H15.5a.5.5 0 0 1 .5-.5v-1A.5.5 0 0 1 16 1H4.5a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 .5-.5H5zM5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
             </svg>
-              <HiOutlineShoppingCart />Ver carrito {getCartCount()}
+              <HiOutlineShoppingCart />Ver Carrito {getCartCount()}
            </Link>
            {/*<div>
               <h1>Paga Ahora con.... </h1>
@@ -218,7 +220,7 @@ const PruebaDetalle = () => {
       </div>
 
       {product?.product_images && (
-  <div className="image-text-columns">
+  <div className={`image-text-columns ${darkMode ? 'dark-mode' : ''}`}>
     {parseImages(product?.product_images || []).map((image, index) => (
       <div className="imgen-text" key={index}style={{ '--delay': `${index * 0.3}s` }}>
         <div className="image-column animate-image">
