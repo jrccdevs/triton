@@ -106,7 +106,7 @@
 /* Columna de Información de Contacto */
 .footer-info {
   flex: 1;
-  min-width: 280px;
+  width: 100%;
   padding: 20px;
   background: var(--bg-color-light); /* En modo CLARO, esto será #f9f9f9 (claro) */
   border-radius: 12px;
@@ -265,7 +265,7 @@
 }
 
 .footer-nav ul li a {
-  color: var(--text-color-dark); /* En modo CLARO: #333 (gris oscuro). En modo OSCURO: #f0f0f0 (gris claro). ¡Correcto! */
+  color: var(--bg-color-dark); /* En modo CLARO: #333 (gris oscuro). En modo OSCURO: #f0f0f0 (gris claro). ¡Correcto! */
   text-decoration: none;
   font-size: 1em;
   position: relative;
@@ -614,8 +614,8 @@
 
   .footer-info, .footer-nav {
     min-width: unset;
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    
     text-align: center;
   }
 

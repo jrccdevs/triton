@@ -141,7 +141,7 @@ const PruebaDetalle = () => {
       <div>
         <NavBar />
       </div>
-      <div className="product-detail-container" style={{ marginTop: '160px' }}>
+      <div className="product-detail-container" style={{ marginTop: '80px' }}>
         <div className="product-images">
           <div className="producto-p" >
           <InnerImageZoom 
@@ -202,8 +202,8 @@ const PruebaDetalle = () => {
             </div>
           </div>
 
-          <button className="add-to-cart-button" onClick={addToCart}>
-            <FaShoppingCart style={{ marginRight: '8px' }} /> Agregar al carrito
+          <button className="add-to-cart-button1" onClick={addToCart}>
+            <FaShoppingCart  /> Agregar al carrito
           </button>
            {/* Enlace al carrito con el contador de productos */}
            <Link to="/carrito" className="view-cart-link">

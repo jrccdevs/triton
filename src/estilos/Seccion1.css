@@ -1,112 +1,172 @@
-.principal{
+:root {
+  /* Modo Claro */
+  --imgen-text-bg-light: rgba(255, 255, 255, 0.9);
+  --imgen-text-shadow-light-1: rgba(0, 0, 0, 0.08);
+  --imgen-text-shadow-light-2: rgba(200, 220, 255, 0.5);
+  --imgen-text-border-light: #dde6ff;
+
+  --column-image-border-light: #c7d2fe;
+  --column-image-shadow-light-1: rgba(137, 192, 255, 0.3);
+  --column-image-shadow-light-2: rgba(137, 192, 255, 0.5);
+  --column-image-shadow-light-hover-1: rgba(137, 192, 255, 0.6);
+  --column-image-shadow-light-hover-2: rgba(137, 192, 255, 0.6);
+
+  --text-column-color-light: #2d3748;
+  --text-column-bg-light-start: #f6f8ff;
+  --text-column-bg-light-end: #ffffff;
+  --text-column-border-light: #bcd0ff;
+  --text-column-shadow-light: rgba(120, 140, 255, 0.1);
+
+  --text-color-dark: #f0f0f0;
+  --text-color-light: #333;
+  --bg-color-dark: #1a1a2e;
+  --card-bg-dark: #16213e;
+  --card-bg-light: #f9f9f9;
+  --border-color-dark: #0f3460;
+  --accent-color-dark: #e6e6fa;
+}
+
+body {
+  background-color: var(--text-column-bg-light-end);
+  color: var(--text-column-color-light);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode body {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* ------------------------- Componente Seccion1 ------------------------- */
+
+.principal {
   margin-top: 90px;
 }
 
-
 .image-container {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Superposición de contenido a la derecha de la imagen */
+.overlay-right {
+  position: absolute;
+  top: 35%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 500px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+/* Título */
+.titulo-p {
+  font-size: 35px;
+  color: rgb(35, 63, 63);
+  text-transform: uppercase;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: left;
+  margin-top: 80px;
+}
+
+
+/* Descripción */
+.des-d {
+  font-size: 20px;
+  padding-top: 1px;
+  text-align: left;
+  color: black;
+}
+
+
+
+/* Botón */
+.overlay-button {
+  text-align: start;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(3, 59, 59);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: auto;
+  width: 300px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.overlay-button:hover {
+  background-color: darkblue;
+}
+
+.dark-mode .overlay-button {
+  background-color: var(--card-bg-dark);
+  color: var(--text-color-dark);
+}
+
+.dark-mode .overlay-button:hover {
+  background-color: #294974;
+}
+
+/* ------------------------- Responsivo ------------------------- */
+@media (max-width: 768px) {
+  .principal {
     width: 100%;
-    height: auto; /* Ajusta la altura de la imagen según sea necesario */
-    margin-bottom: 50px;
-   
   }
-  
-  .image {
-    width: 100%;
+
+  .image-container {
     height: auto;
-    object-fit: cover;
-    border-radius: 0; /* Opcional: redondea las esquinas */
+    margin-bottom: 30px;
   }
-  
+
   .overlay-right {
-    position: absolute;
-    top: 35%; /* Centrado verticalmente */
-    left: 20px; /* Alineado a la derecha */
-    transform: translateY(-50%); /* Ajuste para centrar completamente */
-    width: 500px;
-    height: 300px;
-    background-color: rgba(0, 0, 0, 0); /* Fondo negro semitransparente */
-    border-radius: 5px; /* Opcional: redondea las esquinas */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Distribuye el contenido */
-    padding: 15px;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
   }
-  .titulo-p{
-    font-size: 35px;
-    color: rgb(35, 63, 63);
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: left;
-  }
-  .des-d{
-    color: rgb(39, 32, 39);
-    font-size: 20px;
-    padding-top: 1px;
-    text-align: left;
-  }
-  .button-container {
-    margin-bottom: 10%; /* Asegura que el botón esté siempre en la parte inferior */
-    text-align: left; /* Alinea el botón a la izquierda */
-  }
-  .overlay-content {
+
+  .titulo-p {
+    font-size: 24px;
     text-align: center;
-    color: white;
+  }
+  .dark-mode .titulo-p {
+    margin-top: 2px;
+    color: var(--text-color-dark);
   }
   
-  
-  .overlay-content button {
-    padding: 8px 16px;
-    font-size: 14px;
-    color: white;
-    background-color:rgb(35, 63, 63);;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  .des-d {
+    font-size: 16px;
+    text-align: center;
   }
-  
-  .overlay-content button:hover {
-    background-color: darkblue;
+  .dark-mode .des-d {
+    color: var(--text-color-dark);
   }
   .overlay-button {
-    text-align: start;
-    padding: 10px;
-    font-size: 20px;
-    color: white;
-    background-color: rgb(3, 59, 59);;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-top: auto;
-    width: 300px;
-    text-transform: uppercase;
+    align-self: center;
+    width: 90%;
+    font-size: 18px;
   }
-
-
-  /* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-  .principal{
-    width: 100%;
-    max-width: auto;
-  }
-    .image-container {
-     
-      height: auto; /* Permite que la altura de la imagen se ajuste al contenido */
-    }
-  
-    .overlay-right {
-      border-radius: 0;
-      position: relative; /* Cambia a relativo para que se mueva debajo de la imagen */
-      top: 0;
-      right: 0;
-      transform: none; /* Elimina cualquier transformación */
-      margin-top: 10px; /* Añade un margen superior para separarlo de la imagen */
-      width: auto; /* Ajusta el ancho al 100% para que ocupe todo el contenedor */
-      height: auto; /* Ajusta la altura automáticamente según el contenido */
-    }
-  
-    .overlay-button {
-      align-self: center; /* Centra el botón horizontalmente en pantallas pequeñas */
-    }
-  }
-  
+}

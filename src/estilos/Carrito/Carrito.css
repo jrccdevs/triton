@@ -184,6 +184,7 @@ h3 {
   padding: 12px 20px;
   font-size: 1.2rem;
   border-radius: 8px;
+  width: auto;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -191,6 +192,7 @@ h3 {
 .checkout-button:hover {
   background-color: var(--button-primary-hover-bg); /* Usa variable */
   transform: translateY(-3px);
+  text-decoration: none;
 }
 
 /* Animaciones al agregar elementos al carrito */

@@ -1,20 +1,35 @@
-.container-fluid{
+.container-fluid {
     width: 100%;
-}
-.carrucel{
-    margin-top: 90px;
+  }
+  
+  .slider-container {
     width: 100%;
    
-}
-.carr{
+  }
+  
+  .carrucel {
+    margin-top: 90px;
+    width: 100%;  
+  }
+  
+  .carr {
     width: 100%;
-    height:550px;
-}
-
-@media (max-width: 768px) {
-    .container-fluid{
+    height: 550px;
+    
+  }
+  /* RESPONSIVE - Ajuste para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .carrucel {
       width: 100%;
-      max-width: auto;
-      margin-top: 80px;
+      margin-top: 130px;
+      
     }
-}
+    .slider-container{
+      width: 100%;
+    }
+    .carr {
+      height: 300px;
+      width: 100%;
+    }
+  }
+  

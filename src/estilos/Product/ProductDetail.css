@@ -310,28 +310,37 @@ body.dark-mode {
   cursor: pointer;
   border-radius: 5px;
   background-color: white;
+  color: black;
 }
 
 .size-option.selected {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+  background-color: #3070b4;
+  color: black;
+  border-color: #082a4e;
 }
 
-.add-to-cart-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
+.add-to-cart-button1 {
+  background-color: var(--popular-button-bg); /* Usa variable */
+  color: white; /* El color del texto del botón puede ser fijo si siempre es legible */
   border: none;
-  border-radius: 5px;
+  padding: 5px;
+  font-size: 0.8rem;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  transition: background-color 0.3s;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  width: fit-content; /* Evita que el botón se estire demasiado */
+  width: 210px;
+  height: 30px;
+  margin-top: 25px;
 }
 
+.add-to-cart-button1:hover {
+  background-color: var(--popular-button-hover-bg); /* Usa variable */
+  text-decoration: none;
+}
 .view-cart-link {
   display: block;
   margin-top: 10px;
@@ -339,7 +348,7 @@ body.dark-mode {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
 }
 
 /* Media queries para mejorar la responsividad en diferentes tamaños de pantalla */

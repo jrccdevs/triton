@@ -1,5 +1,7 @@
 /* src/App.css */
-
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 /* Variables CSS para colores por defecto (modo claro) */
 :root {
     --body-bg: #f5f7fa; /* Fondo general de la aplicación */
@@ -30,7 +32,8 @@
   }
   
   /* Estilos generales de la aplicación */
-  body {
+  body, html {
+    width: 100%;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--body-bg); /* Usa la variable */
@@ -39,6 +42,7 @@
   }
   
   .app-wrapper {
+    width:100%;
     min-height: 100vh; /* Asegura que el wrapper ocupe toda la altura de la ventana */
     display: flex;
     flex-direction: column;

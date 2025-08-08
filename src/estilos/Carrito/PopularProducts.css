@@ -11,7 +11,7 @@
   --popular-product-name-color: #007185;
   --popular-product-price-color: #B12704;
   --popular-button-bg: #ffa41c;
-  --popular-button-hover-bg: #ff8f00;
+  --popular-button-hover-bg: #b96c07;
   --popular-image-border: #ddd;
 }
 
@@ -25,7 +25,7 @@ body.dark-mode .popular-products-container {
   --popular-product-name-color: #87ceeb; /* Azul claro para nombres de producto */
   --popular-product-price-color: #ffb380; /* Naranja claro para precios */
   --popular-button-bg: #e67e22; /* Botón más oscuro */
-  --popular-button-hover-bg: #d35400; /* Botón hover más oscuro */
+  --popular-button-hover-bg: #c2c505; /* Botón hover más oscuro */
   --popular-image-border: #666; /* Borde de imagen oscuro */
 
   /* Asegura que los elementos internos también usen las variables del modo oscuro */
@@ -34,7 +34,7 @@ body.dark-mode .popular-products-container {
 
 
 .popular-products-container {
-  width: 250px;
+  width: 350px;
   padding: 20px;
   background-color: var(--popular-bg-container); /* Usa variable */
   border: 1px solid var(--popular-border-color); /* Usa variable */
@@ -51,15 +51,19 @@ body.dark-mode .popular-products-container {
   margin-bottom: 10px;
   color: var(--popular-text-h3); /* Usa variable */
   transition: color 0.3s ease;
+ 
 }
 
 .popular-products-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
+  
 }
 
 .popular-product-item {
+  width: auto;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -87,6 +91,7 @@ body.dark-mode .popular-products-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: auto;
 }
 
 .product-name {
@@ -94,9 +99,10 @@ body.dark-mode .popular-products-container {
   color: var(--popular-product-name-color); /* Usa variable */
   margin: 5px 0;
   text-overflow: ellipsis;
-  white-space: nowrap;
+ 
   overflow: hidden;
   transition: color 0.3s ease;
+  width: 100%;
 }
 
 .product-price {
@@ -120,12 +126,13 @@ body.dark-mode .popular-products-container {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 100%;
-  margin-top: 5px;
+  width: auto;
+  margin-top: 25px;
 }
 
 .add-to-cart-button:hover {
   background-color: var(--popular-button-hover-bg); /* Usa variable */
+  text-decoration: none;
 }
 
 /* Media Queries (Mantener las que ya tenías) */
@@ -133,7 +140,7 @@ body.dark-mode .popular-products-container {
 /* Media query para pantallas más pequeñas (móviles) */
 @media (max-width: 767px) {
   .popular-products-container {
-    width: 100%; /* O ajusta según sea necesario para móviles */
+    width: auto; /* O ajusta según sea necesario para móviles */
     margin-left: 0;
     margin-top: 20px; /* Espacio si se apila */
   }
@@ -142,7 +149,7 @@ body.dark-mode .popular-products-container {
 /* Media query para tablets (aproximadamente 768px a 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .popular-products-container {
-    width: 100%; /* O ajusta según sea necesario */
+    width: auto; /* O ajusta según sea necesario */
     margin-left: 0;
     margin-top: 20px;
   }

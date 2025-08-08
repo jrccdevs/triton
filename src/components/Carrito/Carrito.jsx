@@ -9,9 +9,12 @@ import PayPalButton from '../Carrito/Payment';
 import Paypal from "../Carrito/Paypal";
 import Footer from '../Footer'
 import { ThemeContext } from '../ThemeToggle'; // Importa useTheme
+import Factura from './Factura';
 const CartView = () => {
   const [cart, setCart] = useState([]);
   const { darkMode } = useContext(ThemeContext); // Usa el hook para obtener el estado del tema
+  const [showFactura, setShowFactura] = useState(false);
+
 
   useEffect(() => {
     // Cargar los productos del carrito desde el localStorage
@@ -72,7 +75,19 @@ const CartView = () => {
             
            {/* <Paypal />*/}
           </div>
-         
+         {cart.length > 0 && (
+          <button className="checkout-button" onClick={() => setShowFactura(true)}>
+            Generar Factura
+          </button>
+          )}
+
+{showFactura && (
+  <Factura
+    cart={cart}
+    total={total}
+    onClose={() => setShowFactura(false)}
+  />
+)}
         </div>
 
         {/* Sección de Productos Populares al costado derecho */}
