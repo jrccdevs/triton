@@ -12,6 +12,9 @@ import ReactImageZoom from 'react-image-zoom';
 import 'react-inner-image-zoom/lib/styles.min.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import { ThemeContext } from '../ThemeToggle'; // Importa tu contexto
+import Swal from 'sweetalert2';
+
+
 
 const PruebaDetalle = () => {
   const { id } = useParams(); // ID del producto desde la URL
@@ -106,7 +109,15 @@ const PruebaDetalle = () => {
 
   const addToCart = () => {
     if (!selectedSize || !selectedColor) {
-      alert("Por favor, seleccione una talla y un color.");
+      Swal.fire({
+        title: '⚠️ Selección incompleta',
+        text: 'Por favor, selecciona una talla y un color antes de continuar.',
+        icon: 'warning',
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#3085d6',
+        background: '#1e1e1e',
+        color: '#fff',
+      });
       return;
     }
 
@@ -123,8 +134,19 @@ const PruebaDetalle = () => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push(cartItem);
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    alert("Producto agregado al carrito");
+    getCartCount(cart.length);
+    Swal.fire({
+      title: '✅ Producto agregado',
+      text: 'El producto se añadió a tu carrito correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Seguir comprando',
+      confirmButtonColor: '#28a745',
+      background: '#1e1e1e',
+      color: '#fff',
+      timer: 2000,
+      showConfirmButton: false
+    });
+    
   };
  // Obtener la cantidad de productos en el carrito
  const getCartCount = () => {
