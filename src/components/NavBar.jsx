@@ -1,19 +1,17 @@
 // src/components/NavBar.jsx
 import Empresa from "../img/triton.svg";
 import '../estilos/Navbar.css';
-import React, { useState, useContext } from 'react'; // Importa useContext
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import Buscador from "./Buscador";
 import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
-// import PropTypes from 'prop-types'; // Ya no es necesario si no recibe props
+import { ThemeContext } from './ThemeToggle';
+import { CartContext } from './Carrito/cartContext';  // <-- Importa el contexto carrito
 
-import { ThemeContext } from './ThemeToggle'; // Importa tu contexto
-
-// Ya no recibe props de `darkMode` o `toggleTheme`
 const Navbar = () => {
-  // Usa useContext para obtener el estado del tema y la función para alternarlo
   const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const { cartCount } = useContext(CartContext);  // <-- Obtiene la cantidad de items
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -69,20 +67,17 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ÍCONO CARRITO */}
+      {/* ÍCONO CARRITO + CONTADOR */}
       <div className="cart-icon">
         <Link to="/carrito" onClick={() => window.scrollTo(0, 0)} className="menu-button">
           <HiOutlineShoppingCart />
+          {cartCount > 0 && (
+            <span className="cart-count-badge">{cartCount}</span>
+          )}
         </Link>
       </div>
     </nav>
   );
 };
-
-// Elimina la validación de PropTypes para darkMode y toggleTheme, ya no son props
-// Navbar.propTypes = {
-//   darkMode: PropTypes.bool.isRequired,
-//   toggleTheme: PropTypes.func.isRequired,
-// };
 
 export default Navbar;

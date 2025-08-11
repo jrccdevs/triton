@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Provider } from 'react-redux'; // Importa Provider de react-redux
 import store  from './components/redux/store'; // Importa tu tienda de Redux
-
+import { CartProvider } from "./components/Carrito/cartContext"; 
 import App from './App';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
+   
   </Provider>
 );
 // If you want to start measuring performance in your app, pass a function

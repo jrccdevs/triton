@@ -5,7 +5,18 @@ body, html {
   width: 100%;
   overflow-x: hidden;
 }
-
+.cart-count-badge {
+  background-color: #28a745; /* verde */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 7px;
+  position: relative;
+  top: 0px;
+  left: 5px;
+  text-decoration: none;
+}
 /* =================== NAVBAR CONTAINER =================== */
 .navbar-container {
   position: fixed;
