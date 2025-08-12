@@ -1,4 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+.image-text-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  
+}
+
+.image-text-row {
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto respecto a la imagen */
+  gap: 10px; /* Separación de 10px entre imagen y texto */
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  animation: fadeInUp 0.6s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation-delay: var(--delay);
+}
+
+.image-text-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.column-image {
+  max-width: 120px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.column-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.dark-mode .image-text-row {
+  background: #1a1130;
+  color: #f5f5f5;
+}
+
+.dark-mode .column-text {
+  color: #f5f5f5;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
 
 .image-text-columns {
   display: flex;
@@ -166,9 +229,21 @@ body.dark-mode {
 }
 /* Responsive adjustments for smaller screens (optional) */
 @media (max-width: 768px) {
+  .image-text-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .column-image {
+    max-width: 100%;
+  }
+
+  .column-text {
+    text-align: left;
+    margin-top: 8px;
+  }
   .product-detail-container{
     width: auto;
-    
   }
   .image-text-columns > div {
     flex-direction: column; /* Stack image and text vertically on smaller screens */
@@ -184,6 +259,13 @@ body.dark-mode {
 
   .text-column {
     max-width: 80%; /* Allow text to take more width */
+  }
+  .product-images {
+    width: 100%;
+    display: inline-block; /* Apila las imágenes y miniaturas en pantallas pequeñas */
+    align-items: center; /* Centra los elementos en pantallas pequeñas */
+    gap: 20px; /* Espacio entre la imagen principal y las miniaturas */
+    margin-top: 80px;
   }
 }
 
@@ -358,6 +440,7 @@ body.dark-mode {
     align-items: flex-start; /* Alinea los elementos en la parte superior en pantallas más grandes */
     gap: 30px;
     width: 100%;
+    
     
   }
 

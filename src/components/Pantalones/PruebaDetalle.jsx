@@ -194,15 +194,19 @@ const PruebaDetalle = () => {
 
       {product?.product_images && (
         <div className={`image-text-columns ${darkMode ? 'dark-mode' : ''}`}>
-          {parseImages(product?.product_images || []).map((image, index) => (
-            <div className="imgen-text" key={index} style={{ '--delay': `${index * 0.3}s` }}>
-              <div className="image-column animate-image">
-                <img src={image.url} alt={`Thumbnail ${index}`} className="column-image" />
-              </div>
-              <div className="text-column animate-text">
-                <p className="column-text">{image.caracteristicas}</p>
-              </div>
-            </div>
+        {parseImages(product?.product_images || []).map((image, index) => (
+          <div 
+            className="image-text-row" 
+            key={index} 
+            style={{ '--delay': `${index * 0.3}s` }}
+          >
+            <img 
+              src={image.url} 
+              alt={`Thumbnail ${index}`} 
+              className="column-image"
+            />
+            <p className="column-text">{image.caracteristicas}</p>
+          </div>
           ))}
         </div>
       )}
