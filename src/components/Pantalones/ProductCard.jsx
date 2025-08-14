@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NavBar from '../NavBar';
 import { Link } from 'react-router-dom';
 import '../../estilos/Pantalones.css'
 const ProductCard = ({ categorias }) => {
@@ -52,7 +51,7 @@ const ProductCard = ({ categorias }) => {
             <div className="card-content">
               <h3 className="card-title">{product.product_name}</h3>
               <p className="card-description">${product.price}</p>
-              <Link to={`/productos/${product.product_id}`} className="card-button">
+              <Link to={`/productos/${product.product_id}`} style={{textDecoration: 'none'}} className="card-button">
                 Agregar al carrito
               </Link>
             </div>

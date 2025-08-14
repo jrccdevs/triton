@@ -1,4 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+.product-quantity {
+  margin-top: 15px;
+}
+
+.quantity-input {
+  width: 80px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
 .image-text-columns {
   display: flex;
   flex-direction: column;

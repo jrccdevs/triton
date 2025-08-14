@@ -31,7 +31,7 @@ const CartView = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const total = cart.reduce((total, item) => total + item.price, 0);
+  const total = cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
 
   // Helper para formato monto
   const formatAmount = (value) => Number(value || 0).toFixed(2);
@@ -97,7 +97,8 @@ const CartView = () => {
                       <p>{item.name}</p>
                       <p>Talla: {item.size}</p>
                       <p>Color: {item.color}</p>
-                      <p>Precio: ${item.price.toFixed(2)}</p>
+                      <p>Precio unitario: ${item.price.toFixed(2)}</p>
+                      <p>Cantidad: {item.quantity || 1}</p> {/* 👈 Mostrar cantidad */}
                     </div>
                     <button onClick={() => removeItemFromCart(index)} className="remove-item-button">
                       Eliminar

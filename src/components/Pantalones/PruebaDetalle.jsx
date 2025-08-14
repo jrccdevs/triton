@@ -23,6 +23,28 @@ const PruebaDetalle = () => {
   const [error, setError] = useState(null);
   const { darkMode } = useContext(ThemeContext);
   const { addToCart, cartCount } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
+
+  
+  const actualizarStock = async (idProducto, cantidadVendida) => {
+    try {
+      const response = await fetch(
+        `https://server-triton.vercel.app/productos/${idProducto}/stock`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cantidadVendida }),
+        }
+      );
+  
+      if (!response.ok) throw new Error('Error al actualizar el stock');
+      const data = await response.json();
+      console.log('✅', data.message);
+    } catch (error) {
+      console.error('❌ Error:', error);
+    }
+  };
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -79,7 +101,28 @@ const PruebaDetalle = () => {
   };
 
   const handleThumbnailClick = (image) => setSelectedImage(image);
-
+  const handleQuantityChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+  
+    if (!isNaN(value)) {
+      if (value < 1) {
+        setQuantity(1);
+      } else if (value > product.cantidad) {
+        Swal.fire({
+          title: '⚠️ Cantidad no disponible',
+          text: `Solo hay ${product.cantidad} unidades en stock.`,
+          icon: 'warning',
+          confirmButtonText: 'Entendido',
+          confirmButtonColor: '#3085d6',
+          background: '#1e1e1e',
+          color: '#fff',
+        });
+        setQuantity(product.cantidad);
+      } else {
+        setQuantity(value);
+      }
+    }
+  };
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
       Swal.fire({
@@ -93,6 +136,19 @@ const PruebaDetalle = () => {
       });
       return;
     }
+  
+    if (quantity > product.cantidad) {
+      Swal.fire({
+        title: '❌ Stock insuficiente',
+        text: `Solo hay ${product.cantidad} unidades disponibles.`,
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#d33',
+        background: '#1e1e1e',
+        color: '#fff',
+      });
+      return;
+    }
 
     const cartItem = {
       id: product.product_id,
@@ -101,6 +157,7 @@ const PruebaDetalle = () => {
       size: selectedSize,
       color: selectedColor,
       image: selectedImage,
+      quantity, 
     };
 
     addToCart(cartItem);
@@ -152,7 +209,7 @@ const PruebaDetalle = () => {
           <h1 className="producto-name">{product?.product_name || 'Cargando...'}</h1>
           <p className="producto-price">${product?.price ? product.price.toFixed(2) : '0.00'}</p>
           <p className="product-description">{product?.description || 'Descripción no disponible.'}</p>
-
+          
           <div className="product-similar">
             <h3>Productos similares:</h3>
             <div className="similar-products-container">
@@ -167,21 +224,33 @@ const PruebaDetalle = () => {
             </div>
           </div>
 
-          <div className="product-sizes">
-            <h3>Tallas:</h3>
-            <div className="sizes">
-              {product?.sizes ? product.sizes.split(', ').map((size, index) => (
-                <button
-                  key={index}
-                  className={`size-option ${selectedSize === size ? 'selected' : ''}`}
-                  onClick={() => handleSizeChange(size)}
-                >
-                  {size}
-                </button>
-              )) : 'No hay tallas disponibles.'}
-            </div>
-          </div>
-
+          <div className="product-sizes" translate="no">
+  <h3>Tallas:</h3>
+  <div className="sizes">
+    {product?.sizes
+      ? product.sizes.split(/,\s*/).map((size, index) => (
+          <button
+            key={index}
+            className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+            onClick={() => handleSizeChange(size)}
+          >
+            {size}
+          </button>
+        ))
+      : 'No hay tallas disponibles.'}
+  </div>
+</div>
+          <div className="product-quantity">
+  <h3>Cantidad:</h3>
+  <input
+    type="number"
+    min="1"
+    onChange={handleQuantityChange}
+    value={quantity}
+    onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+    className="quantity-input"
+  />
+</div>
           <button className="add-to-cart-button1" onClick={handleAddToCart}>
             <FaShoppingCart /> Agregar al carrito
           </button>
