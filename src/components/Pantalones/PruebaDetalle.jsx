@@ -103,26 +103,29 @@ const PruebaDetalle = () => {
   const handleThumbnailClick = (image) => setSelectedImage(image);
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value, 10);
-  
-    if (!isNaN(value)) {
-      if (value < 1) {
-        setQuantity(1);
-      } else if (value > product.cantidad) {
-        Swal.fire({
-          title: '⚠️ Cantidad no disponible',
-          text: `Solo hay ${product.cantidad} unidades en stock.`,
-          icon: 'warning',
-          confirmButtonText: 'Entendido',
-          confirmButtonColor: '#3085d6',
-          background: '#1e1e1e',
-          color: '#fff',
-        });
-        setQuantity(product.cantidad);
-      } else {
-        setQuantity(value);
-      }
+
+    if (isNaN(value)) {
+      setQuantity(1);
+      return;
+    }
+    if (value < 1) {
+      setQuantity(1);
+    } else if (value > product.cantidad) {
+      Swal.fire({
+        title: '⚠️ Cantidad no disponible',
+        text: `Solo hay ${product.cantidad} unidades en stock.`,
+        icon: 'warning',
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#3085d6',
+        background: '#1e1e1e',
+        color: '#fff',
+      });
+      setQuantity(product.cantidad);
+    } else {
+      setQuantity(value);
     }
   };
+
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
       Swal.fire({
@@ -247,7 +250,7 @@ const PruebaDetalle = () => {
     min="1"
     onChange={handleQuantityChange}
     value={quantity}
-    onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+    
     className="quantity-input"
   />
 </div>
@@ -256,7 +259,9 @@ const PruebaDetalle = () => {
           </button>
 
           <Link to="/carrito" className="view-cart-link">
-            <HiOutlineShoppingCart /> Ver Carrito ({cartCount})
+            <HiOutlineShoppingCart /> Ver Carrito {cartCount > 0 && (
+            <span className="cart-count-badge">{cartCount}</span>
+          )}
           </Link>
         </div>
       </div>

@@ -1,5 +1,5 @@
 // src/components/CartView.jsx
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { QRCodeCanvas } from 'qrcode.react';
@@ -10,28 +10,17 @@ import PayPalButton from '../Carrito/Payment';
 import Footer from '../Footer';
 import { ThemeContext } from '../ThemeToggle';
 import Factura from './Factura';
+import { CartContext } from "./cartContext"; // ruta correcta
 
 const CartView = () => {
-  const [cart, setCart] = useState([]);
   const { darkMode } = useContext(ThemeContext);
+  const { cart, removeFromCart, clearCart, cartCount, total } = useContext(CartContext);
+
   const [showFactura, setShowFactura] = useState(false);
   const [merchantName] = useState("Mi Comercio");
   const [merchantCity] = useState("La Paz");
-  const [merchantCode] = useState("12345678"); // Aquí pones tu código/alias de Yape
+  const [merchantCode] = useState("0000");
   const [includeCRC] = useState(true);
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-  }, []);
-
-  const removeItemFromCart = (index) => {
-    const updatedCart = cart.filter((item, i) => i !== index);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const total = cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
 
   // Helper para formato monto
   const formatAmount = (value) => Number(value || 0).toFixed(2);
@@ -58,8 +47,8 @@ const CartView = () => {
     };
 
     const body =
-      put("00", "01") + // Payload format indicator
-      put("01", "12") + // Dynamic
+      put("00", "01") +
+      put("01", "12") +
       put("26", merchantCode) +
       put("52", "0000") +
       put("58", "BO") +
@@ -73,6 +62,22 @@ const CartView = () => {
     return `${body}6304${crc}`;
   }, [merchantName, merchantCity, merchantCode, total, includeCRC]);
 
+  const contacto = useMemo(() => {
+    return JSON.parse(localStorage.getItem("lastContact")) || {
+      nombreCompleto: "Consumidor Final",
+      ci_nit: "0"
+    };
+  }, []);
+
+  const isContactRegistered = () => {
+    const contact = JSON.parse(localStorage.getItem("lastContact"));
+    return contact && contact.nombreCompleto && contact.ci_nit;
+  };
+
+  const clearContact = () => {
+    localStorage.removeItem("lastContact");
+  };
+
   return (
     <>
       <NavBar />
@@ -82,6 +87,7 @@ const CartView = () => {
             <Link to="/user" className="checkout-button">Registrate</Link>
             <br /><br />
             <h2><FaShoppingCart /> Productos en el carrito</h2>
+
             {cart.length === 0 ? (
               <div className="empty-cart">
                 <h3>¡Tu carrito está vacío!</h3>
@@ -98,9 +104,9 @@ const CartView = () => {
                       <p>Talla: {item.size}</p>
                       <p>Color: {item.color}</p>
                       <p>Precio unitario: ${item.price.toFixed(2)}</p>
-                      <p>Cantidad: {item.quantity || 1}</p> {/* 👈 Mostrar cantidad */}
+                      <p>Cantidad: {item.quantity || 1}</p>
                     </div>
-                    <button onClick={() => removeItemFromCart(index)} className="remove-item-button">
+                    <button onClick={() => removeFromCart(item)} className="remove-item-button">
                       Eliminar
                     </button>
                   </div>
@@ -109,10 +115,22 @@ const CartView = () => {
             )}
 
             <div className="cart-summary">
-              <p>Total: ${total.toFixed(2)}</p>
-              <PayPalButton amount={total} />
+              <p><strong>Total: ${total.toFixed(2)}</strong></p> {/* total reactivo correcto */}
 
-              {/* QR de pago con Yape */}
+              {isContactRegistered() ? (
+                <PayPalButton amount={total} />
+              ) : (
+                <button
+                  className="paypal-disabled-button"
+                  onClick={() => {
+                    alert("Debes registrarte antes de pagar con PayPal.");
+                    window.location.href = "/user";
+                  }}
+                >
+                  Pagar con PayPal
+                </button>
+              )}
+
               {cart.length > 0 && (
                 <div style={{ marginTop: "20px", textAlign: "center" }}>
                   <h4>Pago con Yape Bolivia</h4>
@@ -127,8 +145,17 @@ const CartView = () => {
                 Generar Factura
               </button>
             )}
+
             {showFactura && (
-              <Factura cart={cart} total={total} onClose={() => setShowFactura(false)} />
+              <Factura
+                cart={cart}
+                total={total}
+                contacto={contacto}
+                onClose={() => {
+                  setShowFactura(false);
+                  clearContact();
+                }}
+              />
             )}
           </div>
 

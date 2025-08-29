@@ -5,13 +5,13 @@ import jsPDF from 'jspdf';
 import Empresa from "../../img/triton.svg";
 import '../../estilos/Carrito/Factura.css'
 
-const Factura = ({ cart, total }) => {
+const Factura = ({ cart, total, contacto }) => {
   const facturaRef = useRef();
 
   const numeroFactura = '001-000' + Math.floor(100000 + Math.random() * 900000);
   const fecha = new Date().toLocaleDateString();
-  const nit = '123456789';
-  const qrData = `Factura:${numeroFactura}|NIT:${nit}|Total:${total.toFixed(2)}|Fecha:${fecha}`;
+  const nitEmpresa = '123456789';
+  const qrData = `Factura:${numeroFactura}|NIT:${nitEmpresa}|Total:${total.toFixed(2)}|Fecha:${fecha}`;
 
   useEffect(() => {
     const generarPDF = async () => {
@@ -54,14 +54,14 @@ const Factura = ({ cart, total }) => {
         <img src={Empresa} alt="Logo" crossOrigin="anonymous" />
         <div className="factura-info">
           <p><strong>N° Factura:</strong> {numeroFactura}</p>
-          <p><strong>NIT:</strong> {nit}</p>
+          <p><strong>NIT Empresa:</strong> {nitEmpresa}</p>
           <p><strong>Fecha:</strong> {fecha}</p>
         </div>
       </header>
 
-      <section className="factura-cliente">
-        <p><strong>Cliente:</strong> Consumidor Final</p>
-        <p><strong>CI/NIT:</strong> 0</p>
+      <section className="factura-info">
+        <p><strong>Cliente:</strong> {contacto?.nombreCompleto || "Consumidor Final"}</p>
+        <p><strong>CI/NIT:</strong> {contacto?.ci_nit || "0"}</p>
       </section>
 
       <table className="factura-table">

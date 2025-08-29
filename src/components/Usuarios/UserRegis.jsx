@@ -10,60 +10,56 @@ const UserRegistrationForm = () => {
     correo: '',
     phone: '',
     metodo_p: 'paypal',
+    ci: '' // 👈 nuevo campo
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // URL base de la API
-  const API_URL = 'http://localhost:5000/contactos'; // Cambia según tu entorno
+  const API_URL = 'https://server-triton.vercel.app/contactos';
 
-  // Maneja el cambio de datos en los inputs del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
-    // Limpia errores al editar el campo
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
+    if (errors[name]) setErrors({ ...errors, [name]: '' });
   };
 
-  // Valida los datos del formulario
   const validateForm = () => {
     let formErrors = {};
-
     if (!formData.firstName.trim()) formErrors.firstName = 'El nombre es obligatorio.';
     if (!formData.lastName.trim()) formErrors.lastName = 'El apellido es obligatorio.';
     if (!formData.correo.trim()) formErrors.correo = 'El correo electrónico es obligatorio.';
-    else if (!/\S+@\S+\.\S+/.test(formData.correo)) formErrors.correo = 'Correo electrónico inválido.';
+    else if (!/\S+@\S+\.\S+/.test(formData.correo)) formErrors.correo = 'Correo inválido.';
     if (!formData.phone.trim()) formErrors.phone = 'El número de teléfono es obligatorio.';
     else if (!/^\d{8}$/.test(formData.phone)) formErrors.phone = 'Número de teléfono inválido.';
-    if (!formData.metodo_p.trim()) formErrors.metodo_p = 'Selecciione el metodo de pago';
+    if (!formData.ci.trim()) formErrors.ci = 'El CI o NIT es obligatorio.'; // 👈 validación
+    if (!formData.metodo_p.trim()) formErrors.metodo_p = 'Seleccione el método de pago';
 
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
 
-  // Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (validateForm()) {
       try {
-        // Envía los datos a la API
         const response = await axios.post(API_URL, {
           nombre: formData.firstName,
           apellido: formData.lastName,
           correo: formData.correo,
           telefono: formData.phone,
-          metodo_pago: formData.metodo_p
+          metodo_pago: formData.metodo_p,
+          ci: formData.ci // 👈 enviar al backend
         });
-        console.log(response)
         console.log('Contacto registrado:', response.data);
-
-        setIsSubmitted(true); // Indica que se ha registrado correctamente
-        setFormData({ firstName: '', lastName: '', correo: '', phone: '', metodo_p: 'paypal'}); // Limpia el formulario
+        setIsSubmitted(true);
+        setFormData({
+          firstName: '', lastName: '', correo: '', phone: '', metodo_p: 'paypal', ci: ''
+        });
+        localStorage.setItem("lastContact", JSON.stringify({
+          nombreCompleto: formData.firstName + ' ' + formData.lastName,
+          ci_nit: formData.ci
+        }));
       } catch (error) {
         console.error('Error al registrar el contacto:', error);
       }
@@ -81,72 +77,56 @@ const UserRegistrationForm = () => {
       ) : (
         <form className="user-registration-form" onSubmit={handleSubmit}>
           <h1>Registro de Contactos</h1>
+
           <div className="form-group">
             <label htmlFor="firstName">Nombre</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="Ingresa tu nombre"
-            />
+            <input type="text" id="firstName" name="firstName" value={formData.firstName}
+              onChange={handleChange} placeholder="Ingresa tu nombre"/>
             {errors.firstName && <p className="error">{errors.firstName}</p>}
           </div>
+
           <div className="form-group">
             <label htmlFor="lastName">Apellido</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              placeholder="Ingresa tu apellido"
-            />
+            <input type="text" id="lastName" name="lastName" value={formData.lastName}
+              onChange={handleChange} placeholder="Ingresa tu apellido"/>
             {errors.lastName && <p className="error">{errors.lastName}</p>}
           </div>
+
           <div className="form-group">
-            <label htmlFor="email">Correo Electrónico</label>
-            <input
-              type="email"
-              id="correo"
-              name="correo"
-              value={formData.correo}
-              onChange={handleChange}
-              placeholder="Ingresa tu correo electrónico"
-            />
+            <label htmlFor="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" value={formData.correo}
+              onChange={handleChange} placeholder="Ingresa tu correo electrónico"/>
             {errors.correo && <p className="error">{errors.correo}</p>}
           </div>
+
           <div className="form-group">
             <label htmlFor="phone">Teléfono</label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Ingresa tu número de teléfono"
-            />
+            <input type="text" id="phone" name="phone" value={formData.phone}
+              onChange={handleChange} placeholder="Ingresa tu número de teléfono"/>
             {errors.phone && <p className="error">{errors.phone}</p>}
           </div>
+
+          <div className="form-group">
+            <label htmlFor="ci">CI / NIT</label>
+            <input type="text" id="ci" name="ci" value={formData.ci}
+              onChange={handleChange} placeholder="Ingresa tu CI o NIT"/>
+            {errors.ci && <p className="error">{errors.ci}</p>}
+          </div>
+
           <div className="form-group">
             <label htmlFor="metodo_p">Método de Pago</label>
-            <select
-              id="metodo_p"
-              name="metodo_o"
-              value={formData.metodo_p}
-              onChange={handleChange}
-            >
+            <select id="metodo_p" name="metodo_p" value={formData.metodo_p} onChange={handleChange}>
               <option value="paypal">PayPal</option>
               <option value="card">Tarjeta de Crédito/Débito</option>
+              <option value="qr">QR</option>
             </select>
             {errors.metodo_p && <p className="error">{errors.metodo_p}</p>}
           </div>
-          <Link to='/carrito'>
+
           <button type="submit" className="submit-button">
             Registrar Contacto
           </button>
-          </Link>
+          <Link to='/carrito' className="back-to-cart">Volver al carrito</Link>
         </form>
       )}
     </div>

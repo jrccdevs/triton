@@ -2,7 +2,7 @@
 .factura-container {
     width: 100%;
     max-width: 800px;
-    margin: auto;
+    margin: 0;
     padding: 24px 32px;
     background: linear-gradient(135deg, #f9fafb, #e0e7ff);
     color: #222;
@@ -17,10 +17,10 @@
   .factura-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+   
     border-bottom: 2px solid #6366f1;
     padding-bottom: 12px;
-    margin-bottom: 20px;
+    margin-bottom: auto;
     flex-wrap: wrap;
     gap: 12px;
   }
@@ -42,7 +42,7 @@
   .factura-cliente {
     margin-bottom: 30px;
     font-weight: 600;
-    color: #374151;
+    color: #0a0a0a;
   }
   
   /* Tabla de productos */
