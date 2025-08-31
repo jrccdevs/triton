@@ -359,3 +359,93 @@ h3 {
     width: 300px;
   }
 }
+
+
+/*ESTILOS DE PAGO POR QR*/
+.confirm-yape-button {
+  margin-top: 15px;
+  background-color: #00c853; /* verde Yape */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.confirm-yape-button:hover {
+  background-color: #00e676;
+  transform: scale(1.05);
+}
+.yape-container {
+  text-align: center;
+  margin-top: 25px;
+  width: 100%;
+ 
+}
+
+.yape-button {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.yape-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+.yape-button.active {
+  background: #e63946;
+}
+
+.yape-qr-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.qr-wrapper {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.yape-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.yape-note {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
