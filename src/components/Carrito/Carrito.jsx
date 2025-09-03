@@ -1,6 +1,6 @@
 // src/components/CartView.jsx
-import React, { useState, useContext, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext, useMemo, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { QRCodeCanvas } from 'qrcode.react';
 import PopularProducts from './PopularProducts';
@@ -10,38 +10,82 @@ import PayPalButton from '../Carrito/Payment';
 import Footer from '../Footer';
 import { ThemeContext } from '../ThemeToggle';
 import Factura from './Factura';
-import { CartContext } from "./cartContext"; // ruta correcta
+import { CartContext } from "./cartContext"; 
 import Swal from 'sweetalert2';
 
-
-
 const CartView = () => {
+  const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
-  const { cart, removeFromCart, clearCart, cartCount, total } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart, total } = useContext(CartContext);
 
   const [showFactura, setShowFactura] = useState(false);
+  const [contactoId, setContactoId] = useState(null);
   const [merchantName] = useState("Mi Comercio");
   const [merchantCity] = useState("La Paz");
   const [merchantCode] = useState("0000");
   const [includeCRC] = useState(true);
   const [showYapeQR, setShowYapeQR] = useState(false);
-  const [paid, setPaid] = useState(false); // <--- estado para controlar factura
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  // Helper para formato monto
 
   const [cartBeforePayment, setCartBeforePayment] = useState([]);
   const [totalBeforePayment, setTotalBeforePayment] = useState(0);
 
-  const handlePaymentSuccess = (details) => {
-    setCartBeforePayment([...cart]);
-    setTotalBeforePayment(total);
-    setPaymentConfirmed(true);
-    clearCart();
-  };
+  // Detectar contacto registrado en localStorage
+  useEffect(() => {
+    const contacto = JSON.parse(localStorage.getItem("lastContact"));
+    if (contacto && contacto.id) setContactoId(contacto.id);
+  }, []);
 
+  const isContactRegistered = () => !!contactoId;
+
+  const handlePaymentSuccess = async (details, metodoPago) => {
+    const contacto = JSON.parse(localStorage.getItem("lastContact"));
+    if (!contacto?.id) {
+      Swal.fire("❌ Error", "Debes registrarte antes de pagar", "error");
+      return;
+    }
+  
+    try {
+      // Enviar el objeto completo de contacto y cart con la estructura correcta
+      const response = await fetch("https://server-triton.vercel.app/api/facturas/crear", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contacto: {
+            id: contacto.id,
+            nombre: contacto.nombreCompleto?.split(" ")[0] || "N/A",
+            apellido: contacto.nombreCompleto?.split(" ")[1] || "",
+            ci: contacto.ci_nit || "0",
+            correo: contacto.correo || "",
+            telefono: contacto.telefono || ""
+          },
+          cart: cart.map(item => ({
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity || 1
+          })),
+          total,
+          metodo_pago: metodoPago
+        }),
+      });
+  
+      if (!response.ok) throw new Error("No se pudo generar la factura");
+  
+      const data = await response.json();
+  
+      Swal.fire("✅ Factura generada", "Se envió a tu correo y WhatsApp", "success");
+      setCartBeforePayment([...cart]);
+      setTotalBeforePayment(total);
+      setPaymentConfirmed(true);
+      clearCart();
+    } catch (error) {
+      console.error(error);
+      Swal.fire("❌ Error", "No se pudo generar la factura", "error");
+    }
+  };
   const formatAmount = (value) => Number(value || 0).toFixed(2);
 
-  // CRC16-CCITT
+  // CRC16-CCITT para QR Yape
   const crc16ccitt = (str) => {
     let crc = 0xffff;
     for (let i = 0; i < str.length; i++) {
@@ -53,7 +97,6 @@ const CartView = () => {
     return crc.toString(16).toUpperCase().padStart(4, "0");
   };
 
-  // Cadena EMV-like
   const emvFull = useMemo(() => {
     const put = (tag, value) => {
       if (!value) return "";
@@ -78,22 +121,6 @@ const CartView = () => {
     return `${body}6304${crc}`;
   }, [merchantName, merchantCity, merchantCode, total, includeCRC]);
 
-  const contacto = useMemo(() => {
-    return JSON.parse(localStorage.getItem("lastContact")) || {
-      nombreCompleto: "Consumidor Final",
-      ci_nit: "0"
-    };
-  }, []);
-
-  const isContactRegistered = () => {
-    const contact = JSON.parse(localStorage.getItem("lastContact"));
-    return contact && contact.nombreCompleto && contact.ci_nit;
-  };
-
-  const clearContact = () => {
-    localStorage.removeItem("lastContact");
-  };
- 
   return (
     <>
       <NavBar />
@@ -111,51 +138,58 @@ const CartView = () => {
                 <Link to="/" className="shop-now-button">Seguir comprando</Link>
               </div>
             ) : (
-                <div className="cart-items">
-                  {cart.map((item, index) => (
-                    <div key={index} className="cart-item">
-                      <img src={item.image} alt={item.name} className="cart-item-image" />
-                      <div className="cart-item-info">
-                        <p>{item.name}</p>
-                        <p>Talla: {item.size}</p>
-                        <p>Color: {item.color}</p>
-                        <p>Precio unitario: ${item.price.toFixed(2)}</p>
-                        <p>Cantidad: {item.quantity || 1}</p>
-                      </div>
-                      <button onClick={() => removeFromCart(item)} className="remove-item-button">
-                        Eliminar
-                    </button>
+              <div className="cart-items">
+                {cart.map((item, index) => (
+                  <div key={index} className="cart-item">
+                    <img src={item.image} alt={item.name} className="cart-item-image" />
+                    <div className="cart-item-info">
+                      <p>{item.name}</p>
+                      <p>Talla: {item.size}</p>
+                      <p>Color: {item.color}</p>
+                      <p>Precio unitario: ${item.price.toFixed(2)}</p>
+                      <p>Cantidad: {item.quantity || 1}</p>
                     </div>
-                  ))}
-                </div>
-              )}
+                    <button onClick={() => removeFromCart(item)} className="remove-item-button">Eliminar</button>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className="cart-summary">
-              <p><strong>Total: ${total.toFixed(2)}</strong></p> {/* total reactivo correcto */}
+              <p><strong>Total: ${total.toFixed(2)}</strong></p>
 
               {isContactRegistered() ? (
-                <PayPalButton amount={total} onPaymentSuccess={handlePaymentSuccess} />
-
-              ) : (
-                  <button
-                    className="paypal-disabled-button"
-                    onClick={() => {
-                      alert("Debes registrarte antes de pagar con PayPal.");
-                      window.location.href = "/user";
-                    }}
-                  >
-                    Pagar con PayPal
-                  </button>
-                )}
+  <PayPalButton
+    amount={total}
+    onPaymentSuccess={(details) => handlePaymentSuccess(details, "PayPal")}
+  />
+) : (
+  <button
+    className="paypal-disabled-button"
+    onClick={() => {
+      localStorage.setItem("pendingPayment", "paypal"); // 👈 Guardamos método de pago
+      navigate("/user");
+    }}
+  >
+    Debes registrarte antes de pagar
+  </button>
+)}
 
               {cart.length > 0 && (
                 <div className="yape-container">
                   <button
-                    className={`yape-button ${showYapeQR ? "active" : ""}`}
-                    onClick={() => setShowYapeQR((prev) => !prev)}
-                  >
-                    {showYapeQR ? "❌ Cerrar QR Yape Bolivia" : "📱 Pagar con Yape Bolivia"}
-                  </button>
+  className={`yape-button ${showYapeQR ? "active" : ""}`}
+  onClick={() => {
+    if (!isContactRegistered()) {
+      localStorage.setItem("pendingPayment", "qr"); // 👈 Guardamos método de pago
+      navigate("/user");
+      return;
+    }
+    setShowYapeQR(prev => !prev);
+  }}
+>
+  {showYapeQR ? "❌ Cerrar QR Yape Bolivia" : "📱 Pagar con Yape Bolivia"}
+</button>
 
                   {showYapeQR && (
                     <div className="yape-qr-box">
@@ -165,23 +199,21 @@ const CartView = () => {
                       <QRCodeCanvas value={emvFull} size={200} />
                       <p className="yape-note">📲 Abre tu app Yape y escanea el código</p>
 
-                      {/* Botón de confirmación */}
                       <button
                         className="confirm-yape-button"
                         onClick={() => {
-
                           Swal.fire({
                             icon: "success",
                             title: "Pago confirmado ✅",
                             text: "¡Gracias por tu compra con Yape Bolivia!",
                             confirmButtonColor: "#3085d6",
                           });
-                          handlePaymentSuccess(); // <-- habilita la factura y limpia el carrito
-                          setShowYapeQR(false);   // cierra el QR
+                          handlePaymentSuccess(null, "QR Yape Bolivia");
+                          setShowYapeQR(false);
                         }}
                       >
                         Confirmar pago
-        </button>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -196,15 +228,13 @@ const CartView = () => {
                 Generar Factura
               </button>
             )}
+
             {showFactura && (
               <Factura
-              cart={cartBeforePayment}   // <--- usar carrito guardado
-              total={totalBeforePayment} // <--- usar total guardado
-              contacto={contacto}
-              onClose={() => {
-                setShowFactura(false);
-                clearContact();
-                }}
+                cart={cartBeforePayment}
+                total={totalBeforePayment}
+                contacto={JSON.parse(localStorage.getItem("lastContact"))}
+                onClose={() => setShowFactura(false)}
               />
             )}
           </div>
