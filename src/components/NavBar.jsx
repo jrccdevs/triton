@@ -45,11 +45,11 @@ const Navbar = () => {
 
       {/* MENÚ PARA ESCRITORIO (incluye el botón de tema para escritorio) */}
       <div className="menu-container">
-        <Link to="/pantalones" className="menu-button">Pantalones</Link>
-        <Link to="/chaquetas" className="menu-button">Chaquetas</Link>
-        <Link to="/camisas" className="menu-button">Camisas</Link>
-        <Link to="/gorros" className="menu-button">Gorras</Link>
-        <Link to="/accesorios" className="menu-button">Accesorios</Link>
+        <Link to="/pantalones" onClick={() => window.scrollTo(0, 0)} className="menu-button">Pantalones</Link>
+        <Link to="/chaquetas" onClick={() => window.scrollTo(0, 0)} className="menu-button">Chaquetas</Link>
+        <Link to="/camisas"  onClick={() => window.scrollTo(0, 0)}className="menu-button">Camisas</Link>
+        <Link to="/gorros"  onClick={() => window.scrollTo(0, 0)}className="menu-button">Gorras</Link>
+        <Link to="/accesorios" onClick={() => window.scrollTo(0, 0)} className="menu-button">Accesorios</Link>
         
         <button onClick={toggleTheme} className="theme-toggle-desktop" aria-label="Toggle dark mode">
           {darkMode ? <FaSun /> : <FaMoon />}
@@ -59,11 +59,11 @@ const Navbar = () => {
       {/* MENÚ MÓVIL (solo visible cuando isMenuOpen es true) */}
       {isMenuOpen && (
         <div className="mobile-dropdown-menu">
-          <Link to="/pantalones" onClick={closeMenu} className="menu-button">Pantalones</Link>
-          <Link to="/chaquetas" onClick={closeMenu} className="menu-button">Chaquetas</Link>
-          <Link to="/camisas" onClick={closeMenu} className="menu-button">Camisas</Link>
-          <Link to="/gorros" onClick={closeMenu} className="menu-button">Gorras</Link>
-          <Link to="/accesorios" onClick={closeMenu} className="menu-button">Accesorios</Link>
+          <Link to="/pantalones" onClick={() => (window.scrollTo(0, 0), closeMenu())} className="menu-button">Pantalones</Link>
+          <Link to="/chaquetas" onClick={() => (window.scrollTo(0, 0), closeMenu())} className="menu-button">Chaquetas</Link>
+          <Link to="/camisas" onClick={() => (window.scrollTo(0, 0), closeMenu())}  className="menu-button">Camisas</Link>
+          <Link to="/gorros" onClick={() => (window.scrollTo(0, 0), closeMenu())}  className="menu-button">Gorras</Link>
+          <Link to="/accesorios" onClick={() => (window.scrollTo(0, 0), closeMenu())}  className="menu-button">Accesorios</Link>
         </div>
       )}
 

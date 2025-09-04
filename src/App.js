@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {React, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route,  useLocation } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeToggle'; // Importa el ThemeProvider
 
 // Importa todos tus componentes de página
@@ -23,7 +23,10 @@ import Buscador from './components/Buscador';
 
 import './App.css'; // Tu archivo CSS global para las variables de tema
 
+window.history.scrollRestoration = 'manual'; // desactiva el scroll automático del navegador
+
 function App() {
+ 
   return (
     // Envuelve toda la aplicación con ThemeProvider
     // El div app-wrapper seguirá manejando la clase 'dark-mode' para el estilo general del wrapper
@@ -32,7 +35,7 @@ function App() {
         <Router>
           {/* Aquí NO se renderiza Navbar ni Footer globalmente, Inicio lo hará */}
           {/* <Navbar darkMode={darkMode} toggleTheme={toggleTheme} /> <-- ELIMINAR */}
-
+          <ScrollToTop /> {/* Maneja el scroll en todas las rutas */}
           <main className="app-main-content">
             <Routes>
               <Route path="/" element={<Inicio />} />
@@ -62,5 +65,14 @@ function App() {
     </ThemeProvider>
   );
 }
+function ScrollToTop() {
+  const location = useLocation();
 
+  useEffect(() => {
+    // Esto sube el scroll al inicio al montar la ruta
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname]); // se ejecuta cada vez que cambia la ruta
+
+  return null;
+}
 export default App;

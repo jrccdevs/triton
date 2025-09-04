@@ -6,7 +6,7 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/styles.min.css';
 import Swal from 'sweetalert2';
 
-import '../../estilos/Product/ProductDetail.css'; 
+import '../../estilos/Product/ProductDetail.css';
 import NavBar from '../NavBar';
 import Productos2 from '../Productos2';
 import Footer from '../Footer';
@@ -25,7 +25,7 @@ const PruebaDetalle = () => {
   const { addToCart, cartCount } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
-  
+
   const actualizarStock = async (idProducto, cantidadVendida) => {
     try {
       const response = await fetch(
@@ -36,7 +36,7 @@ const PruebaDetalle = () => {
           body: JSON.stringify({ cantidadVendida }),
         }
       );
-  
+
       if (!response.ok) throw new Error('Error al actualizar el stock');
       const data = await response.json();
       console.log('✅', data.message);
@@ -139,7 +139,7 @@ const PruebaDetalle = () => {
       });
       return;
     }
-  
+
     if (quantity > product.cantidad) {
       Swal.fire({
         title: '❌ Stock insuficiente',
@@ -160,7 +160,7 @@ const PruebaDetalle = () => {
       size: selectedSize,
       color: selectedColor,
       image: selectedImage,
-      quantity, 
+      quantity,
     };
 
     addToCart(cartItem);
@@ -212,7 +212,7 @@ const PruebaDetalle = () => {
           <h1 className="producto-name">{product?.product_name || 'Cargando...'}</h1>
           <p className="producto-price">${product?.price ? product.price.toFixed(2) : '0.00'}</p>
           <p className="product-description">{product?.description || 'Descripción no disponible.'}</p>
-          
+
           <div className="product-similar">
             <h3>Productos similares:</h3>
             <div className="similar-products-container">
@@ -228,59 +228,59 @@ const PruebaDetalle = () => {
           </div>
 
           <div className="product-sizes" translate="no">
-  <h3>Tallas:</h3>
-  <div className="sizes">
-    {product?.sizes
-      ? product.sizes.split(/,\s*/).map((size, index) => (
-          <button
-            key={index}
-            className={`size-option ${selectedSize === size ? 'selected' : ''}`}
-            onClick={() => handleSizeChange(size)}
-          >
-            {size}
-          </button>
-        ))
-      : 'No hay tallas disponibles.'}
-  </div>
-</div>
+            <h3>Tallas:</h3>
+            <div className="sizes">
+              {product?.sizes
+                ? product.sizes.split(/,\s*/).map((size, index) => (
+                  <button
+                    key={index}
+                    className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                    onClick={() => handleSizeChange(size)}
+                  >
+                    {size}
+                  </button>
+                ))
+                : 'No hay tallas disponibles.'}
+            </div>
+          </div>
           <div className="product-quantity">
-  <h3>Cantidad:</h3>
-  <input
-    type="number"
-    min="1"
-    onChange={handleQuantityChange}
-    value={quantity}
-    
-    className="quantity-input"
-  />
-</div>
+            <h3>Cantidad:</h3>
+            <input
+              type="number"
+              min="1"
+              onChange={handleQuantityChange}
+              value={quantity}
+
+              className="quantity-input"
+            />
+          </div>
           <button className="add-to-cart-button1" onClick={handleAddToCart}>
             <FaShoppingCart /> Agregar al carrito
           </button>
 
-          <Link to="/carrito" className="view-cart-link">
+          <Link to="/carrito" onClick={() => window.scrollTo(0, 0)} className="view-cart-link">
             <HiOutlineShoppingCart /> Ver Carrito {cartCount > 0 && (
-            <span className="cart-count-badge">{cartCount}</span>
-          )}
+              <span className="cart-count-badge">{cartCount}</span>
+            )}
           </Link>
         </div>
       </div>
 
       {product?.product_images && (
         <div className={`image-text-columns ${darkMode ? 'dark-mode' : ''}`}>
-        {parseImages(product?.product_images || []).map((image, index) => (
-          <div 
-            className="image-text-row" 
-            key={index} 
-            style={{ '--delay': `${index * 0.3}s` }}
-          >
-            <img 
-              src={image.url} 
-              alt={`Thumbnail ${index}`} 
-              className="column-image"
-            />
-            <p className="column-text">{image.caracteristicas}</p>
-          </div>
+          {parseImages(product?.product_images || []).map((image, index) => (
+            <div
+              className="image-text-row"
+              key={index}
+              style={{ '--delay': `${index * 0.3}s` }}
+            >
+              <img
+                src={image.url}
+                alt={`Thumbnail ${index}`}
+                className="column-image"
+              />
+              <p className="column-text">{image.caracteristicas}</p>
+            </div>
           ))}
         </div>
       )}

@@ -1,6 +1,5 @@
-// src/components/CartView.jsx
 import React, { useState, useContext, useMemo, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { QRCodeCanvas } from 'qrcode.react';
 import PopularProducts from './PopularProducts';
@@ -10,11 +9,12 @@ import PayPalButton from '../Carrito/Payment';
 import Footer from '../Footer';
 import { ThemeContext } from '../ThemeToggle';
 import Factura from './Factura';
-import { CartContext } from "./cartContext"; 
+import { CartContext } from "./cartContext";
 import Swal from 'sweetalert2';
-
+import Qr from '../../img/codigo_qr.jpeg'
 const CartView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { darkMode } = useContext(ThemeContext);
   const { cart, removeFromCart, clearCart, total } = useContext(CartContext);
 
@@ -26,17 +26,32 @@ const CartView = () => {
   const [includeCRC] = useState(true);
   const [showYapeQR, setShowYapeQR] = useState(false);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-
   const [cartBeforePayment, setCartBeforePayment] = useState([]);
   const [totalBeforePayment, setTotalBeforePayment] = useState(0);
+  const [resumePayment, setResumePayment] = useState(null);
 
-  // Detectar contacto registrado en localStorage
+  // Detectar contacto registrado y método de pago pendiente
   useEffect(() => {
     const contacto = JSON.parse(localStorage.getItem("lastContact"));
-    if (contacto && contacto.id) setContactoId(contacto.id);
-  }, []);
+    if (contacto?.id) setContactoId(contacto.id);
 
-  const isContactRegistered = () => !!contactoId;
+    const pending = localStorage.getItem("pendingPayment");
+    if (pending) {
+      setResumePayment(pending);
+      // Solo mostrar QR si es QR
+      if (pending === "qr") setShowYapeQR(true);
+    }
+
+    // Revisar si se retorna desde el formulario
+    const params = new URLSearchParams(location.search);
+    const resume = params.get('resume');
+    if (resume) {
+      Swal.fire("ℹ️ Cliente ya registrado", "Retomando método de pago", "info");
+      if (resume === 'qr') setShowYapeQR(true);
+      if (resume === 'paypal') setResumePayment('paypal');
+      localStorage.removeItem("pendingPayment");
+    }
+  }, [location.search]);
 
   const handlePaymentSuccess = async (details, metodoPago) => {
     const contacto = JSON.parse(localStorage.getItem("lastContact"));
@@ -44,9 +59,8 @@ const CartView = () => {
       Swal.fire("❌ Error", "Debes registrarte antes de pagar", "error");
       return;
     }
-  
+
     try {
-      // Enviar el objeto completo de contacto y cart con la estructura correcta
       const response = await fetch("https://server-triton.vercel.app/api/facturas/crear", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -68,11 +82,11 @@ const CartView = () => {
           metodo_pago: metodoPago
         }),
       });
-  
+
       if (!response.ok) throw new Error("No se pudo generar la factura");
-  
-      const data = await response.json();
-  
+
+      await response.json();
+
       Swal.fire("✅ Factura generada", "Se envió a tu correo y WhatsApp", "success");
       setCartBeforePayment([...cart]);
       setTotalBeforePayment(total);
@@ -83,9 +97,9 @@ const CartView = () => {
       Swal.fire("❌ Error", "No se pudo generar la factura", "error");
     }
   };
+
   const formatAmount = (value) => Number(value || 0).toFixed(2);
 
-  // CRC16-CCITT para QR Yape
   const crc16ccitt = (str) => {
     let crc = 0xffff;
     for (let i = 0; i < str.length; i++) {
@@ -121,6 +135,12 @@ const CartView = () => {
     return `${body}6304${crc}`;
   }, [merchantName, merchantCity, merchantCode, total, includeCRC]);
 
+  // Función para iniciar pago → redirige al formulario
+  const initiatePayment = (method) => {
+    localStorage.setItem("pendingPayment", method);
+    navigate("/user");
+  };
+
   return (
     <>
       <NavBar />
@@ -138,67 +158,64 @@ const CartView = () => {
                 <Link to="/" className="shop-now-button">Seguir comprando</Link>
               </div>
             ) : (
-              <div className="cart-items">
-                {cart.map((item, index) => (
-                  <div key={index} className="cart-item">
-                    <img src={item.image} alt={item.name} className="cart-item-image" />
-                    <div className="cart-item-info">
-                      <p>{item.name}</p>
-                      <p>Talla: {item.size}</p>
-                      <p>Color: {item.color}</p>
-                      <p>Precio unitario: ${item.price.toFixed(2)}</p>
-                      <p>Cantidad: {item.quantity || 1}</p>
+                <div className="cart-items">
+                  {cart.map((item, index) => (
+                    <div key={index} className="cart-item">
+                      <img src={item.image} alt={item.name} className="cart-item-image" />
+                      <div className="cart-item-info">
+                        <p>{item.name}</p>
+                        <p>Talla: {item.size}</p>
+                        <p>Color: {item.color}</p>
+                        <p>Precio unitario: ${item.price.toFixed(2)}</p>
+                        <p>Cantidad: {item.quantity || 1}</p>
+                      </div>
+                      <button onClick={() => removeFromCart(item)} className="remove-item-button">Eliminar</button>
                     </div>
-                    <button onClick={() => removeFromCart(item)} className="remove-item-button">Eliminar</button>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
 
             <div className="cart-summary">
               <p><strong>Total: ${total.toFixed(2)}</strong></p>
 
-              {isContactRegistered() ? (
-  <PayPalButton
-    amount={total}
-    onPaymentSuccess={(details) => handlePaymentSuccess(details, "PayPal")}
-  />
-) : (
-  <button
-    className="paypal-disabled-button"
-    onClick={() => {
-      localStorage.setItem("pendingPayment", "paypal"); // 👈 Guardamos método de pago
-      navigate("/user");
-    }}
-  >
-    Debes registrarte antes de pagar
-  </button>
-)}
+              {/* PayPalButton siempre visible */}
+              <PayPalButton
+                amount={total}
+                onPaymentSuccess={(details) => handlePaymentSuccess(details, "PayPal")}
+                onClick={() => initiatePayment("paypal")}
+              />
 
+              {/* QR Yape */}
               {cart.length > 0 && (
                 <div className="yape-container">
                   <button
-  className={`yape-button ${showYapeQR ? "active" : ""}`}
-  onClick={() => {
-    if (!isContactRegistered()) {
-      localStorage.setItem("pendingPayment", "qr"); // 👈 Guardamos método de pago
-      navigate("/user");
-      return;
-    }
-    setShowYapeQR(prev => !prev);
-  }}
->
-  {showYapeQR ? "❌ Cerrar QR Yape Bolivia" : "📱 Pagar con Yape Bolivia"}
-</button>
+                    className={`yape-button ${showYapeQR ? "active" : ""}`}
+                    onClick={() => {
+                      if (!contactoId) {
+                        initiatePayment("qr");
+                        return;
+                      }
+                      setShowYapeQR(prev => !prev);
+                    }}
+                  >
+                    {showYapeQR ? "❌ Cerrar QR Yape Bolivia" : "📱 Pagar con Yape Bolivia"}
+                  </button>
 
                   {showYapeQR && (
                     <div className="yape-qr-box">
                       <h4 className="yape-title">
                         ✨ Escanea para pagar con <b>Yape Bolivia</b>
                       </h4>
-                      <QRCodeCanvas value={emvFull} size={200} />
-                      <p className="yape-note">📲 Abre tu app Yape y escanea el código</p>
+                      {/*<QRCodeCanvas value={emvFull} size={200} />*/}
 
+                      {/*<p className="yape-note">📲 Abre tu app Yape y escanea el código</p>*/}
+                      <img
+                        src={Qr}  // coloca tu QR estático en /public/imagenes/qr-yape.png
+                        alt="QR Yape Bolivia"
+                        style={{ width: "70%", height: "auto" }}
+                      />
+                      <p className="yape-note">Monto a pagar: <b>${total.toFixed(2)}</b></p>
+                      <p className="yape-note">📲 Abre tu app Yape y escanea el código</p>
                       <button
                         className="confirm-yape-button"
                         onClick={() => {
