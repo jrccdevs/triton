@@ -267,7 +267,8 @@ h3 {
 @media (max-width: 767px) {
   .cart-view-container {
     padding: 15px;
-    margin-top: 60px; /* Ajuste para el marginTop en móviles */
+    margin-top: 140px; /* Ajuste para el marginTop en móviles */
+ 
   }
 
   .cart-main {

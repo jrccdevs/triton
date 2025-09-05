@@ -190,9 +190,16 @@ const PruebaDetalle = () => {
             <InnerImageZoom
               width={550}
               height={550}
-              zoomScale={0.2}
               src={selectedImage}
               zoomSrc={selectedImage}
+              zoomScale={2}            // zoom más grande
+              zoomType="hover"          // hover en desktop
+              fadeDuration={300}        // suaviza la animación
+              transitionDuration={300}  // transición suave al mover mouse
+              fullscreenOnMobile={true} // fullscreen en móviles
+              mobileBreakpoint={480}    // a partir de 480px
+              zoomPreload={true}        // precarga la imagen de zoom
+              hint={true}               // muestra tooltip de zoom
             />
           </div>
           <div className="product-thumbnails">

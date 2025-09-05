@@ -144,7 +144,7 @@ const CartView = () => {
   return (
     <>
       <NavBar />
-      <div className={`cart-view-container ${darkMode ? 'dark-mode' : ''}`} style={{ marginTop: "90px" }}>
+      <div className={`cart-view-container ${darkMode ? 'dark-mode' : ''}`} style={{ marginTop: "140px" }}>
         <div className="cart-main">
           <div className="cart-left">
             <Link to="/user" className="checkout-button">Registrate</Link>
