@@ -42,12 +42,12 @@ const ProductCard = ({ categorias }) => {
             <div className="card-image">
               <img src={product.main_image} alt={product.product_name} />
             </div>
-            <div className="card-color-boxes">
+            {/*<div className="card-color-boxes">
               <Link to="/" className="color-box color-box-black"></Link>
               <Link to="/" className="color-box color-box-gray"></Link>
               <Link to="/" className="color-box color-box-green-camo"></Link>
               <Link to="/" className="color-box color-box-camel-camo"></Link>
-            </div>
+        </div>*/}
             <div className="card-content">
               <h3 className="card-title">{product.product_name}</h3>
               <p className="card-description">${product.price}</p>

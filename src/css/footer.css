@@ -383,7 +383,7 @@
 
 .chatbot-header {
   background: var(--primary-color);
-  color: var(--text-color-light);
+  color: var(--text-color-dark);
   padding: 15px 20px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -395,15 +395,18 @@
   position: relative;
   z-index: 1;
 }
-
+.chatbot-header h4{
+  color:var(--text-color-dark);
+}
 .footer-section.dark-mode .chatbot-header {
   background: var(--secondary-color);
+  color: var(--text-color-light);
 }
 
 .chatbot-close-btn {
   background: transparent;
   border: none;
-  color: var(--text-color-light);
+  color: var(--text-color-dark);
   font-size: 1.2em;
   cursor: pointer;
   padding: 5px;
@@ -443,7 +446,7 @@
 
 .footer-section.dark-mode .chatbot-placeholder-message {
   background: var(--accent-color-dark);
-  color: var(--text-color-dark);
+  color: var(--text-color-light);
 }
 
 .message-bubble {
@@ -514,7 +517,7 @@
 
 .chatbot-send-btn {
   background: var(--secondary-color);
-  color: var(--text-color-light);
+  color: var(--text-color-dark);
   border: none;
   border-radius: 25px;
   padding: 10px 20px;

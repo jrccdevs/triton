@@ -13,13 +13,13 @@ function Footer() {
   const messagesEndRef = useRef(null); // Para scroll automático del chatbot
 
   // URLs de tus redes sociales y contacto (¡ACTUALIZA ESTO!)
-  const whatsappNumber = '59175824357'; // Sin el +
-  const defaultWhatsappMessage = 'Hola, necesito más información desde tu portafolio web.';
+  const whatsappNumber = '59177288700'; // Sin el +
+  const defaultWhatsappMessage = 'Hola, necesito más información sobre los productos';
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultWhatsappMessage)}`;
   const facebookLink = 'https://facebook.com/tu_usuario_facebook'; // Reemplaza
   const linkedinLink = 'https://linkedin.com/in/tu_usuario_linkedin'; // Reemplaza
   const githubLink = 'https://github.com/tu_usuario_github'; // Reemplaza
-  const emailAddress = 'reynaldocalani80@gmail.com'; // Reemplaza
+  const emailAddress = 'empresa@triton.com'; // Reemplaza
 
   // Efecto para hacer scroll al final de los mensajes del chatbot
   useEffect(() => {
@@ -104,10 +104,10 @@ function Footer() {
           <h3>Navegación Rápida</h3>
           <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre Mí</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#habilidades">Habilidades</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#sobre-mi">Pantalones</a></li>
+            <li><a href="#proyectos">Chaquetas</a></li>
+            <li><a href="#habilidades">Camisas</a></li>
+            <li><a href="#contacto">Accesorios</a></li>
           </ul>
         </div>
 
