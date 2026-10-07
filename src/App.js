@@ -20,7 +20,9 @@ import Checkout from './components/Carrito/CheckoutButton';
 import Paypal from './components/Carrito/Paypal';
 import UserRegis from './components/Usuarios/UserRegis';
 import Buscador from './components/Buscador';
-
+import Login from './components/Usuarios/Login'; // 👈 importar
+import Dashboard from './components/Usuarios/Dashboard';
+import PrivateRoute from "./components/Usuarios/PrivateRoute";
 import './App.css'; // Tu archivo CSS global para las variables de tema
 
 window.history.scrollRestoration = 'manual'; // desactiva el scroll automático del navegador
@@ -56,6 +58,9 @@ function App() {
               <Route path="/user" element={<UserRegis />} />
               <Route path="/create-orders" element={<Paypal />} />
               <Route path="/productos/:id" element={<PruebaDetalle />} />
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}/>
             </Routes>
           </main>
 

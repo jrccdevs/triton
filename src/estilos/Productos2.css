@@ -1,190 +1,62 @@
+/* src/estilos/Productos2.css */
+
+/* Variables para Modo Claro (Por defecto) */
 :root {
-  --primary-color: #0b3964; /* Azul/Violeta brillante */
-  --secondary-color: #2575fc; /* Azul eléctrico */
-  --text-color-light: #f0f0f0; /* Color de texto para fondos oscuros (ej. botones) */
-  --text-color-dark: #333; /* Color de texto para fondos claros (ej. texto principal) */
-  --bg-color-light: #ffffff; /* Fondo claro principal */
-  --bg-color-dark: #1a1a2e; /* Fondo oscuro principal */
-  --card-bg-light: #f9f9f9; /* Fondo claro de elementos tipo tarjeta */
-  --card-bg-dark: #16213e; /* Fondo oscuro de elementos tipo tarjeta */
-  --border-color-light: #e0e0e0;
-  --border-color-dark: #0f3460;
-  --accent-color-light: #e6e6fa; /* Lavanda para acentos en modo claro */
-  --accent-color-dark: #0b3964; /* Púrpura oscuro para acentos */
-  --gradient-1: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  --gradient-2: linear-gradient(45deg, #00c6ff, #0072ff); /* Otro gradiente para elementos */
+  --p2-bg: #ffffff;
+  --p2-card-bg: #ffffff;
+  --p2-text-primary: #111827;
+  --p2-text-secondary: #6b7280;
+  --p2-border: #e5e7eb;
+  --p2-img-bg: #f8fafc;
+  --p2-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Modo oscuro (¡Revisado para mayor claridad!) */
-/* Aquí redefinimos las variables para que los nombres 'light' apunten a colores oscuros
-   y los nombres 'dark' apunten a colores claros, cuando el body tiene la clase .dark-mode */
+/* Variables para Modo Oscuro (Se activan con la clase .dark-mode) */
 .dark-mode {
-  --text-color-light: #333;     /* En dark mode, 'light' text (ej. de botones) será oscuro */
-  --text-color-dark: #f0f0f0;    /* En dark mode, 'dark' text (ej. principal) será claro */
-  --bg-color-light: #ffffff;     /* En dark mode, 'light' backgrounds (ej. principal) serán oscuros */
-  --bg-color-dark: #1a1a2e;     /* En dark mode, 'dark' backgrounds (ej. de elementos) serán claros */
-  --card-bg-dark: #16213e;     /* En dark mode, 'light' card backgrounds serán oscuros */
-  --card-bg-light: #f9f9f9;     /* En dark mode, 'dark' card backgrounds serán claros */
-  --border-color-dark: #0f3460;
-  --border-color-light: #b9cdec;
-  --accent-color-dark: #e6e6fa;
+  --p2-bg: #0f172a;
+  --p2-card-bg: #1e293b;
+  --p2-text-primary: #f8fafc;
+  --p2-text-secondary: #94a3b8;
+  --p2-border: #334155;
+  --p2-img-bg: #1e293b;
+  --p2-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.titulo_p{
- 
-  font-size: 48px; 
-  font-Family: Cambria; 
-  margin-bottom: 36px;
-  text-align: center;
-}
-.titulo_p:hover{
-  color: rgb(21, 85, 122);
+/* Contenedor principal */
+.productos2-section {
+  background-color: var(--p2-bg) !important;
+  color: var(--p2-text-primary) !important;
+  padding: 48px 0;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Contenedor del carrusel */
-.slick-slider {
-    
-    max-width: 100%; /* Ajusta el ancho máximo del carrusel */
-    margin: 0 auto; /* Centra el carrusel horizontalmente */
-  }
-  .slick-track {
-    display: flex;
-    align-items: center; /* Alinea los elementos verticalmente */
-  }
-  .slick-slide {
-    display: flex;
-    box-sizing: border-box; /* Incluye el padding en el tamaño total */
-    padding: 0 5px; /* Espacio alrededor de cada tarjeta */
-  }
-  
-  /* Contenedor de la tarjeta */
-  .card-container {
-    height: auto;
-    background-color: #007bff;
-    /*border-left: 1px solid #7d7d7d;  Línea negra que separa cada tarjeta */
-    background: rgb(233, 230, 230); /* Fondo blanco */
-    border-radius: 0; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    overflow: hidden; /* Ocultar cualquier desbordamiento */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
-    text-align: center; /* Centrar el texto */
-    position: relative; /* Asegura el posicionamiento relativo */
-  }
-  
-  /* Imagen de la tarjeta */
-  .card-image img {
-    width: auto; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-    height: 100%; /* Mantener la relación de aspecto */
-    display: block; /* Eliminar el espacio inferior */
-    border-radius: 8px; /* Bordes redondeados en la imagen */
-    background-color: #0056b3;
-  }
-  
-  /* Contenido de la tarjeta */
-  .card-content {
-    width: 100%;
-    height: 100%;
-    padding: 6px; /* Espaciado interno */
-  }
-  
-  /* Título de la tarjeta */
-  .card-title {
-    font-size: 1.5rem; /* Tamaño de fuente grande */
-    font-weight: 600; /* Fuente negrita */
-    margin-bottom: 8px; /* Espacio debajo del título */
-    color: #333; /* Color del texto */
-  }
-  
-  /* Descripción de la tarjeta */
-  .card-description {
-    font-size: 1rem; /* Tamaño de fuente normal */
-    color: #666; /* Color del texto */
-    margin-bottom: 16px; /* Espacio debajo de la descripción */
-  }
-  
-  /* Botón de la tarjeta */
-  .card-button {
-    display: inline-block; /* Mostrar como un bloque en línea */
-    padding: 10px 20px; /* Espaciado interno del botón */
-    background-color: #007bff; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    border-radius: 4px; /* Bordes redondeados */
-    text-decoration: none; /* Eliminar subrayado */
-    font-weight: 600; /* Fuente negrita */
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-  }
-  
-  .card-button:hover {
-    background-color: #0056b3; /* Color de fondo en hover */
-  }
-  
-  /* Efecto de zoom en hover */
-  .card-container:hover {
-    transform: scale(1.02); /* Escalar ligeramente */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
-  }
+/* Textos */
+.p2-title {
+  color: var(--p2-text-primary) !important;
+  transition: color 0.3s ease;
+}
 
+.p2-subtitle {
+  color: var(--p2-text-secondary) !important;
+  transition: color 0.3s ease;
+}
 
-  /* Contenedor de los cuadros de colores */
-.card-color-boxe {
-    display: flex; /* Muestra los cuadros en línea */
-    justify-content: center; /* Centra los cuadros horizontalmente */
-    gap: 20px; /* Espacio entre los cuadros */
-    margin-bottom: auto; /* Espacio debajo de los cuadros */
-    margin-top: 10px;
-  }
-  
-  /* Estilo base para los cuadros de colores */
-  .color-boxe {
-    width: 50px; /* Ancho del cuadro */
-    height: 40px; /* Alto del cuadro */
-    border-radius: 3px; /* Bordes redondeados */
-  }
-  
-  /* Colores específicos para los cuadros */
-  .color-box-black { background-color: #000000; } /* Negro */
-.color-box-gray { background-color: #808080; } /* Gris */
-.color-box-green-camo { background-color: #4a5d23; } /* Verde camuflado */
-.color-box-camel-camo { background-color: #d2b08c; } /* Camuflado camel */
+/* Tarjeta de producto */
+.p2-card {
+  background-color: var(--p2-card-bg) !important;
+  border: 1px solid var(--p2-border) !important;
+  box-shadow: var(--p2-shadow) !important;
+  border-radius: 12px !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease !important;
+}
 
+.p2-card:hover {
+  transform: translateY(-6px);
+}
 
-/* Estilo básico para las flechas de navegación de Slick */
-.slick-prev, .slick-next {
-    width: 60px; /* Ajusta el ancho del contenedor de la flecha */
-    height: 60px; /* Ajusta la altura del contenedor de la flecha */
-    text-align: center; /* Centra el contenido horizontalmente */
-    line-height: 60px; /* Centra el ícono verticalmente */
-    background: rgba(255, 255, 255, 0.8); /* Fondo con opacidad */
-    border-radius: 50%; /* Bordes redondeados para el contenedor de la flecha */
-    display: flex; /* Usa flexbox para centrar el ícono */
-    align-items: center; /* Centra el ícono verticalmente */
-    justify-content: center; /* Centra el ícono horizontalmente */
-    color: #d3d3d3; /* Color del ícono de la flecha */
-    z-index: 1; /* Asegura que las flechas estén sobre otros elementos */
-    cursor: pointer; /* Cambia el cursor al pasar sobre la flecha */
-  }
-  
-  /* Flecha anterior */
-  .slick-prev {
-    left: 10px; /* Espacio desde el borde izquierdo */
-    top: 50%; /* Posiciona verticalmente en el centro */
-    transform: translateY(-50%); /* Ajusta el centro verticalmente */
-  }
-  
-  /* Flecha siguiente */
-  .slick-next {
-    right: 10px; /* Espacio desde el borde derecho */
-    top: 50%; /* Posiciona verticalmente en el centro */
-    transform: translateY(-50%); /* Ajusta el centro verticalmente */
-  }
-  
-  /* Asegura que las flechas sean visibles */
-  .slick-prev:before, .slick-next:before {
-    font-family: 'slick'; /* Usa la fuente de íconos predeterminada de Slick */
-    font-size: 25px; /* Tamaño del ícono */
-    color: #808080; /* Color del ícono */
-  }
-  
-
-
-
+/* Fondo de la imagen de producto */
+.p2-img-box {
+  background-color: var(--p2-img-bg) !important;
+  transition: background-color 0.3s ease;
+}

@@ -1,56 +1,160 @@
-
-
-
-.inicio{
+/* ===================================================
+   VARIABLES DE COLOR (TEMA CLARO / LIGHT MODE)
+   =================================================== */
+   :root {
+    --bg-main: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f3f5;
+    --bg-newsletter: #1b2a4a;
     
-    margin: 0;
-    padding: 0;
-    margin-bottom: 0;
-}
-.contenido{
-    margin-top: 5px;
-    background: chocolate;
-    margin-bottom: 0;
-
-
-}
-.logo{
-    height: auto;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --text-light: #ffffff;
+    
+    --border-color: #e9ecef;
+    --accent-color: #0066cc;
+    --accent-hover: #004999;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ===================================================
+     VARIABLES DE COLOR (TEMA OSCURO / DARK MODE)
+     =================================================== */
+  [data-theme='dark'],
+  .dark-mode {
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --bg-hover: #2a2a2a;
+    --bg-newsletter: #0d1b2a;
+    
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --text-light: #ffffff;
+    
+    --border-color: #2c2c2c;
+    --accent-color: #3399ff;
+    --accent-hover: #66b2ff;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Opcional: Auto-detectar preferencia del sistema operativo */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg-main: #121212;
+      --bg-card: #1e1e1e;
+      --bg-hover: #2a2a2a;
+      --bg-newsletter: #0d1b2a;
+      
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --text-light: #ffffff;
+      
+      --border-color: #2c2c2c;
+      --accent-color: #3399ff;
+      --accent-hover: #66b2ff;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  /* ===================================================
+     ESTILOS GENERALES Y ESTRUCTURA DE INICIO
+     =================================================== */
+  .inicio-container {
     width: 100%;
-}
-.overlay {
-    position: absolute;
-    top: 30%;
-    right: 5%;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Sección de Beneficios / Trust Badges */
+  .benefits-section {
+    background-color: var(--bg-hover);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 0;
+    margin: 3rem 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .benefit-card {
     display: flex;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
-    padding: 10px;
-    border-radius: 10px;
-    height: 300px;
-    width: 400px;
-    justify-content: flex-start;
-}
-.texto-overlay{
-    color: azure;
-    margin: 10 10 40 10 ;
-    text-align: center;
-    padding-left: 40px;
-}
-
-.button {
-    color: white;
-    background-color: rgb(28, 28, 48);
-    border: none;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .benefit-title {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  
+  .benefit-desc {
+    color: var(--text-secondary);
+  }
+  
+  /* Sección Sobre la Marca / Historia */
+  .about-section {
+    background-color: var(--bg-card);
+    padding: 4rem 0;
+    margin: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Tarjetas de Testimonios / Reseñas */
+  .testimonial-card {
+    background-color: var(--bg-card) !important;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 100%;
     display: flex;
-    margin-top: auto;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    height: 20px;
-    width: 200px;
-}
-  .container{
-      position: relative;
-      display: inline-block;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .testimonial-text {
+    color: var(--text-primary);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-name {
+    color: var(--text-primary);
+    font-weight: bold;
+  }
+  
+  .testimonial-role {
+    color: var(--text-secondary);
+  }
+  
+  /* Sección Newsletter / Boletín */
+  .newsletter-section {
+    background-color: var(--bg-newsletter);
+    color: var(--text-light);
+    padding: 3.5rem 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newsletter-input {
+    background-color: var(--bg-card);
+    border-radius: 4px;
+  }
+  
+  .newsletter-input input {
+    color: var(--text-primary);
   }
